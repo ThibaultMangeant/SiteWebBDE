@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Conception Développement" company="IUT Le Havre Normandie" webLink="https://diw.iut.univ-lehavre.fr/pedago/index.xml" view-date="2025-03-22" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Conception Développement" company="IUT Le Havre Normandie" webLink="https://diw.iut.univ-lehavre.fr/pedago/index.xml" view-date="2025-03-26" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
     <description/>
     <view zooming-state="default:0" id="gantt-chart">
-        <field id="tpd15" name="Notes" width="20" order="-1"/>
         <field id="tpd3" name="Nom" width="200" order="0"/>
         <field id="tpd4" name="Date de début" width="75" order="1"/>
         <field id="tpd5" name="Date de fin" width="75" order="2"/>
+        <field id="tpd15" name="Notes" width="20" order="3"/>
         <option id="taskLabelUp" value="name"/>
         <option id="taskLabelDown" value="length"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
         <option id="filter.inProgressTodayTasks" value="false"/>
-        <timeline><![CDATA[9,8]]></timeline>
         <option id="color.recent"><![CDATA[#cc0033]]></option>
     </view>
     <view id="resource-table">
@@ -144,7 +143,6 @@
     <vacations/>
     <previous/>
     <roles roleset-name="Default"/>
-    <roles roleset-name="SoftwareDevelopment"/>
     <roles>
         <role id="1" name="Perfectionneur"/>
         <role id="2" name="Organisateur"/>
