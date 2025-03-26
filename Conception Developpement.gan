@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Conception Développement" company="IUT Le Havre Normandie" webLink="https://diw.iut.univ-lehavre.fr/pedago/index.xml" view-date="2025-03-22" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:0" id="gantt-chart">
+        <field id="tpd15" name="Notes" width="20" order="-1"/>
+        <field id="tpd3" name="Nom" width="200" order="0"/>
+        <field id="tpd4" name="Date de début" width="75" order="1"/>
+        <field id="tpd5" name="Date de fin" width="75" order="2"/>
+        <option id="taskLabelUp" value="name"/>
+        <option id="taskLabelDown" value="length"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <timeline><![CDATA[9,8]]></timeline>
+        <option id="color.recent"><![CDATA[#cc0033]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars base-id="uk.scotland">
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="" month="1" date="1" type="HOLIDAY"><![CDATA[New Year's Day]]></date>
+        <date year="" month="12" date="25" type="HOLIDAY"><![CDATA[Christmas Day]]></date>
+        <date year="" month="12" date="26" type="HOLIDAY"><![CDATA[Boxing Day]]></date>
+        <date year="" month="11" date="30" type="HOLIDAY"><![CDATA[St Andrews Day]]></date>
+        <date year="2025" month="4" date="18" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2025" month="5" date="5" type="HOLIDAY"><![CDATA[Early May Bank Holiday]]></date>
+        <date year="2025" month="5" date="26" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2022" month="1" date="4" type="HOLIDAY"><![CDATA[Day after New Year's Day (in lieu)]]></date>
+        <date year="2022" month="4" date="15" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2022" month="5" date="2" type="HOLIDAY"><![CDATA[Early May Bank Holiday]]></date>
+        <date year="2022" month="6" date="2" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2022" month="6" date="3" type="HOLIDAY"><![CDATA[Platinum Jubilee]]></date>
+        <date year="2022" month="8" date="2" type="HOLIDAY"><![CDATA[Summer Bank Holiday]]></date>
+        <date year="2022" month="11" date="30" type="HOLIDAY"><![CDATA[St Andrews Day]]></date>
+        <date year="2022" month="12" date="27" type="HOLIDAY"><![CDATA[Christmas Day (in lieu)]]></date>
+        <date year="2015" month="12" date="28" type="HOLIDAY"><![CDATA[Boxing Day (in lieu)]]></date>
+        <date year="2015" month="4" date="3" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2015" month="4" date="6" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2015" month="5" date="4" type="HOLIDAY"><![CDATA[Early May Bank Holiday]]></date>
+        <date year="2015" month="5" date="25" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2016" month="3" date="25" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2016" month="5" date="2" type="HOLIDAY"><![CDATA[Early May Bank Holiday]]></date>
+        <date year="2016" month="5" date="30" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2017" month="1" date="2" type="HOLIDAY"><![CDATA[New Year's Day (in lieu)]]></date>
+        <date year="2017" month="4" date="14" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2017" month="5" date="1" type="HOLIDAY"><![CDATA[Early May Bank Holiday]]></date>
+        <date year="2017" month="5" date="29" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2018" month="3" date="30" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2018" month="5" date="7" type="HOLIDAY"><![CDATA[Early May Bank Holiday]]></date>
+        <date year="2018" month="5" date="28" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2020" month="4" date="10" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2020" month="5" date="8" type="HOLIDAY"><![CDATA[Early May Bank Holiday (VE day)]]></date>
+        <date year="2020" month="5" date="25" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2021" month="4" date="2" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2021" month="5" date="3" type="HOLIDAY"><![CDATA[Early May Bank Holiday]]></date>
+        <date year="2021" month="5" date="31" type="HOLIDAY"><![CDATA[Spring Bank Holiday]]></date>
+        <date year="2015" month="1" date="2" type="HOLIDAY"><![CDATA[Day after New Years Day]]></date>
+        <date year="2015" month="8" date="3" type="HOLIDAY"><![CDATA[August Bank Holiday]]></date>
+        <date year="2016" month="1" date="4" type="HOLIDAY"><![CDATA[Day after New Years Day (in lieu)]]></date>
+        <date year="2016" month="8" date="1" type="HOLIDAY"><![CDATA[August Bank Holiday]]></date>
+        <date year="2017" month="1" date="3" type="HOLIDAY"><![CDATA[New Year's Day (in lieu)]]></date>
+        <date year="2017" month="8" date="7" type="HOLIDAY"><![CDATA[August Bank Holiday]]></date>
+        <date year="2018" month="1" date="2" type="HOLIDAY"><![CDATA[Day after New Year's Day]]></date>
+        <date year="2018" month="8" date="6" type="HOLIDAY"><![CDATA[August Bank Holiday]]></date>
+        <date year="2019" month="1" date="2" type="HOLIDAY"><![CDATA[Day after New Year's Day]]></date>
+        <date year="2019" month="8" date="5" type="HOLIDAY"><![CDATA[August Bank Holiday]]></date>
+        <date year="2019" month="12" date="2" type="HOLIDAY"><![CDATA[St Andrews Day]]></date>
+        <date year="2020" month="1" date="2" type="HOLIDAY"><![CDATA[Day after New Year's Day]]></date>
+        <date year="2020" month="8" date="3" type="HOLIDAY"><![CDATA[Summer Bank Holiday]]></date>
+        <date year="2020" month="11" date="30" type="HOLIDAY"><![CDATA[St Andrews Day]]></date>
+        <date year="2020" month="12" date="28" type="HOLIDAY"><![CDATA[Boxing Day (in lieu)]]></date>
+        <date year="2021" month="1" date="4" type="HOLIDAY"><![CDATA[Day after New Year's Day]]></date>
+        <date year="2021" month="8" date="2" type="HOLIDAY"><![CDATA[Summer Bank Holiday]]></date>
+        <date year="2021" month="11" date="30" type="HOLIDAY"><![CDATA[St Andrews Day]]></date>
+        <date year="2021" month="12" date="27" type="HOLIDAY"><![CDATA[Christmas Day (in lieu)]]></date>
+        <date year="2021" month="12" date="28" type="HOLIDAY"><![CDATA[Boxing Day (in lieu)]]></date>
+        <date year="2025" month="1" date="2" type="HOLIDAY"><![CDATA[Day after New Year's Day]]></date>
+        <date year="2025" month="8" date="4" type="HOLIDAY"><![CDATA[Summer Bank Holiday]]></date>
+        <date year="2025" month="11" date="30" type="HOLIDAY"><![CDATA[St Andrew's Day]]></date>
+        <date year="2025" month="12" date="1" type="HOLIDAY"><![CDATA[St Andrew's Day (in lieu)]]></date>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="2" uid="2ffb316e80ee48f698c8411cc448144c" name="Phase Conception" meeting="false" start="2025-03-26" duration="3" complete="0" expand="true">
+            <depend id="3" type="2" difference="0" hardness="Strong"/>
+            <task id="0" uid="1c801b73a16c4a1796dff5ea1235d899" name="Réalisation du cahier" color="#cc0033" shape="1,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1" meeting="false" start="2025-03-26" duration="3" complete="0" priority="4" expand="true"/>
+            <task id="4" uid="de7b3cdefb6445f894cede6d991ea140" name="Réaliser le shéma Entité-Association" meeting="false" start="2025-03-26" duration="1" complete="0" expand="true"/>
+            <task id="1" uid="f717d856c6e840b199e6d5ff3434317b" name="FaireGantProject" meeting="false" start="2025-03-26" duration="1" complete="0" expand="true"/>
+            <task id="6" uid="d83d7c97dbdc4fcb98bc93595367b9d4" name="tâche_6" meeting="false" start="2025-03-26" duration="1" complete="0" expand="true"/>
+            <task id="5" uid="b53bcf3a8e4947f0bcf634f3e9006050" name="Réaliser Maquette" meeting="false" start="2025-03-26" duration="3" complete="0" expand="true"/>
+        </task>
+        <task id="3" uid="8d98c2f579fc4b68b7913a0632980664" name="Phase Développement" meeting="false" start="2025-03-31" duration="5" complete="0" expand="true">
+            <task id="13" uid="582efa9610034322b74e080d859fae14" name="Correctif des bugs" meeting="false" start="2025-04-03" duration="2" complete="0" expand="true"/>
+            <task id="7" uid="a448eb1e3632411e8c93af5a70441dcc" name="Réalisation du backend" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true">
+                <task id="12" uid="77691c7646a548648d25c4c5dc07dd31" name="Developpement Postgres SQL" meeting="false" start="2025-03-31" duration="2" complete="0" expand="true"/>
+                <task id="8" uid="6db235068248486c9214f2f67c7842bd" name="Développement PHP" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true"/>
+            </task>
+            <task id="10" uid="f2f6ab6090d24c758c4c92fa89624934" name="Réalisation du Front" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true">
+                <task id="11" uid="962bb7bb58f248468fafd459164d3b6c" name="Développement HTML CSS" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true"/>
+                <task id="9" uid="77fb9cdce3524c41bb5611e61506f058" name="Développment JavaScript" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true"/>
+            </task>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Oyer Julien" function="3" contacts="oyer.julien@gmail.com" phone="0785504998"/>
+        <resource id="1" name="Dujardin Thao" function="1" contacts="thao.dujardin@dorcel.com" phone="07070707"/>
+        <resource id="2" name="Mangeant Thibault" function="2" contacts="mangeant.thibault@northKorea.com" phone="911"/>
+        <resource id="3" name="Thomazeau-Agullo Louis" function="7" contacts="agullo@urss.com" phone="060600606060600606060"/>
+    </resources>
+    <allocations>
+        <allocation task-id="1" resource-id="0" function="3" responsible="true" load="75.0"/>
+        <allocation task-id="0" resource-id="0" function="3" responsible="true" load="25.0"/>
+        <allocation task-id="2" resource-id="0" function="3" responsible="true" load="0.0"/>
+        <allocation task-id="2" resource-id="1" function="1" responsible="false" load="0.0"/>
+        <allocation task-id="5" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="0" resource-id="1" function="1" responsible="false" load="10.0"/>
+        <allocation task-id="0" resource-id="2" function="2" responsible="true" load="25.0"/>
+        <allocation task-id="2" resource-id="2" function="2" responsible="false" load="0.0"/>
+        <allocation task-id="4" resource-id="2" function="2" responsible="true" load="75.0"/>
+        <allocation task-id="0" resource-id="3" function="7" responsible="true" load="100.0"/>
+        <allocation task-id="2" resource-id="3" function="7" responsible="false" load="0.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+    <roles>
+        <role id="1" name="Perfectionneur"/>
+        <role id="2" name="Organisateur"/>
+        <role id="3" name="Concepteur"/>
+        <role id="4" name="Propulseur"/>
+        <role id="5" name="Specialiste"/>
+        <role id="6" name="Promoteur"/>
+        <role id="7" name="Soutien"/>
+        <role id="8" name="Priseur"/>
+    </roles>
+</project>
