@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Conception Développement" company="IUT Le Havre Normandie" webLink="https://diw.iut.univ-lehavre.fr/pedago/index.xml" view-date="2025-03-26" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="SAE 4.01" company="IUT Le Havre Normandie - Equipe Julien.O Thao.D Thibault.M Louis.T" webLink="https://diw.iut.univ-lehavre.fr/pedago/index.xml" view-date="2025-03-20" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
     <description/>
-    <view zooming-state="default:0" id="gantt-chart">
+    <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="200" order="0"/>
         <field id="tpd4" name="Date de début" width="75" order="1"/>
         <field id="tpd5" name="Date de fin" width="75" order="2"/>
@@ -11,11 +11,11 @@
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
         <option id="filter.inProgressTodayTasks" value="false"/>
-        <option id="color.recent"><![CDATA[#cc0033]]></option>
+        <option id="color.recent"><![CDATA[#ffff00 #cccc00 #660066 #990000 #00cccc #006666 #009933 #00cc33 #3333ff #cc33ff]]></option>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nom" width="210" order="0"/>
-        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+        <field id="0" name="Nom" width="199" order="0"/>
+        <field id="1" name="Rôle par défaut" width="82" order="1"/>
     </view>
     <!-- -->
     <calendars base-id="uk.scotland">
@@ -101,24 +101,52 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="2" uid="2ffb316e80ee48f698c8411cc448144c" name="Phase Conception" meeting="false" start="2025-03-26" duration="3" complete="0" expand="true">
+        <task id="2" uid="2ffb316e80ee48f698c8411cc448144c" name="Phase Conception" color="#990000" meeting="false" start="2025-03-26" duration="3" complete="0" expand="true">
             <depend id="3" type="2" difference="0" hardness="Strong"/>
-            <task id="0" uid="1c801b73a16c4a1796dff5ea1235d899" name="Réalisation du cahier" color="#cc0033" shape="1,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1" meeting="false" start="2025-03-26" duration="3" complete="0" priority="4" expand="true"/>
-            <task id="4" uid="de7b3cdefb6445f894cede6d991ea140" name="Réaliser le shéma Entité-Association" meeting="false" start="2025-03-26" duration="1" complete="0" expand="true"/>
-            <task id="1" uid="f717d856c6e840b199e6d5ff3434317b" name="FaireGantProject" meeting="false" start="2025-03-26" duration="1" complete="0" expand="true"/>
-            <task id="6" uid="d83d7c97dbdc4fcb98bc93595367b9d4" name="tâche_6" meeting="false" start="2025-03-26" duration="1" complete="0" expand="true"/>
+            <depend id="7" type="2" difference="0" hardness="Strong"/>
+            <depend id="8" type="2" difference="0" hardness="Strong"/>
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+            <depend id="12" type="2" difference="0" hardness="Strong"/>
+            <task id="0" uid="1c801b73a16c4a1796dff5ea1235d899" name="Réalisation du cahier des charges" color="#cc0033" shape="1,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1" meeting="false" start="2025-03-26" duration="3" complete="0" priority="4" expand="true"/>
+            <task id="4" uid="de7b3cdefb6445f894cede6d991ea140" name="Réaliser shéma EA" meeting="false" start="2025-03-26" duration="1" complete="0" expand="true"/>
+            <task id="1" uid="f717d856c6e840b199e6d5ff3434317b" name="Planification du projet" meeting="false" start="2025-03-26" duration="2" complete="0" expand="true"/>
+            <task id="6" uid="d83d7c97dbdc4fcb98bc93595367b9d4" name="Réalisation du plan du site" meeting="false" start="2025-03-27" duration="1" complete="0" expand="true"/>
             <task id="5" uid="b53bcf3a8e4947f0bcf634f3e9006050" name="Réaliser Maquette" meeting="false" start="2025-03-26" duration="3" complete="0" expand="true"/>
         </task>
-        <task id="3" uid="8d98c2f579fc4b68b7913a0632980664" name="Phase Développement" meeting="false" start="2025-03-31" duration="5" complete="0" expand="true">
-            <task id="13" uid="582efa9610034322b74e080d859fae14" name="Correctif des bugs" meeting="false" start="2025-04-03" duration="2" complete="0" expand="true"/>
-            <task id="7" uid="a448eb1e3632411e8c93af5a70441dcc" name="Réalisation du backend" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true">
-                <task id="12" uid="77691c7646a548648d25c4c5dc07dd31" name="Developpement Postgres SQL" meeting="false" start="2025-03-31" duration="2" complete="0" expand="true"/>
-                <task id="8" uid="6db235068248486c9214f2f67c7842bd" name="Développement PHP" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true"/>
+        <task id="3" uid="8d98c2f579fc4b68b7913a0632980664" name="Phase Réalisation" color="#cccc00" meeting="false" start="2025-03-31" duration="5" complete="0" expand="true">
+            <task id="7" uid="a448eb1e3632411e8c93af5a70441dcc" name="Réalisation backend" color="#660066" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true">
+                <depend id="13" type="2" difference="0" hardness="Strong"/>
+                <task id="12" uid="77691c7646a548648d25c4c5dc07dd31" name="Developpement Postgres SQL" color="#cc33ff" shape="0,1,1,1,1,0,0,0,1,0,0,0,1,0,0,0" meeting="false" start="2025-03-31" duration="2" complete="0" expand="true">
+                    <depend id="13" type="2" difference="0" hardness="Strong"/>
+                    <task id="14" uid="debf63a5d76a4a8b978e6242b21dc8ba" name="Création de la base sql" color="#cc00ff" meeting="false" start="2025-03-31" duration="1" complete="0" expand="true"/>
+                    <task id="15" uid="aa52f58464f9477cbaa1e171a4524549" name="Implémentation de la base Sql dans le PHP" color="#cc00ff" meeting="false" start="2025-04-01" duration="1" complete="0" expand="true"/>
+                </task>
+                <task id="8" uid="6db235068248486c9214f2f67c7842bd" name="Développement PHP" color="#3333ff" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true">
+                    <depend id="13" type="2" difference="0" hardness="Strong"/>
+                    <task id="16" uid="c527bb82ef2e4edebb27fe33bbb3558a" name="Création des fichiers Controller et des divers classes et vues" color="#3333ff" meeting="false" start="2025-03-31" duration="1" complete="0" expand="true">
+                        <depend id="17" type="2" difference="0" hardness="Strong"/>
+                    </task>
+                    <task id="17" uid="5796a9a3d2ab4c61bd284a7680148da6" name="Création des classes Repository et services" color="#3333ff" meeting="false" start="2025-04-01" duration="1" complete="0" expand="true">
+                        <depend id="18" type="2" difference="0" hardness="Strong"/>
+                    </task>
+                    <task id="18" uid="c0c72c0afe41478b95940d9d56b9e830" name="implémentation du front dans le php" color="#3333ff" meeting="false" start="2025-04-02" duration="1" complete="0" expand="true"/>
+                </task>
             </task>
-            <task id="10" uid="f2f6ab6090d24c758c4c92fa89624934" name="Réalisation du Front" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true">
-                <task id="11" uid="962bb7bb58f248468fafd459164d3b6c" name="Développement HTML CSS" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true"/>
-                <task id="9" uid="77fb9cdce3524c41bb5611e61506f058" name="Développment JavaScript" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true"/>
+            <task id="10" uid="f2f6ab6090d24c758c4c92fa89624934" name="Réalisation du Front" color="#006666" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true">
+                <task id="11" uid="962bb7bb58f248468fafd459164d3b6c" name="Développement HTML CSS" color="#009933" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true">
+                    <task id="19" uid="65e74ebb0f5b441e90f58fbc6e7f38a1" name="Réalisation de L'HTML" color="#009933" meeting="false" start="2025-03-31" duration="2" complete="0" expand="true"/>
+                    <task id="20" uid="29ebe520c65f4bf2bf0438a74991cfd3" name="Réalisation du CSS" color="#009933" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true"/>
+                </task>
+                <task id="9" uid="77fb9cdce3524c41bb5611e61506f058" name="Développment JavaScript" color="#00cccc" meeting="false" start="2025-03-31" duration="3" complete="0" expand="true">
+                    <depend id="13" type="2" difference="0" hardness="Strong"/>
+                    <task id="21" uid="13775eef2f1f4090b07a8152c8e2896b" name="Implémentation des fonctionnalités dynamique" color="#00cccc" meeting="false" start="2025-03-31" duration="2" complete="0" expand="true">
+                        <depend id="22" type="2" difference="0" hardness="Strong"/>
+                    </task>
+                    <task id="22" uid="b358eb747e6b47f3853d075f8afba60c" name="Implémentation du back" color="#00cccc" meeting="false" start="2025-04-02" duration="1" complete="0" expand="true"/>
+                </task>
             </task>
+            <task id="13" uid="582efa9610034322b74e080d859fae14" name="Correction des bugs" color="#ffff00" meeting="false" start="2025-04-03" duration="2" complete="0" expand="true"/>
+            <task id="24" uid="7193269a534347bcb23e2f981dd725bf" name="Réalisation du diaporama" color="#ffff00" meeting="false" start="2025-03-31" duration="4" complete="0" expand="true"/>
         </task>
     </tasks>
     <resources>
@@ -130,15 +158,32 @@
     <allocations>
         <allocation task-id="1" resource-id="0" function="3" responsible="true" load="75.0"/>
         <allocation task-id="0" resource-id="0" function="3" responsible="true" load="25.0"/>
-        <allocation task-id="2" resource-id="0" function="3" responsible="true" load="0.0"/>
-        <allocation task-id="2" resource-id="1" function="1" responsible="false" load="0.0"/>
+        <allocation task-id="12" resource-id="0" function="3" responsible="false" load="25.0"/>
+        <allocation task-id="8" resource-id="0" function="3" responsible="false" load="75.0"/>
+        <allocation task-id="13" resource-id="0" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="24" resource-id="0" function="3" responsible="true" load="12.25"/>
+        <allocation task-id="5" resource-id="0" function="3" responsible="false" load="10.0"/>
+        <allocation task-id="6" resource-id="0" function="3" responsible="false" load="25.0"/>
         <allocation task-id="5" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="0" resource-id="1" function="1" responsible="false" load="10.0"/>
-        <allocation task-id="0" resource-id="2" function="2" responsible="true" load="25.0"/>
-        <allocation task-id="2" resource-id="2" function="2" responsible="false" load="0.0"/>
-        <allocation task-id="4" resource-id="2" function="2" responsible="true" load="75.0"/>
+        <allocation task-id="9" resource-id="1" function="1" responsible="false" load="25.0"/>
+        <allocation task-id="11" resource-id="1" function="1" responsible="false" load="25.0"/>
+        <allocation task-id="8" resource-id="1" function="1" responsible="false" load="25.0"/>
+        <allocation task-id="12" resource-id="1" function="1" responsible="false" load="25.0"/>
+        <allocation task-id="13" resource-id="1" function="1" responsible="false" load="75.0"/>
+        <allocation task-id="24" resource-id="1" function="1" responsible="false" load="25.0"/>
+        <allocation task-id="0" resource-id="2" function="2" responsible="true" load="50.0"/>
+        <allocation task-id="4" resource-id="2" function="2" responsible="true" load="50.0"/>
+        <allocation task-id="12" resource-id="2" function="2" responsible="false" load="50.0"/>
+        <allocation task-id="9" resource-id="2" function="2" responsible="false" load="50.0"/>
+        <allocation task-id="13" resource-id="2" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="24" resource-id="2" function="2" responsible="false" load="12.5"/>
+        <allocation task-id="6" resource-id="2" function="2" responsible="true" load="30.0"/>
         <allocation task-id="0" resource-id="3" function="7" responsible="true" load="100.0"/>
-        <allocation task-id="2" resource-id="3" function="7" responsible="false" load="0.0"/>
+        <allocation task-id="11" resource-id="3" function="7" responsible="false" load="75.0"/>
+        <allocation task-id="9" resource-id="3" function="7" responsible="false" load="25.0"/>
+        <allocation task-id="13" resource-id="3" function="7" responsible="false" load="25.0"/>
+        <allocation task-id="24" resource-id="3" function="7" responsible="false" load="25.0"/>
     </allocations>
     <vacations/>
     <previous/>
