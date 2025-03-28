@@ -2,8 +2,17 @@
     "name": "Site du BDE",
     "authors": [
         {
-            "name": "salimkhr",
-            "email": "salimkhr@gmail.com"
+            "name": "Julien Oyer",
+            "email": "oyer.julien@orange.fr"
+        },
+        {
+            "name": "Louis Thomazeau-Agullo"
+        },
+        {
+            "name": "Thibault Mangeant"
+        },
+        {
+            "name": "Thao Dujardin"
         }
     ],
     "require": {
