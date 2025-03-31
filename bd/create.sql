@@ -10,10 +10,11 @@ DROP TABLE IF EXISTS Utilisateur CASCADE;
 -- Création de la table 'Produit'
 CREATE TABLE Produit
 (
-	idProd   SERIAL        PRIMARY KEY,
-	nomProd  VARCHAR(255)  NOT NULL,
-	qs       INT           NOT NULL CHECK (qs >= 0),
-	prixProd FLOAT         NOT NULL CHECK (prixProd >= 0)
+	idProd    SERIAL        PRIMARY KEY,
+	nomProd   VARCHAR(255)  NOT NULL,
+	qs        INT           NOT NULL CHECK (qs >= 0),
+	prixProd  FLOAT         NOT NULL CHECK (prixProd >= 0),
+	imgProd VARCHAR(255)    NOT NULL
 );
 
 -- Création de la table "Role"
@@ -26,13 +27,14 @@ CREATE TABLE "Role"
 -- Création de la table 'Evenement'
 CREATE TABLE Evenement
 (
-	idEvent      SERIAL        PRIMARY KEY,
-	nomEvent     VARCHAR(255)  NOT NULL,
-	descEvent    TEXT           NOT NULL,
-	dateEvent    TIMESTAMP      NOT NULL,
-	lieuEvent    VARCHAR(255)   NOT NULL,
-	prixEvent    FLOAT          NOT NULL,
+	idEvent         SERIAL         PRIMARY KEY,
+	nomEvent        VARCHAR(255)   NOT NULL,
+	descEvent       TEXT           NOT NULL,
+	dateEvent       TIMESTAMP      NOT NULL,
+	lieuEvent       VARCHAR(255)   NOT NULL,
+	prixEvent       FLOAT          NOT NULL,
 	roleAutoriseMin VARCHAR(10),
+	imgEvent        VARCHAR(255)   NOT NULL,
 
 	FOREIGN KEY (roleAutoriseMin) REFERENCES "Role"(nomRole) ON DELETE CASCADE
 );
