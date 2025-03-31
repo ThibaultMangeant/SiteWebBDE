@@ -11,11 +11,12 @@
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 4px; /* Épaisseur du trait */
     border-radius: 50px; /* Arrondi des coins */
     background-color: #007bff; /* Couleur du trait */
+	transform: translateX(-50%);
     transition: width 0.3s ease; /* Animation de l'apparition du trait */
 }
 
