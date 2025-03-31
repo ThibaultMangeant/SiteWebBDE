@@ -39,21 +39,25 @@ class EvenementRepository
 		return new Evenement(
 			(int)$row['idEvent'],
 			$row['nomEvent'],
-			$row['dateDebut'],
-			$row['lieu'],
-			$row['description']
+			$row['descEvent'],
+			new DateTime($row['dateEvent']),
+			$row['lieuEvent'],
+			(float)$row['prixEvent'],
+			(new RoleRepository())->findByNom($row['roleAutoriseMin'])
 		);
 	}
 
 	public function create(Evenement $evenement): bool
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Evenement (nomEvent, descEvent, dateEvent, lieu, description) VALUES (:nomEvent, :dateDebut, :lieu, :description)');
+		$stmt = $this->pdo->prepare('INSERT INTO Evenement (nomEvent, descEvent, dateEvent, lieuEvent, prixEvent, roleAutoriseMin) VALUES (:nomEvent , :descEvent , timestamp \':dateEvent\', :lieuEvent, :prixEvent, :roleAutoriseMin)');
 
 		return $stmt->execute([
 			':nomEvent' => $evenement->getNomEvent(),
-			':dateDebut' => $evenement->getDateDebut(),
-			':lieu' => $evenement->getLieu(),
-			':description' => $evenement->getDescription()
+			':descEvent' => $evenement->getDescEvent(),
+			':dateEvent' => $evenement->getDateEvent()->format('Y-m-d H:i:s'),
+			':lieuEvent' => $evenement->getLieuEvent(),
+			':prixEvent' => $evenement->getPrixEvent(),
+			':roleAutoriseMin' => $evenement->getRoleAutorise()
 		]);
 	}
 }
