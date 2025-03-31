@@ -64,9 +64,9 @@ class CommandeRepository
 	public function createCommandeFromRow(array $row)
 	{
 		$commande = new Commande(
-			$row['numCommande'],
+			$row['numcommande'],
 			(int)$row['qa'],
-			(new ProduitRepository())->findById($row['idProduit']),
+			(new ProduitRepository())->findById($row['idproduit']),
 			(new UtilisateurRepository())->findById($row['netud'])
 		);
 		return $commande;

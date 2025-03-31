@@ -37,13 +37,13 @@ class EvenementRepository
 	public function createEvenementFromRow(array $row): Evenement
 	{
 		return new Evenement(
-			(int)$row['idEvent'],
-			$row['nomEvent'],
-			$row['descEvent'],
-			new DateTime($row['dateEvent']),
-			$row['lieuEvent'],
-			(float)$row['prixEvent'],
-			(new RoleRepository())->findByNom($row['roleAutoriseMin'])
+			(int)$row['idevent'],
+			$row['nomevent'],
+			$row['descevent'],
+			new DateTime($row['dateevent']),
+			$row['lieuevent'],
+			(float)$row['prixevent'],
+			(new RoleRepository())->findByNom($row['roleautoriseMin'])
 		);
 	}
 
