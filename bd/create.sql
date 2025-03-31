@@ -16,21 +16,24 @@ CREATE TABLE Produit
 	prixProd FLOAT         NOT NULL CHECK (prixProd >= 0)
 );
 
--- Création de la table 'Evenement'
-CREATE TABLE Evenement
-(
-	idEvent   SERIAL        PRIMARY KEY,
-	nomEvent  VARCHAR(255)  NOT NULL,
-	descEvent TEXT  NOT NULL,
-	dateEvent TIMESTAMP     NOT NULL,
-	prixEvent FLOAT         NOT NULL
-);
-
 -- Création de la table "Role"
 CREATE TABLE "Role"
 (
 	nomRole VARCHAR(10) PRIMARY KEY,
 	niveau  INT NOT NULL
+);
+
+-- Création de la table 'Evenement'
+CREATE TABLE Evenement
+(
+	idEvent      SERIAL        PRIMARY KEY,
+	nomEvent     VARCHAR(255)  NOT NULL,
+	descEvent    TEXT           NOT NULL,
+	dateEvent    TIMESTAMP      NOT NULL,
+	prixEvent    FLOAT          NOT NULL,
+	roleAutoriseMin VARCHAR(10),
+
+	FOREIGN KEY (roleAutoriseMin) REFERENCES "Role"(nomRole) ON DELETE CASCADE
 );
 
 -- Création de la table 'Utilisateur'
@@ -45,6 +48,8 @@ CREATE TABLE Utilisateur
 	typeNotification VARCHAR(10) NOT NULL CHECK (typeNotification IN ('Discord', 'Mail', 'Les deux')),
 	role VARCHAR(10) NOT NULL,
 	demande BOOLEAN NOT NULL,
+
+	-- Clé étrangère vers "Role" sur nomRole
 	FOREIGN KEY (role) REFERENCES "Role"(nomRole) ON DELETE CASCADE
 );
 
@@ -56,8 +61,8 @@ CREATE TABLE Commande
 	numCommande INT NOT NULL,
 	qa INT NOT NULL CHECK (qa >= 0),
 
-	FOREIGN KEY (netud ) REFERENCES Utilisateur(netud ) ON DELETE CASCADE,
-	FOREIGN KEY (idProd) REFERENCES Produit    (idProd) ON DELETE CASCADE,
+	FOREIGN KEY (netud) REFERENCES Utilisateur(netud) ON DELETE CASCADE,
+	FOREIGN KEY (idProd) REFERENCES Produit(idProd) ON DELETE CASCADE,
 
 	PRIMARY KEY (netud, idProd)
 );
@@ -70,26 +75,14 @@ CREATE TABLE Inscrit
 	note INT,
 	commentaire TEXT,
 
-	FOREIGN KEY (netud  ) REFERENCES Utilisateur(netud  ) ON DELETE CASCADE,
-	FOREIGN KEY (idEvent) REFERENCES Evenement  (idEvent) ON DELETE CASCADE,
+	FOREIGN KEY (netud) REFERENCES Utilisateur(netud) ON DELETE CASCADE,
+	FOREIGN KEY (idEvent) REFERENCES Evenement(idEvent) ON DELETE CASCADE,
 
 	PRIMARY KEY (netud, idEvent)
 );
 
--- Création de la table Autorise
-CREATE TABLE Autorise
-(
-	idEvent INT NOT NULL,
-	nomRole VARCHAR(10) NOT NULL,
-
-	FOREIGN KEY (idEvent) REFERENCES Evenement(idEvent) ON DELETE CASCADE,
-	FOREIGN KEY (nomRole) REFERENCES "Role"(nomRole) ON DELETE CASCADE,
-
-	PRIMARY KEY (idEvent, nomRole)
-);
-
 -- Insertion des rôles
-INSERT INTO "Role"(nomRole, niveau) VALUES ('admin', 2), ('adherent', 1), ('membre', 0);
+INSERT INTO "Role"(nomRole, niveau) VALUES ('admin', 2), ('adherant', 1), ('membre', 0);
 
 -- Insertion d'un administrateur
 INSERT INTO Utilisateur(netud, nom, prenom, tel, email, mdp, typeNotification, role, demande) VALUES
