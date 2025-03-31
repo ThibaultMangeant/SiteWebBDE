@@ -41,24 +41,26 @@ class UtilisateurRepository
 			$row['email'],
 			$row['mdp'],
 			$row['typeNotification'],
-			RoleRepository::getInstance()->findById($row['role']),
+			RoleRepository::getInstance()->findByNom($row['role']),
 			$row['demande'],
 		);
 	}
 
 	public function create(Utilisateur $utilisateur): bool
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Utilisateur (netud, nom, prenom, tel, email, mdp, typeNotification, role, demande) VALUES (:netud, :nom, :prenom, :tel, :email, :mdp, :typeNotification, :nomRole, :demande)');
-		$stmt->bindParam(':netud', $utilisateur->getNetud());
-		$stmt->bindParam(':nom', $utilisateur->getNom());
-		$stmt->bindParam(':prenom', $utilisateur->getPrenom());
-		$stmt->bindParam(':tel', $utilisateur->getTel());
-		$stmt->bindParam(':email', $utilisateur->getEmail());
-		$stmt->bindParam(':mdp', $utilisateur->getMdp());
-		$stmt->bindParam(':typeNotification', $utilisateur->getTypeNotification());
-		$stmt->bindParam(':nomRole', $utilisateur->getRole()->getNomRole());
-		$stmt->bindParam(':demande', $utilisateur->getDemande());
+		$stmt = $this->pdo->prepare('INSERT INTO Utilisateur (netud, nom, prenom, tel, email, mdp, typeNotification, role, demande) 
+											VALUES (:netud, :nom, :prenom, :tel, :email, :mdp, :typeNotification, :nomRole, :demande)');
 
-		return $stmt->execute();
+		return $stmt->execute([
+			'netud' => $utilisateur->getNetud(),
+			'nom' => $utilisateur->getNom(),
+			'prenom' => $utilisateur->getPrenom(),
+			'tel' => $utilisateur->getTel(),
+			'email' => $utilisateur->getEmail(),
+			'mdp' => $utilisateur->getMdp(),
+			'typeNotification' => $utilisateur->getTypeNotification(),
+			'nomRole' => $utilisateur->getRole()->getNomRole(),
+			'demande' => $utilisateur->getDemande()
+		]);
 	}
 }
