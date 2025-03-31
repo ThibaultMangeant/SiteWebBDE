@@ -47,6 +47,9 @@ class ProduitRepository
 
 	public function createProduitFromRow(array $row)
 	{
+		if ($row['nomProd'] === null) {
+			var_dump($row);
+		}
 		return new Produit(
 			$row['idProd'],
 			$row['nomProd'],
