@@ -401,4 +401,4 @@ FodyWeavers.xsd
 
 # Autre
 */config.php
-*/vendor/*
+/vendor/
