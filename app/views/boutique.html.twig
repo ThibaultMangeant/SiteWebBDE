@@ -1,6 +1,32 @@
 {% extends '_template/base.html.twig' %}
 
 {% block body %}
+<!-- Bouton du panier en haut à droite -->
+<div class="position-absolute top-0 end-0 mt-3 me-3">
+    <a class="btn btn-outline-secondary" href="#" id="cartPopover" data-bs-toggle="popover" data-bs-placement="bottom"
+       data-bs-content="
+           {% if purchases|length > 0 %}
+           <ul>
+               {% for purchase in purchases %}
+                   <li>
+                       {{ purchase.article.name }} x{{ purchase.quantity }} -
+                       {{ purchase.article.price|number_format(2, ',', ' ') }}€
+                   </li>
+               {% endfor %}
+           </ul>
+           <a href='validate_purchases.php' class='btn btn-primary btn-sm mt-2'>Valider</a>
+           {% else %}
+               <p>Votre panier est vide.</p>
+           {% endif %}
+       "
+       data-bs-html="true">
+        <i class="fa-solid fa-cart-shopping"></i> Panier
+        {% if purchases|length > 0 %}
+            <span class="badge bg-danger ms-2">{{ purchases|length }}</span>
+        {% endif %}
+    </a>
+</div>
+
 <div class="most-popular">
     <div class="container">
         <div class="heading-section text-center mb-5">
