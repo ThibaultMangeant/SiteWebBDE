@@ -30,17 +30,20 @@ class Evenement
 			'nomEvent' => $this->nomEvent,
 			'descEvent' => $this->descEvent,
 			'dateEvent' => $this->dateEvent,
+			'lieuEvent' => $this->lieuEvent,
 			'prixEvent' => $this->prixEvent,
-			'roleAutorise' => $this->roleAutorise
+			'roleAutorise' => $this->roleAutorise->__serialize()
 		];
 	}
 	public function __unserialize(array $data): void
 	{
 		$this->idEvent = $data['idEvent'];
 		$this->nomEvent = $data['nomEvent'];
+		$this->descEvent = $data['descEvent'];
 		$this->dateEvent = $data['dateEvent'];
+		$this->lieuEvent = $data['lieuEvent'];
 		$this->prixEvent = $data['prixEvent'];
-		$this->roleAutorise = $data['roleAutorise'];
+		$this->roleAutorise = $data['roleAutorise']->__unserialize();
 	}
 	public function __toString(): string
 	{
