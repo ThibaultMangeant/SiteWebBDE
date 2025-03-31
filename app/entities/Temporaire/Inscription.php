@@ -20,16 +20,16 @@ class Inscription
 	public function __serialize(): array
 	{
 		return [
-			'evenement' => $this->evenement,
-			'utilisateur' => $this->utilisateur,
+			'evenement' => $this->evenement->__serialize(),
+			'utilisateur' => $this->utilisateur->__serialize(),
 			'note' => $this->note,
 			'commentaire' => $this->commentaire
 		];
 	}
 	public function __unserialize(array $data): void
 	{
-		$this->evenement = $data['evenement'];
-		$this->utilisateur = $data['utilisateur'];
+		$this->evenement = $data['evenement']->__unserialize();
+		$this->utilisateur = $data['utilisateur']->__unserialize();
 		$this->note = $data['note'];
 		$this->commentaire = $data['commentaire'];
 	}

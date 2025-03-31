@@ -51,7 +51,7 @@ class Utilisateur
 		$this->email = $data['email'];
 		$this->mdp = $data['mdp'];
 		$this->typeNotification = $data['typeNotification'];
-		$this->role = $data['role'];
+		$this->role = $data['role']->__unserialize();
 		$this->demande = $data['demande'];
 	}
 	public function __toString(): string
