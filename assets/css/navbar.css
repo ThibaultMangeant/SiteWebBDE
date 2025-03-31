@@ -13,7 +13,8 @@
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px; /* Épaisseur du trait */
+    height: 4px; /* Épaisseur du trait */
+    border-radius: 50px; /* Arrondi des coins */
     background-color: #007bff; /* Couleur du trait */
     transition: width 0.3s ease; /* Animation de l'apparition du trait */
 }
