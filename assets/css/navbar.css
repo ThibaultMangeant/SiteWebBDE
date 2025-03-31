@@ -27,3 +27,27 @@
 .navbar-nav .nav-link:hover {
     color: #0056b3; /* Change la couleur du texte au survol (optionnel) */
 }
+
+/* Style pour le lien "Contactez-nous" dans le footer */
+.footer-link {
+    position: relative;
+    color: black; /* Couleur du texte */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Animation de la couleur */
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px; /* Épaisseur de la barre */
+    background-color: #007bff; /* Couleur de la barre (bleu Bootstrap) */
+    transform: translateX(-50%);
+    transition: width 0.3s ease; /* Animation de l'apparition de la barre */
+}
+
+.footer-link:hover::after {
+    width: 100%; /* La barre s'étend sur toute la largeur du texte */
+}
