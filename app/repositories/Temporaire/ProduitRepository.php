@@ -32,8 +32,19 @@ class ProduitRepository
 		return new Produit(
 			$row['idProd'],
 			$row['nomProd'],
-			(float)$row['qs'],
-			(int)$row['prixProd']
+			(int)$row['qs'],
+			(float)$row['prixProd']
 		);
+	}
+
+	public function create(Produit $produit): void
+	{
+		$stmt = $this->pdo->prepare('INSERT INTO Produit (nomProd, qs, prixProd) VALUES (:nomProd, :qs, :prixProd)');
+
+		$stmt->execute([
+			':nomProd' => $produit->getNomProd(),
+			':qs' => $produit->getQs(),
+			':prixProd' => $produit->getPrixProd()
+		]);
 	}
 }

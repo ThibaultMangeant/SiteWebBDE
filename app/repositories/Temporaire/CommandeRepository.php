@@ -2,10 +2,7 @@
 require_once './app/core/Repository.php';
 require_once './app/entities/Temporaire/Commande.php';
 
-require_once './app/entities/Temporaire/Produit.php';
 require_once './app/repositories/Temporaire/ProduitRepository.php';
-
-require_once './app/entities/Temporaire/Utilisateur.php';
 require_once './app/entities/Temporaire/UtilisateurRepository.php';
 
 class CommandeRepository
@@ -57,11 +54,18 @@ class CommandeRepository
 		return $commandes;
 	}
 
+	public function deleteById($numCommande): bool
+	{
+		$stmt = $this->pdo->prepare('DELETE FROM Commande WHERE numCommande = :numCommande');
+		$stmt->bindParam(':numCommande', $numCommande);
+		return $stmt->execute();
+	}
+
 	public function createCommandeFromRow(array $row)
 	{
 		$commande = new Commande(
 			$row['numCommande'],
-			$row['qa'],
+			(int)$row['qa'],
 			(new ProduitRepository())->findById($row['idProduit']),
 			(new UtilisateurRepository())->findById($row['netud'])
 		);

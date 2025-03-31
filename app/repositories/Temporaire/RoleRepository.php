@@ -27,6 +27,22 @@ class RoleRepository
 		return $row ? $this->createRoleFromRow($row) : null;
 	}
 
+	public function deleteByNom($nomRole): bool
+	{
+		$stmt = $this->pdo->prepare('DELETE FROM Role WHERE nomRole = :nomRole');
+		$stmt->bindParam(':nomRole', $nomRole);
+		return $stmt->execute();
+	}
+	
+	public function update(Role $role): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Role SET niveau = :niveau WHERE nomRole = :nomRole');
+		return $stmt->execute([
+			'nomRole' => $role->getNomRole(),
+			'niveau' => $role->getNiveau()
+		]);
+	}
+
 	public function createRoleFromRow(array $row): Role
 	{
 		return new Role(

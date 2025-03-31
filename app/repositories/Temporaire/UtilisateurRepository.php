@@ -31,6 +31,30 @@ class UtilisateurRepository
 		return $row ? $this->createUtilisateurFromRow($row) : null;
 	}
 
+	public function deleteById($idUtilisateur): bool
+	{
+		$stmt = $this->pdo->prepare('DELETE FROM Utilisateur WHERE netud = :idUtilisateur');
+		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
+		return $stmt->execute();
+	}
+	
+	public function update(Utilisateur $utilisateur): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Utilisateur SET nom = :nom, prenom = :prenom, tel = :tel, email = :email, mdp = :mdp, typeNotification = :typeNotification, role = :nomRole, demande = :demande WHERE netud = :netud');
+
+		return $stmt->execute([
+			'netud' => $utilisateur->getNetud(),
+			'nom' => $utilisateur->getNom(),
+			'prenom' => $utilisateur->getPrenom(),
+			'tel' => $utilisateur->getTel(),
+			'email' => $utilisateur->getEmail(),
+			'mdp' => $utilisateur->getMdp(),
+			'typeNotification' => $utilisateur->getTypeNotification(),
+			'nomRole' => $utilisateur->getRole()->getNomRole(),
+			'demande' => $utilisateur->getDemande()
+		]);
+	}
+
 	public function createUtilisateurFromRow(array $row)
 	{
 		return new Utilisateur(
