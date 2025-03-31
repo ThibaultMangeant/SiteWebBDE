@@ -20,8 +20,8 @@ class ProduitRepository
 
 	public function findById($idProduit): ?Produit
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Produit WHERE idProd = :idProduit');
-		$stmt->bindParam(':idProduit', $idProduit);
+		$stmt = $this->pdo->prepare('SELECT * FROM Produit WHERE idprod = :idproduit');
+		$stmt->bindParam(':idproduit', $idProduit);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $row ? $this->createProduitFromRow($row) : null;
@@ -30,7 +30,7 @@ class ProduitRepository
 	public function deleteById($idProduit): bool
 	{
 		$stmt = $this->pdo->prepare('DELETE FROM Produit WHERE idProd = :idProduit');
-		$stmt->bindParam(':idProduit', $idProduit);
+		$stmt->bindParam(':idproduit', $idProduit);
 		return $stmt->execute();
 	}
 
@@ -38,31 +38,31 @@ class ProduitRepository
 	{
 		$stmt = $this->pdo->prepare('UPDATE Produit SET nomProd = :nomProd, qs = :qs, prixProd = :prixProd WHERE idProd = :idProd');
 		return $stmt->execute([
-			'idProd' => $produit->getIdProd(),
-			'nomProd' => $produit->getNomProd(),
+			'idprod' => $produit->getIdProd(),
+			'nomprod' => $produit->getNomProd(),
 			'qs' => $produit->getQs(),
-			'prixProd' => $produit->getPrixProd()
+			'prixprod' => $produit->getPrixProd()
 		]);
 	}
 
 	public function createProduitFromRow(array $row)
 	{
 		return new Produit(
-			$row['idProd'],
-			$row['nomProd'],
+			$row['idprod'],
+			$row['nomprod'],
 			(int)$row['qs'],
-			(float)$row['prixProd']
+			(float)$row['prixprod']
 		);
 	}
 
 	public function create(Produit $produit): void
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Produit (nomProd, qs, prixProd) VALUES (:nomProd, :qs, :prixProd)');
+		$stmt = $this->pdo->prepare('INSERT INTO Produit (nomprod, qs, prixprod) VALUES (:nomprod, :qs, :prixprod)');
 
 		$stmt->execute([
-			':nomProd' => $produit->getNomProd(),
+			':nomprod' => $produit->getNomProd(),
 			':qs' => $produit->getQs(),
-			':prixProd' => $produit->getPrixProd()
+			':prixprod' => $produit->getPrixProd()
 		]);
 	}
 }
