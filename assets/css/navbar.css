@@ -51,3 +51,19 @@
 .footer-link:hover::after {
     width: 100%; /* La barre s'étend sur toute la largeur du texte */
 }
+
+/* Assurez que le footer reste en bas si le contenu est insuffisant */
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+footer {
+    margin-top: auto; /* Pousse le footer vers le bas si le contenu est insuffisant */
+}
