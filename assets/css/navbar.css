@@ -1,0 +1,27 @@
+/* Effet de survol pour les liens de la navbar */
+.navbar-nav .nav-link {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease; /* Animation de la couleur */
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; /* Épaisseur du trait */
+    background-color: #007bff; /* Couleur du trait */
+    transition: width 0.3s ease; /* Animation de l'apparition du trait */
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%; /* Le trait s'étend sur toute la largeur du texte */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3; /* Change la couleur du texte au survol (optionnel) */
+}
