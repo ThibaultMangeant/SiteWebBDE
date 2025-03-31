@@ -8,40 +8,50 @@ require_once './app/trait/FormTrait.php';
 
 class HomeController extends Controller
 {
-    use FormTrait;
-    public function index()
-    {
-        $articleRepo = new ArticleRepository();
-        $categoryRepo = new CategoryRepository();
+	use FormTrait;
+	public function index()
+	{
+		$articleRepo = new ArticleRepository();
+		$categoryRepo = new CategoryRepository();
 
-        $articles = $articleRepo->findAll();
+		$articles = $articleRepo->findAll();
 
-        foreach ($articles as $article) {
-            $category = $categoryRepo->findByArticle($article);
-            $article->setCategory($category);
-        }
+		foreach ($articles as $article) {
+			$category = $categoryRepo->findByArticle($article);
+			$article->setCategory($category);
+		}
 
-        $this->view('index.html.twig',  ['articles' => $articles]);
-    }
+		$this->view('index.html.twig',  ['articles' => $articles]);
+	}
 
-    public function purchase()
-    {
-        $articleRepo = new ArticleRepository();
-        $article = $articleRepo->findById($this->getQueryParam('article_id'));
+	public function purchase()
+	{
+		$articleRepo = new ArticleRepository();
+		$article = $articleRepo->findById($this->getQueryParam('article_id'));
 
-        $authService = new AuthService();
-        $purchase = new Purchase(null,$article,$authService->getUser(),$this->getPostParam('quantity'));
+		$authService = new AuthService();
+		$purchase = new Purchase(null,$article,$authService->getUser(),$this->getPostParam('quantity'));
 
-        if(session_status() == PHP_SESSION_NONE)
-            session_start();
+		if(session_status() == PHP_SESSION_NONE)
+			session_start();
 
-        if(!isset($_SESSION['purchases']))
-        {
-            $_SESSION['purchases']=[];
-        }
+		if(!isset($_SESSION['purchases']))
+		{
+			$_SESSION['purchases']=[];
+		}
 
-        $_SESSION['purchases'][] = serialize($purchase);
+		$_SESSION['purchases'][] = serialize($purchase);
 
-        $this->redirectTo('index.php');
-    }
+		$this->redirectTo('index.php');
+	}
+
+	public function vitrine()
+	{
+		$this->view('vitrine.html.twig',  []);
+	}
+
+	public function boutique()
+	{
+		$this->view('boutique.html.twig', []);
+	}
 }
