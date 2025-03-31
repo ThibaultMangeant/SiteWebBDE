@@ -1,4 +1,5 @@
 <?php
+require_once 'Role.php';
 
 class Evenement 
 {
@@ -43,7 +44,8 @@ class Evenement
 		$this->dateEvent = $data['dateEvent'];
 		$this->lieuEvent = $data['lieuEvent'];
 		$this->prixEvent = $data['prixEvent'];
-		$this->roleAutorise = $data['roleAutorise']->__unserialize();
+		$this->roleAutorise = (new Role("", 0));
+		$this->roleAutorise->__unserialize($data['roleAutorise']);
 	}
 	public function __toString(): string
 	{

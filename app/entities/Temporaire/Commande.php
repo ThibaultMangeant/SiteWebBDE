@@ -1,4 +1,5 @@
 <?php
+require_once 'Role.php';
 
 class Commande
 {
@@ -30,8 +31,10 @@ class Commande
 	{
 		$this->numCommande = $data['numCommande'];
 		$this->qa = $data['qa'];
-		$this->produit = $data['produit']->__unserialize();
-		$this->utilisateur = $data['utilisateur']->__unserialize();
+		$this->produit = new Produit(0,"",0,0.0);
+		$this->produit->__unserialize($data['produit']);
+		$this->utilisateur = new Utilisateur(0,"","","","","","", new Role("",0), true);
+		$this->utilisateur->__unserialize($data['utilisateur']);
 	}
 	public function __toString(): string
 	{

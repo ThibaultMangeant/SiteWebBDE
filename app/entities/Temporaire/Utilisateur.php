@@ -37,7 +37,7 @@ class Utilisateur
 			'email' => $this->email,
 			'mdp' => $this->mdp,
 			'typeNotification' => $this->typeNotification,
-			'role' => $this->role,
+			'role' => $this->role->__serialize(),
 			'demande' => $this->demande
 		];
 	}
@@ -51,7 +51,8 @@ class Utilisateur
 		$this->email = $data['email'];
 		$this->mdp = $data['mdp'];
 		$this->typeNotification = $data['typeNotification'];
-		$this->role = $data['role']->__unserialize();
+		$this->role = (new Role("", 0));
+		$this->role->__unserialize($data['roleAutorise']);
 		$this->demande = $data['demande'];
 	}
 	public function __toString(): string
