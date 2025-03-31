@@ -2,15 +2,16 @@
 
 class Evenement 
 {
-	public function __construct(private ?int $idEvent, private string $nomEvent, private string $descEvent, private DateTime $dateEvent, private float $prixEvent, private Role $roleAutorise) {}
+	public function __construct(private ?int $idEvent, private string $nomEvent, private string $descEvent, private DateTime $dateEvent, private string $lieuEvent, private float $prixEvent, private Role $roleAutorise) {}
 
 	// Getters
 	public function getIdEvent(): ?int { return $this->idEvent; }
 	public function getNomEvent(): string { return $this->nomEvent; }
 	public function getDescEvent(): string { return $this->descEvent; }
 	public function getDateEvent(): DateTime { return $this->dateEvent; }
+	public function getLieuEvent(): string { return $this->lieuEvent; }
 	public function getPrixEvent(): float { return $this->prixEvent; }
-	public function getRoleAutorise(): float { return $this->roleAutorise; }
+	public function getRoleAutorise(): role { return $this->roleAutorise; }
 
 
 	// Setters
@@ -18,8 +19,9 @@ class Evenement
 	public function setNomEvent(string $nomEvent): void { $this->nomEvent = $nomEvent; }
 	public function setDescEvent(string $descEvent): void { $this->descEvent = $descEvent; }
 	public function setDateEvent(DateTime $dateEvent): void { $this->dateEvent = $dateEvent; }
+	public function setLieuEvent(string $lieuEvent): void { $this->lieuEvent = $lieuEvent; }
 	public function setPrixEvent(float $prixEvent): void { $this->prixEvent = $prixEvent; }
-	public function setRoleAutorise(float $roleAutorise): void { $this->roleAutorise = $roleAutorise; }
+	public function setRoleAutorise(role $roleAutorise): void { $this->roleAutorise = $roleAutorise; }
 
 	public function __serialize(): array
 	{
