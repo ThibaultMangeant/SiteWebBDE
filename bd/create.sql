@@ -30,6 +30,7 @@ CREATE TABLE Evenement
 	nomEvent     VARCHAR(255)  NOT NULL,
 	descEvent    TEXT           NOT NULL,
 	dateEvent    TIMESTAMP      NOT NULL,
+	lieuEvent    VARCHAR(255)   NOT NULL,
 	prixEvent    FLOAT          NOT NULL,
 	roleAutoriseMin VARCHAR(10),
 
