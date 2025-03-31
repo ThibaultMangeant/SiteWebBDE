@@ -2,7 +2,7 @@
 
 require_once './app/core/Controller.php';
 require_once './app/entities/Purchase.php';
-require_once './app/repositories/ArticleRepository.php';
+require_once './app/repositories/Temporaire/ProduitRepository.php';
 require_once './app/repositories/CategoryRepository.php';
 require_once './app/trait/FormTrait.php';
 
@@ -42,15 +42,9 @@ class HomeController extends Controller
 
 	public function boutique()
 	{
-		$articleRepo = new ArticleRepository();
-		$categoryRepo = new CategoryRepository();
+		$produitRepo = new ProduitRepository();
 
-		$articles = $articleRepo->findAll();
-
-		foreach ($articles as $article) {
-			$category = $categoryRepo->findByArticle($article);
-			$article->setCategory($category);
-		}
+		$articles = $produitRepo->findAll();
 
 		$this->view('boutique.html.twig', ['articles' => $articles]);
 	}
