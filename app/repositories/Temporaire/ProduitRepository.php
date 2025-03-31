@@ -27,6 +27,24 @@ class ProduitRepository
 		return $row ? $this->createProduitFromRow($row) : null;
 	}
 
+	public function deleteById($idProduit): bool
+	{
+		$stmt = $this->pdo->prepare('DELETE FROM Produit WHERE idProd = :idProduit');
+		$stmt->bindParam(':idProduit', $idProduit);
+		return $stmt->execute();
+	}
+
+	public function update(Produit $produit): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Produit SET nomProd = :nomProd, qs = :qs, prixProd = :prixProd WHERE idProd = :idProd');
+		return $stmt->execute([
+			'idProd' => $produit->getIdProd(),
+			'nomProd' => $produit->getNomProd(),
+			'qs' => $produit->getQs(),
+			'prixProd' => $produit->getPrixProd()
+		]);
+	}
+
 	public function createProduitFromRow(array $row)
 	{
 		return new Produit(
