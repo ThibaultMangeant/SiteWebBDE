@@ -400,4 +400,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Autre
-*config.php
+*/config.php
