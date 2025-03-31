@@ -33,4 +33,8 @@ class Commande
 		$this->produit = $data['produit'];
 		$this->utilisateur = $data['utilisateur'];
 	}
+	public function __toString(): string
+	{
+		return "Commande: {$this->numCommande}, Produit: {$this->produit->getNomProd()}, Quantité: {$this->qa}, Total: {$this->getTotal()}€";
+	}
 }

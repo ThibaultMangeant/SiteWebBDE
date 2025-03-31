@@ -1,61 +1,91 @@
 -- Suppression des tables existantes si elles existent
-DROP TABLE IF EXISTS Purchase CASCADE;
-DROP TABLE IF EXISTS Extra CASCADE;
-DROP TABLE IF EXISTS Article CASCADE;
-DROP TABLE IF EXISTS Category CASCADE;
-DROP TABLE IF EXISTS "User" CASCADE;
+DROP TABLE IF EXISTS Commande    CASCADE;
+DROP TABLE IF EXISTS Inscrit     CASCADE;
+DROP TABLE IF EXISTS Autorise    CASCADE;
+DROP TABLE IF EXISTS Produit     CASCADE;
+DROP TABLE IF EXISTS Evenement   CASCADE;
+DROP TABLE IF EXISTS "Role"      CASCADE;
+DROP TABLE IF EXISTS Utilisateur CASCADE;
 
--- Création de la table 'Category'
-CREATE TABLE Category (
-                          id SERIAL PRIMARY KEY,
-                          name VARCHAR(255) NOT NULL
+-- Création de la table 'Produit'
+CREATE TABLE Produit
+(
+	idProd   SERIAL        PRIMARY KEY,
+	nomProd  VARCHAR(255)  NOT NULL,
+	qs       INT           NOT NULL CHECK (qs >= 0),
+	prixProd FLOAT         NOT NULL CHECK (prixProd >= 0)
 );
 
--- Création de la table 'Article'
-CREATE TABLE Article (
-                         id SERIAL PRIMARY KEY,
-                         name VARCHAR(255) NOT NULL,
-                         price DECIMAL(10, 2) NOT NULL,
-                         description TEXT,
-                         stock INT NOT NULL,
-                         category_id INT,
-                         FOREIGN KEY (category_id) REFERENCES Category(id) ON DELETE SET NULL
+-- Création de la table 'Evenement'
+CREATE TABLE Evenement
+(
+	idEvent   SERIAL        PRIMARY KEY,
+	nomEvent  VARCHAR(255)  NOT NULL,
+	dateEvent TIMESTAMP     NOT NULL,
+	prixEvent FLOAT         NOT NULL
 );
 
-
--- Création de la table 'Extra'
-CREATE TABLE Extra (
-                       id SERIAL PRIMARY KEY,
-                       name VARCHAR(255) NOT NULL,
-                       article_id INT NOT NULL,
-                       FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE
+-- Création de la table "Role"
+CREATE TABLE "Role"
+(
+	nomRole VARCHAR(10) PRIMARY KEY
 );
 
--- Création de la table 'User'
-CREATE TABLE "User" (
-                        id SERIAL PRIMARY KEY,
-                        firstname VARCHAR(255) NOT NULL,
-                        lastname VARCHAR(255) NOT NULL,
-                        email VARCHAR(255) UNIQUE NOT NULL,
-                        password VARCHAR(255) NOT NULL
+-- Création de la table 'Utilisateur'
+CREATE TABLE Utilisateur
+(
+	netud INT PRIMARY KEY,
+	nom VARCHAR(255) NOT NULL,
+	prenom VARCHAR(255) NOT NULL,
+	tel VARCHAR(10),
+	email VARCHAR(255) NOT NULL,
+	mdp VARCHAR(255) NOT NULL,
+	typeNotification VARCHAR(10) NOT NULL CHECK (typeNotification IN ("Discord", "Mail", "Les deux"))
+	role VARCHAR(10) NOT NULL,
+	demande BOOLEAN NOT NULL,
+	FOREIGN KEY (role) REFERENCES "Role"(nomRole) ON DELETE CASCADE
 );
 
--- Création de la table 'Purchase'
-CREATE TABLE Purchase (
-                          id SERIAL PRIMARY KEY,
-                          article_id INT NOT NULL,
-                          user_id INT NOT NULL,
-                          quantity INT NOT NULL,
-                          date TIMESTAMP NOT NULL,
-                          FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE,
-                          FOREIGN KEY (user_id) REFERENCES "User"(id) ON DELETE CASCADE
+-- Création de la table Commande
+CREATE TABLE Commande
+(
+	netud INT NOT NULL,
+	idProd INT NOT NULL,
+	numCommande INT NOT NULL,
+	qa INT NOT NULL CHECK (qa >= 0),
+
+	FOREIGN KEY (netud ) REFERENCES Utilisateur(netud ) ON DELETE CASCADE,
+	FOREIGN KEY (idProd) REFERENCES Produit    (idProd) ON DELETE CASCADE,
+
+	PRIMARY KEY (netud, idProd)
 );
 
+-- Création de la table Inscrit
+CREATE TABLE Inscrit
+(
+	netud INT NOT NULL,
+	idEvent INT NOT NULL,
+	note INT,
+	commentaire VARCHAR(255),
 
--- Insertion d'un utilisateur standard
-INSERT INTO "User" (firstname, lastname, email, password) VALUES
-    ('John', 'Doe', 'john.doe@example.com', 'securePassword123');
+	FOREIGN KEY (netud  ) REFERENCES Utilisateur(netud  ) ON DELETE CASCADE,
+	FOREIGN KEY (idEvent) REFERENCES Evenement  (idEvent) ON DELETE CASCADE,
+
+	PRIMARY KEY (netud, idEvent)
+);
+
+-- Création de la table Autorise
+CREATE TABLE Autorise
+(
+	idEvent INT NOT NULL,
+	nomRole VARCHAR(10) NOT NULL,
+
+	PRIMARY KEY (idEvent, nomRole)
+);
+
+-- Insertion des rôles
+INSERT INTO "Role"(nomRole) VALUES ('admin'), ('adherent'), ('membre');
 
 -- Insertion d'un administrateur
-INSERT INTO "User" (firstname, lastname, email, password) VALUES
-    ('root', 'toor', 'ro@ot.fr', 'adminPassword456');
+INSERT INTO Utilisateur(netud, nom, prenom, tel, email, mdp, typeNotification, role, demande) VALUES
+    (1234, 'Test', 'Johnny', '0000000000', 'test@gmail.com', '1234', 'Les deux', 'admin', FALSE);
