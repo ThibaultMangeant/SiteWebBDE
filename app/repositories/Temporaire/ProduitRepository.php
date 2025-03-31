@@ -36,12 +36,13 @@ class ProduitRepository
 
 	public function update(Produit $produit): bool
 	{
-		$stmt = $this->pdo->prepare('UPDATE Produit SET nomProd = :nomProd, qs = :qs, prixProd = :prixProd WHERE idProd = :idProd');
+		$stmt = $this->pdo->prepare('UPDATE Produit SET nomProd = :nomProd, qs = :qs, prixProd = :prixProd, imgProd = :imgProd WHERE idProd = :idProd');
 		return $stmt->execute([
-			'prixProd' => $produit->getIdProd(),
+			'idProd' => $produit->getIdProd(),
 			'nomProd' => $produit->getNomProd(),
 			'qs' => $produit->getQs(),
-			'prixProd' => $produit->getPrixProd()
+			'prixProd' => $produit->getPrixProd(),
+			'imgProd' => $produit->getImgProd()
 		]);
 	}
 
@@ -51,18 +52,20 @@ class ProduitRepository
 			$row['idprod'],
 			$row['nomprod'],
 			(int)$row['qs'],
-			(float)$row['prixprod']
+			(float)$row['prixprod'],
+			$row['imgprod']
 		);
 	}
 
 	public function create(Produit $produit): void
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Produit (nomprod, qs, prixprod) VALUES (:nomprod, :qs, :prixprod)');
+		$stmt = $this->pdo->prepare('INSERT INTO Produit (nomprod, qs, prixprod,imgprod) VALUES (:nomprod, :qs, :prixprod, :imgprod)');
 
 		$stmt->execute([
 			':nomprod' => $produit->getNomProd(),
 			':qs' => $produit->getQs(),
-			':prixprod' => $produit->getPrixProd()
+			':prixprod' => $produit->getPrixProd(),
+			':imgprod' => $produit->getImgProd()
 		]);
 	}
 }
