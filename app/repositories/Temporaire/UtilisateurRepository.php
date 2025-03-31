@@ -34,15 +34,15 @@ class UtilisateurRepository
 	public function createUtilisateurFromRow(array $row)
 	{
 		return new Utilisateur(
-			$row['netud'],
+			(int)$row['netud'],
 			$row['nom'],
 			$row['prenom'],
 			$row['tel'],
 			$row['email'],
 			$row['mdp'],
 			$row['typeNotification'],
-			RoleRepository::getInstance()->findByNom($row['role']),
-			$row['demande'],
+			(new RoleRepository())->findByNom($row['role']),
+			(bool)$row['demande'],
 		);
 	}
 

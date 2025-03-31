@@ -62,10 +62,9 @@ class CommandeRepository
 		$commande = new Commande(
 			$row['numCommande'],
 			$row['qa'],
-			ProduitRepository::getInstance()->findById($row['idProduit']),
-			UtilisateurRepository::getInstance()->findById($row['idUtilisateur'])
+			(new ProduitRepository())->findById($row['idProduit']),
+			(new UtilisateurRepository())->findById($row['netud'])
 		);
-
 		return $commande;
 	}	
 

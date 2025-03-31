@@ -31,7 +31,7 @@ class RoleRepository
 	{
 		return new Role(
 			$row['nomRole'],
-			$row['niveau']
+			(int)$row['niveau']
 		);
 	}
 
