@@ -38,10 +38,10 @@ class ProduitRepository
 	{
 		$stmt = $this->pdo->prepare('UPDATE Produit SET nomProd = :nomProd, qs = :qs, prixProd = :prixProd WHERE idProd = :idProd');
 		return $stmt->execute([
-			'idprod' => $produit->getIdProd(),
-			'nomprod' => $produit->getNomProd(),
+			'prixProd' => $produit->getIdProd(),
+			'nomProd' => $produit->getNomProd(),
 			'qs' => $produit->getQs(),
-			'prixprod' => $produit->getPrixProd()
+			'prixProd' => $produit->getPrixProd()
 		]);
 	}
 

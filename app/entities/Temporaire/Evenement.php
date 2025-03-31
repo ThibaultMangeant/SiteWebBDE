@@ -2,7 +2,7 @@
 
 class Evenement 
 {
-	public function __construct(private ?int $idEvent, private string $nomEvent, private string $descEvent, private DateTime $dateEvent, private string $lieuEvent, private float $prixEvent, private Role $roleAutorise) {}
+	public function __construct(private int $idEvent, private string $nomEvent, private string $descEvent, private DateTime $dateEvent, private string $lieuEvent, private float $prixEvent, private Role $roleAutorise) {}
 
 	// Getters
 	public function getIdEvent(): ?int { return $this->idEvent; }

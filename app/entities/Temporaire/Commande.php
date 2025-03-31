@@ -2,7 +2,7 @@
 
 class Commande
 {
-	public function __construct(private ?int $numCommande, private int $qa, private Produit $produit, private Utilisateur $utilisateur) {}
+	public function __construct(private int $numCommande, private int $qa, private Produit $produit, private Utilisateur $utilisateur) {}
 
 	// Getters
 	public function getNumCommande(): ?int { return $this->numCommande; }

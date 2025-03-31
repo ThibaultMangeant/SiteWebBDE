@@ -64,7 +64,7 @@ class UtilisateurRepository
 			$row['tel'],
 			$row['email'],
 			$row['mdp'],
-			$row['typeNotification'],
+			$row['typenotification'],
 			(new RoleRepository())->findByNom($row['role']),
 			(bool)$row['demande'],
 		);

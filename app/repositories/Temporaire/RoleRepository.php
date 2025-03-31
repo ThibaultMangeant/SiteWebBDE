@@ -46,7 +46,7 @@ class RoleRepository
 	public function createRoleFromRow(array $row): Role
 	{
 		return new Role(
-			$row['nomRole'],
+			$row['nomrole'],
 			(int)$row['niveau']
 		);
 	}

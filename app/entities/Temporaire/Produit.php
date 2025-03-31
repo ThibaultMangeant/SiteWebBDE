@@ -2,7 +2,7 @@
 
 class Produit
 {
-	public function __construct(private ?int $idProd, private string $nomProd, private int $qs, private float $prixProd) {}
+	public function __construct(private int $idProd, private string $nomProd, private int $qs, private float $prixProd) {}
 
 	// Getters
 	public function getIdProd(): ?int {	return $this->idProd; }

@@ -83,4 +83,15 @@ class InscriptionRepository
 			$row['commentaire']
 		);
 	}
+
+	public function create(Inscription $inscription): void
+	{
+		$stmt = $this->pdo->prepare('INSERT INTO Inscription (idEvent, netud, note, commentaire) VALUES (:idevent, :netud, :note, :commentaire)');
+		$stmt->execute([
+			':idevent' => $inscription->getIdEvent()->getIdEvent(),
+			':netud' => $inscription->getNetud()->getNetud(),
+			':note' => $inscription->getNote(),
+			':commentaire' => $inscription->getCommentaire()
+		]);
+	}
 }
