@@ -16,4 +16,21 @@ class Commande
 	public function setQa(int $qa): void { $this->qa = $qa; }
 	public function setProduit(Produit $produit): void { $this->produit = $produit; }
 	public function setUtilisateur(Utilisateur $utilisateur): void { $this->utilisateur = $utilisateur; }
+
+	public function __serialize(): array
+	{
+		return [
+			'numCommande' => $this->numCommande,
+			'qa' => $this->qa,
+			'produit' => $this->produit,
+			'utilisateur' => $this->utilisateur
+		];
+	}
+	public function __unserialize(array $data): void
+	{
+		$this->numCommande = $data['numCommande'];
+		$this->qa = $data['qa'];
+		$this->produit = $data['produit'];
+		$this->utilisateur = $data['utilisateur'];
+	}
 }

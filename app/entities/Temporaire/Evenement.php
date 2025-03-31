@@ -18,4 +18,27 @@ class Evenement
 	public function setDateEvent(DateTime $dateEvent): void { $this->dateEvent = $dateEvent; }
 	public function setPrixEvent(float $prixEvent): void { $this->prixEvent = $prixEvent; }
 	public function setRoleAutorise(float $roleAutorise): void { $this->roleAutorise = $roleAutorise; }
+
+	public function __serialize(): array
+	{
+		return [
+			'idEvent' => $this->idEvent,
+			'nomEvent' => $this->nomEvent,
+			'dateEvent' => $this->dateEvent,
+			'prixEvent' => $this->prixEvent,
+			'roleAutorise' => $this->roleAutorise
+		];
+	}
+	public function __unserialize(array $data): void
+	{
+		$this->idEvent = $data['idEvent'];
+		$this->nomEvent = $data['nomEvent'];
+		$this->dateEvent = $data['dateEvent'];
+		$this->prixEvent = $data['prixEvent'];
+		$this->roleAutorise = $data['roleAutorise'];
+	}
+	public function __toString(): string
+	{
+		return "Evenement: {$this->nomEvent}, Date: {$this->dateEvent->format('Y-m-d')}, Prix: {$this->prixEvent}€";
+	}
 }

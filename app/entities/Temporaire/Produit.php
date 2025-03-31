@@ -16,4 +16,25 @@ class Produit
 	public function setNomProd(string $nomProd): void { $this->nomProd = $nomProd; }
 	public function setQs(int $qs): void { $this->qs = $qs; }
 	public function setPrixProd(float $prixProd): void { $this->prixProd = $prixProd; }
+
+	public function __serialize(): array
+	{
+		return [
+			'idProd' => $this->idProd,
+			'nomProd' => $this->nomProd,
+			'qs' => $this->qs,
+			'prixProd' => $this->prixProd
+		];
+	}
+	public function __unserialize(array $data): void
+	{
+		$this->idProd = $data['idProd'];
+		$this->nomProd = $data['nomProd'];
+		$this->qs = $data['qs'];
+		$this->prixProd = $data['prixProd'];
+	}
+	public function __toString(): string
+	{
+		return "Produit: {$this->nomProd}, Prix: {$this->prixProd}€";
+	}
 }
