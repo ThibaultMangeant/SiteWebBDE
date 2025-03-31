@@ -60,4 +60,28 @@ class EvenementRepository
 			':roleAutoriseMin' => $evenement->getRoleAutorise()
 		]);
 	}
+
+	public function update(Evenement $evenement): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Evenement SET nomEvent = :nomEvent, descEvent = :descEvent, dateEvent = TIMESTAMP :dateEvent, lieuEvent = :lieuEvent, prixEvent = :prixEvent, roleAutoriseMin = :roleAutoriseMin WHERE idEvent = :idEvenement');
+
+		return $stmt->execute([
+			':idEvenement' => $evenement->getIdEvent(),
+			':nomEvent' => $evenement->getNomEvent(),
+			':descEvent' => $evenement->getDescEvent(),
+			':dateEvent' => $evenement->getDateEvent()->format('Y-m-d H:i:s'),
+			':lieuEvent' => $evenement->getLieuEvent(),
+			':prixEvent' => $evenement->getPrixEvent(),
+			':roleAutoriseMin' => $evenement->getRoleAutorise()
+		]);
+	}
+	
+	public function findByNom($nomEvent): ?Evenement
+	{
+		$stmt = $this->pdo->prepare('SELECT * FROM Evenement WHERE nomEvent = :nomEvent');
+		$stmt->bindParam(':nomEvent', $nomEvent);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $row ? $this->createEvenementFromRow($row) : null;
+	}
 }
