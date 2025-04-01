@@ -2,7 +2,7 @@
 
 class Evenement 
 {
-	public function __construct(private int $idEvent, private string $nomEvent, private string $descEvent, private DateTime $dateEvent, private string $lieuEvent, private float $prixEvent, private Role $roleAutorise) {}
+	public function __construct(private int $idEvent, private string $nomEvent, private string $descEvent, private DateTime $dateEvent, private string $lieuEvent, private float $prixEvent, private Role $roleAutorise, private string $imgEvent) {}
 
 	// Getters
 	public function getIdEvent(): ?int { return $this->idEvent; }
@@ -12,6 +12,7 @@ class Evenement
 	public function getLieuEvent(): string { return $this->lieuEvent; }
 	public function getPrixEvent(): float { return $this->prixEvent; }
 	public function getRoleAutorise(): role { return $this->roleAutorise; }
+	public function getImgEvent(): string { return $this->imgEvent; }
 
 
 	// Setters
@@ -22,6 +23,7 @@ class Evenement
 	public function setLieuEvent(string $lieuEvent): void { $this->lieuEvent = $lieuEvent; }
 	public function setPrixEvent(float $prixEvent): void { $this->prixEvent = $prixEvent; }
 	public function setRoleAutorise(role $roleAutorise): void { $this->roleAutorise = $roleAutorise; }
+	public function setImgEvent(string $imgEvent): void { $this->imgEvent = $imgEvent; }
 
 	public function __serialize(): array
 	{
@@ -32,7 +34,8 @@ class Evenement
 			'dateEvent' => $this->dateEvent,
 			'lieuEvent' => $this->lieuEvent,
 			'prixEvent' => $this->prixEvent,
-			'roleAutorise' => $this->roleAutorise->__serialize()
+			'roleAutorise' => $this->roleAutorise->__serialize(),
+			'imgEvent' => $this->imgEvent
 		];
 	}
 	public function __unserialize(array $data): void
@@ -45,6 +48,7 @@ class Evenement
 		$this->prixEvent = $data['prixEvent'];
 		$this->roleAutorise = (new Role("", 0));
 		$this->roleAutorise->__unserialize($data['roleAutorise']);
+		$this->imgEvent = $data['imgEvent'];
 	}
 	public function __toString(): string
 	{

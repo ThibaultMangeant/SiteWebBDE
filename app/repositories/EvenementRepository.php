@@ -44,13 +44,14 @@ class EvenementRepository
 			new DateTime($row['dateevent']),
 			$row['lieuevent'],
 			(float)$row['prixevent'],
-			(new RoleRepository())->findByNom($row['roleautorisemin'])
+			(new RoleRepository())->findByNom($row['roleautorisemin']),
+			$row['imgEvent']
 		);
 	}
 
 	public function create(Evenement $evenement): bool
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Evenement (nomEvent, descEvent, dateEvent, lieuEvent, prixEvent, roleAutoriseMin) VALUES (:nomEvent , :descEvent , TIMESTAMP :dateEvent, :lieuEvent, :prixEvent, :roleAutoriseMin)');
+		$stmt = $this->pdo->prepare('INSERT INTO Evenement (nomEvent, descEvent, dateEvent, lieuEvent, prixEvent, roleAutoriseMin, imgEvent) VALUES (:nomEvent , :descEvent , TIMESTAMP :dateEvent, :lieuEvent, :prixEvent, :roleAutoriseMin, :imgEvent)');
 
 		return $stmt->execute([
 			':nomEvent' => $evenement->getNomEvent(),
@@ -58,13 +59,14 @@ class EvenementRepository
 			':dateEvent' => $evenement->getDateEvent()->format('Y-m-d H:i:s'),
 			':lieuEvent' => $evenement->getLieuEvent(),
 			':prixEvent' => $evenement->getPrixEvent(),
-			':roleAutoriseMin' => $evenement->getRoleAutorise()
+			':roleAutoriseMin' => $evenement->getRoleAutorise(),
+			':imgEvent' => $evenement->getImgEvent()
 		]);
 	}
 
 	public function update(Evenement $evenement): bool
 	{
-		$stmt = $this->pdo->prepare('UPDATE Evenement SET nomEvent = :nomEvent, descEvent = :descEvent, dateEvent = TIMESTAMP :dateEvent, lieuEvent = :lieuEvent, prixEvent = :prixEvent, roleAutoriseMin = :roleAutoriseMin WHERE idEvent = :idEvenement');
+		$stmt = $this->pdo->prepare('UPDATE Evenement SET nomEvent = :nomEvent, descEvent = :descEvent, dateEvent = TIMESTAMP :dateEvent, lieuEvent = :lieuEvent, prixEvent = :prixEvent, roleAutoriseMin = :roleAutoriseMin, imgEvent = :imgEvent WHERE idEvent = :idEvenement');
 
 		return $stmt->execute([
 			':idEvenement' => $evenement->getIdEvent(),
@@ -73,7 +75,8 @@ class EvenementRepository
 			':dateEvent' => $evenement->getDateEvent()->format('Y-m-d H:i:s'),
 			':lieuEvent' => $evenement->getLieuEvent(),
 			':prixEvent' => $evenement->getPrixEvent(),
-			':roleAutoriseMin' => $evenement->getRoleAutorise()
+			':roleAutoriseMin' => $evenement->getRoleAutorise(),
+			':imgEvent' => $evenement->getImgEvent()
 		]);
 	}
 	
