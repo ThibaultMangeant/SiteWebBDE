@@ -6,7 +6,10 @@ class ProduitRepository
 {
 	private $pdo;
 
-	public function __construct() { $this->pdo = Repository::getInstance()->getPDO(); }
+	public function __construct() { 
+		$this->pdo = Repository::getInstance()->getPDO();
+		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	}
 
 	public function findAll(): array 
 	{
@@ -20,7 +23,7 @@ class ProduitRepository
 
 	public function findById($idProduit): ?Produit
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Produit WHERE idprod = :idproduit');
+		$stmt = $this->pdo->prepare('SELECT * FROM Produit WHERE idprod = :idproduit ORDER BY idprod');
 		$stmt->bindParam(':idproduit', $idProduit);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
