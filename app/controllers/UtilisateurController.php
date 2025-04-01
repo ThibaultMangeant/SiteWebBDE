@@ -2,6 +2,7 @@
 
 require_once './app/core/Controller.php';
 require_once './app/repositories/UtilisateurRepository.php';
+require_once './app/services/AuthService.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
 
@@ -60,14 +61,16 @@ class UtilisateurController extends Controller {
                     throw new Exception('Erreur lors de l\'enregistrement de l\'utilisateur.');
                 }
 
-                $this->redirectTo('users.php'); // Redirection après création
+				(new AuthService())->setUtilisateur($utilisateur); // Connexion de l'utilisateur après création
+
+                $this->redirectTo('utilisateurs.php'); // Redirection après création
             } catch (Exception $e) {
                 $errors = explode(', ', $e->getMessage()); // Récupération des erreurs
             }
         }
 
         // Affichage du formulaire
-        $this->view('/user/form.html.twig',  [
+        $this->view('/utilisateur/form.html.twig',  [
             'data' => $data,
             'errors' => $errors,
         ]);
