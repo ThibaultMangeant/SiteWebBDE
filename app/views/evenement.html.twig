@@ -24,10 +24,10 @@
                 <h2>Autres événements :</h2>
                 {% if evenements|length > 1 %}
                     {% set autres_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent)|slice(1) %}
-                    <div class="d-flex flex-wrap gap-2">
+                    <div class="d-flex flex-wrap gap-3">
                         {% for evenement in autres_evenements %}
                             <a href="evenement_detail.php?id={{ evenement.idEvent }}">
-                                <img src="assets/images/{{ evenement.imgEvent }}" alt="{{ evenement.nomEvent }}" style="width: 100px; height: 100px; object-fit: cover;" class="rounded">
+                                <img src="assets/images/{{ evenement.imgEvent }}" alt="{{ evenement.nomEvent }}" style="width: 150px; height: 150px; object-fit: cover;" class="rounded">
                             </a>
                         {% endfor %}
                     </div>
