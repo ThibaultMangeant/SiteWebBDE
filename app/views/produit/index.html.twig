@@ -6,25 +6,23 @@
     <tr>
         <th scope="col">#ID</th>
         <th scope="col">Nom</th>
-        <th scope="col">Catégorie</th>
+        <th scope="col">Quantité</th>
         <th scope="col">Prix</th>
-        <th scope="col">Description</th>
-        <th scope="col">Stock</th>
+        <th scope="col">Image</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
-   {% for article in articles %}
+   {% for produit in produits %}
         <tr>
-            <td>{{ article.id }}</td>
-            <td>{{ article.name }}</td>
-            <td>{{ article.category.name}}</td>
-            <td>{{ article.price}}</td>
-            <td>{{ article.description}}</td>
-            <td>{{ article.stock}}</td>
+            <td>{{ produit.idProd }}</td>
+            <td>{{ produit.nomProd }}</td>
+            <td>{{ produit.qs}}</td>
+            <td>{{ produit.prixProd}}</td>
+            <td>{{ produit.imgProd}}</td>
             <td>
-                <a href="article_update.php?id={{ article.id}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                <a href="article_delete.php?id={{ article.id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                <a href="article_update.php?id={{ produit.idProd}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                <a href="article_delete.php?id={{ produit.idProd}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
             </td>
         </tr>
     {% endfor %}
@@ -32,7 +30,7 @@
 </table>
 <div class="d-flex flex-row-reverse">
     <a href="article_create.php" class="btn btn-success">
-        <i class="fa fa-plus"></i> Ajouter un article
+        <i class="fa fa-plus"></i> Ajouter un produit
     </a>
 </div>
 {% endblock %}
