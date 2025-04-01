@@ -1,0 +1,31 @@
+/* Conteneur principal */
+.vitrine-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Section */
+.vitrine-section {
+    margin-bottom: 30px;
+}
+
+/* Titre des sections */
+.vitrine-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+/* Texte des sections */
+.vitrine-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
