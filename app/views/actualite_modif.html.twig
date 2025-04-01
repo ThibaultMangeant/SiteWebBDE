@@ -1,0 +1,36 @@
+{% extends '_template/base.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="assets/css/actualite_modif.css">
+{% endblock %}
+
+{% block body %}
+<div class="actualite-container">
+    <!-- Partie gauche : Fil d'actualités -->
+    <div class="actualite-left">
+        <h2 class="section-title">Fil d'actualités :</h2>
+        <button class="btn btn-primary mb-3">+ Ajouter une actu</button>
+        <div class="actualite-list">
+            {% for actualite in actualites %}
+                <div class="actualite-card {% if actualite.id == selectedActualite.id %}selected{% endif %}">
+                    <h5 class="actualite-title">{{ actualite.titreActu }}</h5>
+                    <p class="actualite-desc">{{ actualite.descActu|slice(0, 100) ~ '...' }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Partie droite : Détails de l'actualité -->
+    <div class="actualite-right">
+        <h2 class="section-title">Titre :</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ selectedActualite.titreActu }}" placeholder="Titre de l'actualité">
+        </div>
+        <h2 class="section-title">Description :</h2>
+        <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Description de l'actualité">{{ selectedActualite.descActu }}</textarea>
+        </div>
+        <button class="btn btn-success">Enregistrer</button>
+    </div>
+</div>
+{% endblock %}
