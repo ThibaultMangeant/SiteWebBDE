@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const eventContainer = document.querySelector(".event-container");
-    const eventCards = document.querySelectorAll(".event-card");
+    const containers = document.querySelectorAll(".event-container-left, .event-container-right");
 
-    // Fonction pour activer une carte visible
-    function activateVisibleCard() {
-        eventCards.forEach((card) => {
+    // Fonction pour activer les cartes visibles dans un conteneur
+    function activateVisibleCards(container) {
+        const cards = container.querySelectorAll(".event-card");
+        const containerRect = container.getBoundingClientRect();
+
+        cards.forEach((card) => {
             const rect = card.getBoundingClientRect();
             // Vérifie si la carte est visible dans le conteneur
-            if (rect.top >= eventContainer.getBoundingClientRect().top &&
-                rect.bottom <= eventContainer.getBoundingClientRect().bottom) {
+            if (rect.top >= containerRect.top && rect.bottom <= containerRect.bottom) {
                 card.classList.add("active");
                 card.classList.remove("inactive");
             } else {
@@ -18,11 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Activer la carte visible au chargement
-    activateVisibleCard();
+    // Activer les cartes visibles au chargement pour chaque conteneur
+    containers.forEach((container) => {
+        activateVisibleCards(container);
 
-    // Activer la carte visible lors du défilement
-    eventContainer.addEventListener("scroll", () => {
-        activateVisibleCard();
+        // Activer les cartes visibles lors du défilement
+        container.addEventListener("scroll", () => {
+            activateVisibleCards(container);
+        });
     });
 });
