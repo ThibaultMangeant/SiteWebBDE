@@ -116,3 +116,11 @@ a {
 	transform: scale(0.6); /* Réduction */
 	opacity: 0.5; /* Opacité réduite */
 }
+
+.event-card:hover .event-title::after {
+    width: 100%; /* La barre s'étend sur toute la largeur du texte */
+}
+
+.event-card:hover .event-title {
+    color: #0056b3; /* Change la couleur du texte au survol */
+}
