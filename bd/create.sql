@@ -83,10 +83,3 @@ CREATE TABLE Inscrit
 
 	PRIMARY KEY (netud, idEvent)
 );
-
--- Insertion des rôles
-INSERT INTO "Role"(nomRole, niveau) VALUES ('admin', 2), ('adherant', 1), ('membre', 0);
-
--- Insertion d'un administrateur
-INSERT INTO Utilisateur(netud, nom, prenom, tel, email, mdp, typeNotification, role, demande) VALUES
-    (1234, 'Test', 'Johnny', '0000000000', 'test@gmail.com', '1234', 'Les deux', 'admin', FALSE);
