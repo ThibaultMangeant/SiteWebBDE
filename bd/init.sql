@@ -95,13 +95,13 @@ INSERT INTO Actualite (titreActu, descActu) VALUES
 	  Venez tester vos compétences avec vos amis sur des jeux populaires.
 	  Snacks et boissons gratuits.'
 	),
-	('Conférence sur l_intelligence artificielle',
-	 'Assistez à notre conférence sur l_intelligence artificielle et son impact sur les industries modernes.
+	('Conférence sur l''intelligence artificielle',
+	 'Assistez à notre conférence sur l''intelligence artificielle et son impact sur les industries modernes.
 	  Le conférencier invité est un expert en IA, et il partagera ses connaissances et son expérience.'
 	),
 	('Recrutement pour le club de développement logiciel',
 	 'Nous recherchons des membres passionnés pour rejoindre notre club de développement logiciel.
-	  Si vous aimez coder et travailler sur des projets intéressants, venez nous rencontrer lors de notre réunion d_information cette semaine.'
+	  Si vous aimez coder et travailler sur des projets intéressants, venez nous rencontrer lors de notre réunion d''information cette semaine.'
 	),
 	('Concours de programmation – Prix à gagner',
 	 'Participez à notre concours de programmation pour une chance de gagner des prix excitants !
