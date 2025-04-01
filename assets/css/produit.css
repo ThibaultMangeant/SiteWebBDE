@@ -1,0 +1,92 @@
+/* Conteneur principal du formulaire */
+.product-form-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+/* Titre du formulaire */
+.form-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+/* Formulaire */
+.product-form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+/* Groupe de formulaire */
+.form-group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+
+/* Champs de formulaire */
+.product-form input[type="text"],
+.product-form input[type="number"],
+.product-form input[type="file"] {
+	width: 80%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+
+/* Bouton de soumission */
+.btn-primary {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+	background-color: #0056b3;
+}
+
+/* Aperçu de l'image */
+.image-preview {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	border: 1px dashed #ddd;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e9ecef;
+}
+
+.image-preview img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+}
+
+/* Messages d'erreur */
+.error-messages {
+	color: red;
+	font-size: 0.9rem;
+	margin-top: 10px;
+}
+
+.error-messages ul {
+	list-style: none;
+	padding: 0;
+}
