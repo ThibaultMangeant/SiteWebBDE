@@ -11,13 +11,6 @@ class UtilisateurController extends Controller {
     use FormTrait;
     use AuthTrait;
 
-    public function index() {
-        $repository = new UtilisateurRepository();
-        $utilisateurs = $repository->findAll();
-
-        // Ensuite, affiche la vue
-        $this->view('/utilisateur/index.html.twig',  ['utilisateurs' => $utilisateurs]);
-    }
 
     public function create() {
         $data = $this->getAllPostParams(); // Récupération des données soumises
@@ -156,7 +149,7 @@ class UtilisateurController extends Controller {
                     throw new Exception('Erreur lors de la mise à jour d\'utilisateur.');
                 }
 
-                $this->redirectTo('users.php'); // Redirect after update
+                $this->redirectTo('index.php'); // Redirect after update
 
             } catch (Exception $e) {
                 $errors = explode(', ', $e->getMessage()); // Error retrieval
