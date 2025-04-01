@@ -70,13 +70,26 @@ footer {
     background-color: #f8f9fa;
 }
 
-/* Style pour le lien Contactez-nous */
+/* Style pour le lien "Contactez-nous" dans le footer */
 footer a {
+    position: relative;
     color: inherit;
-    transition: color 0.2s;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Animation de la couleur */
 }
 
-footer a:hover {
-    color: #0d6efd; /* Couleur bleue Bootstrap */
-    text-decoration: none;
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px; /* Épaisseur de la barre */
+    background-color: #007bff; /* Couleur de la barre (bleu Bootstrap) */
+    transform: translateX(-50%);
+    transition: width 0.3s ease; /* Animation de l'apparition de la barre */
+}
+
+footer a:hover::after {
+    width: 100%; /* La barre s'étend sur toute la largeur du texte */
 }
