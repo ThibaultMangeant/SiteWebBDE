@@ -45,7 +45,7 @@ class EvenementRepository
 			$row['lieuevent'],
 			(float)$row['prixevent'],
 			(new RoleRepository())->findByNom($row['roleautorisemin']),
-			$row['imgEvent']
+			$row['imgevent']
 		);
 	}
 
