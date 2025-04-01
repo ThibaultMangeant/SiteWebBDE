@@ -22,10 +22,10 @@
 /* Conteneur principal pour les événements à gauche */
 .event-container-left {
     position: fixed; /* Fixe le conteneur à gauche de l'écran */
-    top: var(--header-height, 128px); /* Ajuste en fonction de la hauteur du header */
+    top: var(--header-height, 138px); /* Ajuste en fonction de la hauteur du header */
     left: 150px; /* Ajoute un espace de 20px entre le conteneur et le bord gauche */
     width: 30%; /* Réduit la largeur à 30% de l'écran */
-    bottom: var(--footer-height, 70px); /* Ajuste en fonction de la hauteur du footer */
+    bottom: var(--footer-height, 60px); /* Ajuste en fonction de la hauteur du footer */
     overflow-y: scroll; /* Active le défilement vertical */
     scroll-snap-type: y mandatory; /* Active le snap scrolling */
     padding: 10px; /* Espacement interne */
@@ -40,10 +40,10 @@
 /* Conteneur principal pour les événements à droite */
 .event-container-right {
     position: fixed; /* Fixe le conteneur à droite de l'écran */
-    top: var(--header-height, 128px); /* Ajuste en fonction de la hauteur du header */
+    top: var(--header-height, 138px); /* Ajuste en fonction de la hauteur du header */
     right: 150px; /* Ajoute un espace de 20px entre le conteneur et le bord droit */
     width: 30%; /* Réduit la largeur à 30% de l'écran */
-    bottom: var(--footer-height, 70px); /* Ajuste en fonction de la hauteur du footer */
+    bottom: var(--footer-height, 60px); /* Ajuste en fonction de la hauteur du footer */
     overflow-y: scroll; /* Active le défilement vertical */
     scroll-snap-type: y mandatory; /* Active le snap scrolling */
     padding: 10px; /* Espacement interne */
