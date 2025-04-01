@@ -1,11 +1,9 @@
 {% extends '_template/base.html.twig' %}
 
-
 {% block body %}
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
-    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 400px; background-color: #f8f9fa; border-radius: 10px;">
-        <h2 class="text-center ">Connexion</h2>
-
+    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 500px; background-color: #f8f9fa; border-radius: 10px;">
+        <h2 class="text-center mb-4">Inscription</h2>
         <!-- Message d'erreur à afficher si besoin -->
         {% if error %}
             <div class="alert alert-danger text-center" role="alert">
@@ -13,21 +11,40 @@
             </div>
         {% endif %}
 
-        <form method="post" action="login.php">
-            <div class="mb-3">
-                <label for="text" class="form-label fw-bold">Numéro étudiant</label>
-                <input type="text" class="form-control rounded-pill" id="numero_etudiant" name="numero_etudiant" placeholder="Votre numéro étudiant" required>
+        <form method="post" action="register.php">
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="prenom" class="form-label fw-bold">Prénom <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control rounded-pill" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                </div>
+                <div class="col">
+                    <label for="nom" class="form-label fw-bold">Nom <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control rounded-pill" id="nom" name="nom" placeholder="Votre nom" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="email" class="form-label fw-bold">Courrier électronique <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control rounded-pill" id="email" name="email" placeholder="Votre email" required>
+                </div>
+                <div class="col">
+                    <label for="numero_etudiant" class="form-label fw-bold">Numéro étudiant <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control rounded-pill" id="numero_etudiant" name="numero_etudiant" placeholder="Votre numéro étudiant" required>
+                </div>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label fw-bold">Mot de passe</label>
+                <label for="password" class="form-label fw-bold">Mot de passe <span class="text-danger">*</span></label>
                 <input type="password" class="form-control rounded-pill" id="password" name="password" placeholder="Votre mot de passe" required>
             </div>
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label fw-bold">Confirmer le mot de passe <span class="text-danger">*</span></label>
+                <input type="password" class="form-control rounded-pill" id="confirm_password" name="confirm_password" placeholder="Confirmez votre mot de passe" required>
+            </div>
             <div class="text-center mb-3">
-                <a href="#" class="text-decoration-none" style="color: #007bff;">Mot de passe oublié ?</a>
+                <small class="text-danger">* Champs obligatoires</small>
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary rounded-pill">Connexion</button>
-                <a href="register.php" class="btn btn-outline-primary rounded-pill">Inscription</a>
+                <button type="submit" class="btn btn-primary rounded-pill">S'inscrire</button>
             </div>
         </form>
     </div>
