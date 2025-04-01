@@ -69,27 +69,21 @@ class ProduitController extends Controller {
 
     public function update()
     {
-        $netud = $this->getQueryParam('numero_etudiant');
+        $idProd = $this->getQueryParam('idProd');
 
-        if ($netud === null) {
-                throw new Exception('Numero étudiant nécéssaire.');
-        }
-        $repository = new UtilisateurRepository();
-        $utilisateur = $repository->findById($netud);
+        $repository = new ProduitRepository();
+        $produit = $repository->findById($idProd);
 
-        if ($utilisateur === null) {
-            throw new Exception('Utilisateur non trouvé');
+        if ($produit === null) {
+            throw new Exception('Produit non trouvé');
         }
 
         $data = array_merge([
-			'numero_etudiant'=>$utilisateur->getNetud(),
-            'prenom'=>$utilisateur->getPrenom(),
-            'nom'=>$utilisateur->getNom(),
-			'tel'=>$utilisateur->getTel(),
-            'email'=>$utilisateur->getEmail(),
-			'type_notification'=>$utilisateur->getTypeNotification(),
-			'role'=>$utilisateur->getRole()->getNomRole(),
-			'demande'=>$utilisateur->getDemande(),
+			'idProd'=>$produit->getIdProd(),
+			'nomProd'=>$produit->getNomProd(),
+			'qs'=>$produit->getQs(),
+            'prixProd'=>$produit->getPrixProd(),
+			'imgProd'=>$produit->getImgProd()
         ],$this->getAllPostParams()); //Get submitted data
         $errors = [];
 
@@ -98,56 +92,35 @@ class ProduitController extends Controller {
                 $errors = [];
 
                 // Data validation
-                if (empty($data['numero_etudiant'])) {
-					$errors[] = 'Le numéro étudiant est requis.';
+                if (empty($data['nomProd'])) {
+					$errors[] = 'Le nom du produit est requis.';
 				}
-                if (empty($data['nom'])) {
-                    $errors[] = 'Le nom est requis.';
+				if (empty($data['qs']) || !is_numeric($data['qs'])) {
+					$errors[] = 'Le quantité en stock doit être valide.';
 				}
-                if (empty($data['prenom'])) {
-                    $errors[] = 'Le prénom est requis.';
-                }
-				if (empty($data['tel']) || strlen($data['tel']) < 10) {
-					$errors[] = 'Le numéro de téléphone valide est réquis.';
+				if (empty($data['prixProd']) || !is_numeric($data['prixProd'])) {
+					$errors[] = 'Le prix du produit doit être valide.';
 				}
-                if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                    $errors[] = 'Un email valide est requis.';
-                }
-                if (empty($data['password']) || strlen($data['password']) < 6) {
-                    $errors[] = 'Le mot de passe doit contenir au moins 6 caractères.';
-                }
-				if (empty($data['demande'])) {
-					$errors[] = 'La demande est requise.';
-				}
-				if (empty($data['type_notification'])) {
-					$errors[] = 'Le type de notification est requis.';
+				if (empty($data['imgProd'])) {
+					$errors[] = 'Le produit nécessite une image.';
 				}
 
                 if (!empty($errors)) {
                     throw new Exception(implode(', ', $errors));
                 }
 
-                // Mise à jour de l'objet utilisateur
-                $utilisateur->setPrenom($data['prenom']);
-                $utilisateur->setNom($data['nom']);
-				$utilisateur->setTel($data['tel']);
-                $utilisateur->setEmail($data['email']);
-				$utilisateur->setTypeNotification($data['type_notification']);
-				$utilisateur->setRole((new RoleRepository())->findByNom($data['role']));
-				$utilisateur->setDemande((bool)$data['demande']);
-
-                // Si le mot de passe est fourni, le hacher et le mettre à jour
-                if (!empty($data['password'])) {
-                    $hashedPassword = $this->hash($data['password']);
-                    $utilisateur->setMdp($hashedPassword);
-                }
+                // Mise à jour de l'objet produit
+                $produit->setNomProd($data['nomProd']);
+				$produit->setQs((int)$data['qs']);
+				$produit->setPrixProd((float)$data['prixProd']);
+				$produit->setImgProd($data['imgProd']);
 
                 // Sauvegarde dans la base de données
-                if (!$repository->update($utilisateur)) {
-                    throw new Exception('Erreur lors de la mise à jour d\'utilisateur.');
+                if (!$repository->update($produit)) {
+                    throw new Exception('Erreur lors de la mise à jour du produit.');
                 }
 
-                $this->redirectTo('users.php'); // Redirect after update
+                $this->redirectTo('boutique.php'); // Redirect after update
 
             } catch (Exception $e) {
                 $errors = explode(', ', $e->getMessage()); // Error retrieval
@@ -155,6 +128,6 @@ class ProduitController extends Controller {
         }
 
         // Display update form
-        $this->view('/user/form.html.twig',  ['data' => $data, 'errors' => $errors, 'id' => $netud]);
+        $this->view('/produit/form.html.twig',  ['data' => $data, 'errors' => $errors, 'idProd' => $idProd]);
     }
 }
