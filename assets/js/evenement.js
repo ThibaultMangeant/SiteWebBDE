@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function ()
 	const btnGererEvenements = document.createElement("button");
 	btnGererEvenements.textContent = "Gerer les évenements";
 	btnGererEvenements.classList.add("btn");
-	btnGererEvenements.classList.add("btn-outline-secondary");
+	btnGererEvenements.classList.add("btn-danger");
 
 	redirectionGererEvenements.appendChild(btnGererEvenements);
 	divGestionEvenements.appendChild(redirectionGererEvenements);
