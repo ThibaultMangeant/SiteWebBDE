@@ -16,6 +16,13 @@
             </tr>
         </thead>
         <tbody>
+			{% for error in errors %}
+				<tr>
+					<td colspan="6" class="text-danger text-center">
+						{{ error }}
+					</td>
+				</tr>
+			{% endfor %}
             {% for produit in produits %}
                 <tr>
                     <td>{{ produit.idProd }}</td>

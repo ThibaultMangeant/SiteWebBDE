@@ -22,8 +22,11 @@ class ProduitController extends Controller {
 
 
 	public function create() {
-		$data = $this->getAllPostParams(); // Récupération des données soumises
 		$errors = [];
+
+		$data = array_merge([
+			'bouton'=>'Créer'
+		],$this->getAllPostParams());
 
 		if (!empty($data)) {
 			try {
@@ -85,7 +88,8 @@ class ProduitController extends Controller {
 			'nomProd'=>$produit->getNomProd(),
 			'qs'=>$produit->getQs(),
 			'prixProd'=>$produit->getPrixProd(),
-			'imgProd'=>$produit->getImgProd()
+			'imgProd'=>$produit->getImgProd(),
+			'bouton'=>'Modifier'
 		],$this->getAllPostParams()); //Get submitted data
 		$errors = [];
 

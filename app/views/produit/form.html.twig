@@ -7,7 +7,7 @@
 {% block body %}
 <div class="product-form-container">
 	<h2 class="form-title">Page Création Produit ADMIN</h2>
-	<form method="POST" action="/produit/create" enctype="multipart/form-data" class="product-form">
+	<form method="POST" action="/produit" enctype="multipart/form-data" class="product-form">
 		<!-- Image du produit -->
 		<div class="form-group image-preview">
 			<label for="imgProd" class="image-label">
@@ -42,7 +42,7 @@
 
 		<!-- Bouton de création -->
 		<div class="form-group">
-			<button type="submit" class="btn btn-primary">Créer Produit</button>
+			<button type="submit" class="btn btn-primary">{{data.bouton}}</button>
 		</div>
 
 		<!-- Affichage des erreurs -->
