@@ -20,14 +20,6 @@ class ProduitController extends Controller {
         
     }
 
-	/**
-     * Checks if the current request is a POST request.
-     *
-     * @return bool
-     */
-    private function isPost(): bool {
-        return $_SERVER['REQUEST_METHOD'] === 'POST';
-    }
 
 	public function create() {
 		$data = $this->getAllPostParams(); // Récupération des données soumises
@@ -64,14 +56,14 @@ class ProduitController extends Controller {
 					throw new Exception('Erreur lors de l\'enregistrement du produit.');
 				}
 
-				$this->redirectTo('boutique.php'); // Redirection après création
+				$this->redirectTo('produits.php'); // Redirection après création
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
 		}
 
 		// Affichage du formulaire
-		$this->view('/produit/gestionProduits.html.twig',  [
+		$this->view('/produit/form.html.twig',  [
 			'data' => $data,
 			'errors' => $errors,
 		]);
@@ -130,7 +122,7 @@ class ProduitController extends Controller {
 					throw new Exception('Erreur lors de la mise à jour du produit.');
 				}
 
-				$this->redirectTo('boutique.php'); // Redirect after update
+				$this->redirectTo('produits.php'); // Redirect after update
 
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Error retrieval
@@ -152,16 +144,16 @@ class ProduitController extends Controller {
 			throw new Exception('Produit non trouvé');
 		}
 
-		if ($this->isPost()) {
-			try {
-				if (!$repository->deleteById($produit->getIdProd())) {
-					throw new Exception('Erreur lors de la suppression du produit.');
-				}
-
-				$this->redirectTo('boutique.php'); // Redirection après suppression
-			} catch (Exception $e) {
-				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
+		try {
+			if (!$repository->deleteById($produit->getIdProd())) {
+				throw new Exception('Erreur lors de la suppression du produit.');
 			}
+
+			$this->redirectTo('produits.php'); // Redirection après suppression
+		} catch (Exception $e) {
+			$this->view('/produit/gestionProduits.html.twig', [
+				'errors' => [$e->getMessage()]
+			]);
 		}
 	}
 }

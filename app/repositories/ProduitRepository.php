@@ -29,8 +29,8 @@ class ProduitRepository
 
 	public function deleteById($idProduit): bool
 	{
-		$stmt = $this->pdo->prepare('DELETE FROM Produit WHERE idProd = :idProduit');
-		$stmt->bindParam(':idproduit', $idProduit);
+		$stmt = $this->pdo->prepare('DELETE FROM Produit WHERE idProd = :idProd');
+		$stmt->bindParam(':idProd', $idProduit);
 		return $stmt->execute();
 	}
 
