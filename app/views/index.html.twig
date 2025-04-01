@@ -7,6 +7,7 @@
 {% block body %}
 <div class="most-popular">
 	<div class="container"style="padding-top: 26vh;">
+		<h2 class="text-center">Évènements à venir</h2>
 		<div class="event-container">
 			{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) %}
 			{% for evenement in trie_evenements %}
