@@ -1,4 +1,8 @@
 const groupOptions = document.getElementById("groupOptions");
+const redirectionAjouterProduit = document.createElement("a");
+
+redirectionAjouterProduit.href = "ajouter_produit.php";
+
 const btnAjouterProduit = document.createElement("button");
 
 
@@ -8,4 +12,5 @@ btnAjouterProduit.classList.add("btn");
 btnAjouterProduit.classList.add("btn-outline-secondary");
 
 
-groupOptions.appendChild(btnAjouterProduit);
+redirectionAjouterProduit.appendChild(btnAjouterProduit)
+groupOptions.appendChild(redirectionAjouterProduit);
