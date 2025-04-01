@@ -7,18 +7,18 @@
 {% block body %}
 <div class="product-form-container">
 	<h2 class="form-title">Page Création Produit ADMIN</h2>
-	<form method="POST" action="/produit" enctype="multipart/form-data" class="product-form">
+	<form method="POST" action="/produits.php" enctype="multipart/form-data" class="product-form">
 		<!-- Image du produit -->
 		<div class="form-group image-preview">
 			<label for="imgProd" class="image-label">
-				<img src="assets/images/placeholder.png" alt="Aperçu de l'image" id="imagePreview">
+				<img src="assets/images/boutique/{{ data.imgProd|default('placeholder.png') }}" alt="Aperçu de l'image" id="imagePreview">
 			</label>
 			<input type="file" id="imgProd" name="imgProd" accept="image/*" onchange="previewImage(event)" hidden>
 		</div>
 
 		<!-- Intitulé du produit -->
 		<div class="form-group">
-			<label for="nomProd">Intitulé du produit :</label>
+			<label for="nomProd">Nom du produit :</label>
 			<input type="text" id="nomProd" name="nomProd" value="{{ data.nomProd|default('') }}" required>
 		</div>
 
@@ -30,17 +30,17 @@
 
 		<!-- Stock initial -->
 		<div class="form-group">
-			<label for="qs">Stock Initial :</label>
+			<label for="qs">Quantité en stock :</label>
 			<input type="number" id="qs" name="qs" value="{{ data.qs|default('') }}" required>
 		</div>
 
 		<!-- Prix du produit -->
 		<div class="form-group">
-			<label for="prixProd">Prix du produit :</label>
+			<label for="prixProd">Prix :</label>
 			<input type="number" step="0.01" id="prixProd" name="prixProd" value="{{ data.prixProd|default('') }}" required>
 		</div>
 
-		<!-- Bouton de création -->
+		<!-- Bouton de mise à jour -->
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary">{{data.bouton}}</button>
 		</div>
