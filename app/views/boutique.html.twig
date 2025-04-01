@@ -1,9 +1,12 @@
 {% extends '_template/base.html.twig' %}
 
 {% block body %}
+<div class="d-flex justify-content-start" id="gestionProduit">
+	
+</div>
 <!-- Conteneur pour le panier -->
 <div class="container mt-3">
-	<div class="d-flex justify-content-end" id="groupOptions">
+	<div class="d-flex justify-content-end">
 		<a class="btn btn-outline-secondary" href="#" id="cartPopover" data-bs-toggle="popover" data-bs-placement="bottom"
 		data-bs-content="
 			{% if purchases|length > 0 %}

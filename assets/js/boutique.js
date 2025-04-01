@@ -1,4 +1,4 @@
-const groupOptions = document.getElementById("groupOptions");
+const divGestionBoutique = document.getElementById("gestionProduit");
 
 const redirectionGererBoutique = document.createElement("a");
 redirectionGererBoutique.href = "produits.php";
@@ -9,4 +9,4 @@ btnGererBoutique.classList.add("btn");
 btnGererBoutique.classList.add("btn-outline-secondary");
 
 redirectionGererBoutique.appendChild(btnGererBoutique);
-groupOptions.appendChild(redirectionGererBoutique);
+divGestionBoutique.appendChild(redirectionGererBoutique);
