@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function ()
 	// Gestion du style du bouton
 	btnGererActualite.textContent = "Gerer les actualités";
 	btnGererActualite.classList.add("btn");
-	btnGererActualite.classList.add("btn-outline-secondary");
+	btnGererActualite.classList.add("btn-danger");
 
 
 	redirectionGererActualites.appendChild(btnGererActualite);
