@@ -1,5 +1,5 @@
 <?php
-require_once './app/controllers/UserController.php';
+require_once './app/controllers/UtilisateurController.php';
 
-$controller = new UserController();
+$controller = new UtilisateurController();
 $controller->update();

@@ -2,4 +2,4 @@
 require_once './app/controllers/UtilisateurController.php';
 
 $controller = new UtilisateurController();
-$controller->create();
+$controller->index();
