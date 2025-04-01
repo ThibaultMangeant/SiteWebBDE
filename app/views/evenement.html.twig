@@ -1,0 +1,42 @@
+{% extends '_template/base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Section de l'événement le plus récent -->
+            <div class="col-md-8">
+                <h2>Événement le plus récent :</h2>
+                {% if evenements|length > 0 %}
+                    {% set evenement_recent = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent)|first %}
+                    <a href="evenement_detail.php?id={{ evenement_recent.idEvent }}" class="text-decoration-none">
+                        <div class="card mb-4 shadow-sm">
+                            <img src="assets/images/evenements/{{ evenement_recent.imgEvent }}" class="card-img-top" alt="{{ evenement_recent.nomEvent }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ evenement_recent.nomEvent }} : {{ evenement_recent.dateEvent|date('d/m/Y') }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                {% else %}
+                    <p>Aucun événement disponible.</p>
+                {% endif %}
+            </div>
+
+            <!-- Section des autres événements -->
+            <div class="col-md-4">
+                <h2>Autres événements :</h2>
+                {% if evenements|length > 1 %}
+                    {% set autres_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent)|slice(1) %}
+                    <div class="d-flex flex-wrap gap-3">
+                        {% for evenement in autres_evenements %}
+                            <a href="evenement_detail.php?id={{ evenement.idEvent }}">
+                                <img src="assets/images/evenements/{{ evenement.imgEvent }}" alt="{{ evenement.nomEvent }}" style="width: 300px; height: auto;" class="rounded">
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>Aucun autre événement disponible.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
