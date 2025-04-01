@@ -1,79 +1,59 @@
 {% extends '_template/base.html.twig' %}
 
+{% block css %}
+<link rel="stylesheet" href="assets/css/boutique.css">
+{% endblock %}
+
 {% block body %}
 <div class="d-flex justify-content-start" id="gestionProduit">
-	
-</div>
-<!-- Conteneur pour le panier -->
-<div class="container mt-3">
-	<div class="d-flex justify-content-end">
-		<a class="btn btn-outline-secondary" href="#" id="cartPopover" data-bs-toggle="popover" data-bs-placement="bottom"
-		data-bs-content="
-			{% if purchases|length > 0 %}
-			<ul>
-				{% for purchase in purchases %}
-					<li>
-						{{ purchase.produit.nomProd }} x{{ purchase.quantity }} -
-						{{ purchase.produit.prixProd|number_format(2, ',', ' ') }}€
-					</li>
-				{% endfor %}
-			</ul>
-			<a href='validate_purchases.php' class='btn btn-primary btn-sm mt-2'>Valider</a>
-			{% else %}
-				<p>Votre panier est vide.</p>
-			{% endif %}
-		"
-		data-bs-html="true">
-			<i class="fa-solid fa-cart-shopping"></i> Panier
-			{% if purchases|length > 0 %}
-				<span class="badge bg-danger ms-2">{{ purchases|length }}</span>
-			{% endif %}
-		</a>
-	</div>
 </div>
 
 <!-- Contenu principal de la boutique -->
 <div class="most-popular">
-	<div class="container">
-		<div class="heading-section text-center mb-5">
-			<h2 class="mb-4">Bienvenue dans notre boutique</h2>
-			<p>Explorez nos produits populaires et découvrez des articles exclusifs à des prix compétitifs.</p>
-		</div>
-		<div class="row">
-			{% for produit in produits %}
-			<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-				<div class="card h-100 shadow-sm border-light">
-					<!-- Image du produit -->
-					<img src="assets/images/boutique/{{ produit.imgProd }}"
-						alt="{{ produit.nomProd }}"
-						class="card-img-top"
-						style="object-fit: cover; height: 200px;">
+    <div class="container">
+        <div class="heading-section text-center mb-5">
+            <h2 class="mb-4">Bienvenue dans notre boutique</h2>
+            <p>Explorez nos produits populaires et découvrez des articles exclusifs à des prix compétitifs.</p>
+        </div>
+        <div class="row">
+            {% for produit in produits %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card h-100 shadow-sm border-light">
+                    <!-- Image du produit -->
+                    <img src="assets/images/boutique/{{ produit.imgProd }}"
+                        alt="{{ produit.nomProd }}"
+                        class="card-img-top"
+                        style="object-fit: cover; height: 200px;">
 
-					<!-- Contenu de la carte -->
-					<div class="card-body">
-						<h5 class="card-title">{{ produit.nomProd }}</h5>
-					</div>
+                    <!-- Contenu de la carte -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.nomProd }}</h5>
+                    </div>
 
-					<!-- Footer de la carte -->
-					<div class="card-footer d-flex">
-						<div>
-							<span class="badge bg-primary">Stock: {{ produit.qs }}</span>
-							<span class="badge bg-success">Prix: {{ produit.prixProd | number_format(2, ',', ' ') }}€</span>
-						</div>
-						<form method="post" action="purchase.php?produit_idProd={{ produit.idProd }}">
-							<div class="input-group" style="padding-left: 20px;">
-								<input type="number" name="quantity" min="1" max="{{ produit.qs }}" class="form-control" placeholder="Qt" required>
-								<button class="btn btn-warning btn-sm" type="submit"><i class="fa-solid fa-cart-plus"></i></button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
-	</div>
+                    <!-- Footer de la carte -->
+                    <div class="card-footer d-flex">
+                        <div>
+                            <span class="badge bg-primary">Stock: {{ produit.qs }}</span>
+                            <span class="badge bg-success">Prix: {{ produit.prixProd | number_format(2, ',', ' ') }}€</span>
+                        </div>
+                        <form method="post" action="purchase.php?produit_idProd={{ produit.idProd }}">
+                            <div class="input-group" style="padding-left: 20px;">
+                                <input type="number" name="quantity" min="1" max="{{ produit.qs }}" class="form-control" placeholder="Qt" required>
+                                <button class="btn btn-warning btn-sm" type="submit"><i class="fa-solid fa-cart-plus"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+
+<!-- Bouton flottant pour le panier -->
+<a href="validate_purchases.php" id="floatingCartButton" class="text-decoration-none">
+    <i class="fa-solid fa-cart-shopping"></i> Voir mon panier
+</a>
 
 <script src="../assets/js/boutique.js"></script>
 {% endblock %}
-
