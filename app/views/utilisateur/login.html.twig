@@ -1,6 +1,5 @@
 {% extends '_template/base.html.twig' %}
 
-
 {% block body %}
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
     <div class="card p-4 shadow-sm" style="width: 100%; max-width: 400px; background-color: #f8f9fa; border-radius: 10px;">
@@ -15,21 +14,28 @@
 
         <form method="post" action="login.php">
             <div class="mb-3">
-                <label for="text" class="form-label fw-bold">Numéro étudiant</label>
+                <label for="numero_etudiant" class="form-label fw-bold">Numéro étudiant <span class="text-danger">*</span></label>
                 <input type="text" class="form-control rounded-pill" id="numero_etudiant" name="numero_etudiant" placeholder="Votre numéro étudiant" required>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label fw-bold">Mot de passe</label>
+                <label for="password" class="form-label fw-bold">Mot de passe <span class="text-danger">*</span></label>
                 <input type="password" class="form-control rounded-pill" id="password" name="password" placeholder="Votre mot de passe" required>
             </div>
-            <div class="text-center mb-3">
-                <a href="#" class="text-decoration-none" style="color: #007bff;">Mot de passe oublié ?</a>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me" style="cursor: pointer;">
+                <label class="form-check-label" for="remember_me" style="cursor: pointer;">Se souvenir de moi</label>
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary rounded-pill">Connexion</button>
-                <a href="register.php" class="btn btn-outline-primary rounded-pill">Inscription</a>
+                <button type="submit" class="btn btn-primary rounded-pill">Se connecter</button>
             </div>
         </form>
+
+        <hr class="my-4">
+
+        <div class="d-grid gap-2 text-center">
+            <p>Vous n'avez pas de compte ?</p>
+            <a href="register.php" class="btn btn-outline-primary rounded-pill">Créer un compte</a>
+        </div>
     </div>
 </div>
 {% endblock %}
