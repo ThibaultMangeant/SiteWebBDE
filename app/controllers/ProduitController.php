@@ -16,7 +16,7 @@ class ProduitController extends Controller {
 		$produits = $repository->findAll();
 
         // Ensuite, affiche la vue
-        $this->view('/produit/index.html.twig',  ['produits' => $produits]);
+        $this->view('/produit/gestionProduits.html.twig',  ['produits' => $produits]);
         
     }
 
@@ -71,7 +71,7 @@ class ProduitController extends Controller {
 		}
 
 		// Affichage du formulaire
-		$this->view('/produit/index.html.twig',  [
+		$this->view('/produit/gestionProduits.html.twig',  [
 			'data' => $data,
 			'errors' => $errors,
 		]);
