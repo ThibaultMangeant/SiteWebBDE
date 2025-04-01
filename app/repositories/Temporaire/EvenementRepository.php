@@ -1,6 +1,7 @@
 <?php
 require_once './app/core/Repository.php';
 require_once './app/entities/Temporaire/Evenement.php';
+require_once './app/repositories/Temporaire/RoleRepository.php';
 
 class EvenementRepository
 {
@@ -43,7 +44,7 @@ class EvenementRepository
 			new DateTime($row['dateevent']),
 			$row['lieuevent'],
 			(float)$row['prixevent'],
-			(new RoleRepository())->findByNom($row['roleautoriseMin'])
+			(new RoleRepository())->findByNom($row['roleautorisemin'])
 		);
 	}
 

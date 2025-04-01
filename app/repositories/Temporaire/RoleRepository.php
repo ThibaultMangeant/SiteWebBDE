@@ -10,7 +10,7 @@ class RoleRepository
 
 	public function findAll(): array 
 	{
-		$stmt = $this->pdo->query('SELECT * FROM Role');
+		$stmt = $this->pdo->query('SELECT * FROM "Role"');
 		$roles = [];
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$roles[] = $this->createRoleFromRow($row);
@@ -20,7 +20,7 @@ class RoleRepository
 
 	public function findByNom($nomRole): ?Role
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Role WHERE nomRole = :nomRole');
+		$stmt = $this->pdo->prepare('SELECT * FROM "Role" WHERE nomRole = :nomRole');
 		$stmt->bindParam(':nomRole', $nomRole);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,14 +29,14 @@ class RoleRepository
 
 	public function deleteByNom($nomRole): bool
 	{
-		$stmt = $this->pdo->prepare('DELETE FROM Role WHERE nomRole = :nomRole');
+		$stmt = $this->pdo->prepare('DELETE FROM "Role" WHERE nomRole = :nomRole');
 		$stmt->bindParam(':nomRole', $nomRole);
 		return $stmt->execute();
 	}
 	
 	public function update(Role $role): bool
 	{
-		$stmt = $this->pdo->prepare('UPDATE Role SET niveau = :niveau WHERE nomRole = :nomRole');
+		$stmt = $this->pdo->prepare('UPDATE "Role" SET niveau = :niveau WHERE nomRole = :nomRole');
 		return $stmt->execute([
 			'nomRole' => $role->getNomRole(),
 			'niveau' => $role->getNiveau()
@@ -53,7 +53,7 @@ class RoleRepository
 
 	public function create(Role $role): bool
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Role (nomRole, niveau) VALUES (:nomRole, :niveau)');
+		$stmt = $this->pdo->prepare('INSERT INTO "Role" (nomRole, niveau) VALUES (:nomRole, :niveau)');
 		return $stmt->execute([
 			'nomRole' => $role->getNomRole(),
 			'niveau' => $role->getNiveau()
