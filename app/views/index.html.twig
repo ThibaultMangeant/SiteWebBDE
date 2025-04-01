@@ -15,11 +15,11 @@
 			{% for actualite in actualites %}
 				<div class="event-card">
 					<div class="event-content">
-						<h5 class="event-title">{{ actualite.nomEvent }}</h5>
+						<h5 class="event-title">{{ actualite.titreActu }}</h5>
 					</div>
-					<a>
-						actualite desc
-					</a>
+					<div >
+						<p>{{ actualite.descActu }}</p>
+					</div>
 				</div>
 			{% endfor %}
 		</div>
