@@ -12,7 +12,7 @@
 		<!-- Navbar CSS -->
 		<title>{{ title|default('') }}</title>
 		{% block css %}{% endblock %}
-		<link rel="stylesheet" href="assets/css/navbar.css">
+		<link rel="stylesheet" href="assets/css/base.css">
 	</head>
 	<body>
 	<header class="fixed-top">
@@ -99,20 +99,26 @@
 	{% block javascript %}{% endblock %}
 
 	<!-- Footer -->
-	<footer class="bg-light text-center text-lg-start">
-		<div class="container p-3">
-			<div class="row ">
-				<div class="text-center">
-					<p>BDE INFORMATIQUE - LE HAVRE &copy; 2025</p>
-				</div>
-				<div class="text-center">
-				<a href="https://www.instagram.com/bdeinfo_lh?igsh=ZjNvNGMzeGdodHJy" target="_blank" class="text-decoration-none me-3">
-					<img src="assets/images/instagram.webp" width="25px">
-				</a>
-				<a href="contact.php" class="footer-link text-decoration-none">Contactez-nous</a>
-				</div>
-			</div>
-		</div>
-	</footer>
+<!-- Footer -->
+<footer class="bg-light py-3">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <!-- Texte centré -->
+            <div class="mb-2 mb-md-0 text-center text-md-start">
+                BDE INFORMATIQUE - LE HAVRE &copy; 2025
+            </div>
+
+            <!-- Logo Instagram et lien Contact à droite -->
+            <div class="d-flex align-items-center">
+                <a href="https://www.instagram.com/bdeinfo_lh?igsh=ZjNvNGMzeGdodHJy" 
+                   target="_blank" 
+                   class="me-3">
+                    <img src="assets/images/instagram.webp" width="25" alt="Instagram">
+                </a>
+                <a href="contact.php" class="text-decoration-none">Contactez-nous</a>
+            </div>
+        </div>
+    </div>
+</footer>
 	</body>
 </html>

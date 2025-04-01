@@ -1,7 +1,7 @@
 /* Style pour le bouton panier */
 #floatingCartButton {
     position: fixed;
-    bottom: 14vh; /* Positionné à 20px au-dessus du bas de l'écran */
+    bottom: 10vh; /* Positionné à 20px au-dessus du bas de l'écran */
     left: 50%; /* Centré horizontalement */
     transform: translateX(-50%); /* Ajuste pour centrer parfaitement */
     background-color: rgba(0, 123, 255, 0.8); /* Bleu avec transparence */

@@ -48,7 +48,7 @@
             <div class="event-container-right">
                 <h2 class="section-title">Autres évènements :</h2>
                 {% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) | slice(1) %}
-                {% for evenement in evenements %}
+                {% for evenement in trie_evenements %}
                     <a href="evenement_detail.php?id={{ evenement.idEvent }}" class="text-decoration-none">
                         <div class="event-card mb-4 shadow-sm" style="border: none;">
                             <!-- Image de l'événement -->

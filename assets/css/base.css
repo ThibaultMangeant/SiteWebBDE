@@ -64,6 +64,19 @@ body {
     margin: 0;
 }
 
+/* Style pour le footer */
 footer {
-    margin-top: auto; /* Pousse le footer vers le bas si le contenu est insuffisant */
+    margin-top: auto; /* Pour pousser le footer vers le bas */
+    background-color: #f8f9fa;
+}
+
+/* Style pour le lien Contactez-nous */
+footer a {
+    color: inherit;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: #0d6efd; /* Couleur bleue Bootstrap */
+    text-decoration: none;
 }
