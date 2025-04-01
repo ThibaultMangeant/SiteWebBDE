@@ -3,6 +3,7 @@
 require_once './app/core/Controller.php';
 require_once './app/repositories/EvenementRepository.php';
 require_once './app/entities/Evenement.php';
+require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
 
@@ -52,12 +53,12 @@ class EvenementController extends Controller {
 
 					// Déplacement du fichier uploadé
 					if (empty($errors) && move_uploaded_file($_FILES['imgEvent']['tmp_name'], $targetFile)) {
-						$imgProd = basename($_FILES['imgEvent']['name']); // Nouveau nom de fichier
+						$imgEvent = basename($_FILES['imgEvent']['name']); // Nouveau nom de fichier
 					} else {
 						$errors[] = 'Erreur lors de l\'upload de l\'image.';
 					}
 				}
-				$data['imgEvent'] = $imgProd;
+				$data['imgEvent'] = $imgEvent;
 				
 				if (!empty($errors)) {
 					throw new Exception(implode(', ', $errors));
@@ -79,7 +80,7 @@ class EvenementController extends Controller {
 		}
 
 		// Affichage du formulaire
-		$this->view('/produit/form.html.twig',  [
+		$this->view('/evenement/form.html.twig',  [
 			'data' => $data,
 			'errors' => $errors,
 		]);
@@ -87,22 +88,24 @@ class EvenementController extends Controller {
 
 	public function update()
 	{
-		$idProd = $this->getQueryParam('idEvent');
+		$idEvent = $this->getQueryParam('idEvent');
 
-		$repository = new ProduitRepository();
-		$produit = $repository->findById($idProd);
+		$repository = new EvenementRepository();
+		$evenement = $repository->findById($idEvent);
 
-		if ($produit === null) {
+		if ($evenement === null) {
 			throw new Exception('Évènement non trouvé');
 		}
 
 		$data = array_merge([
-			'idEvent'=>$produit->getIdProd(),
-			'nomEvent'=>$produit->getNomProd(),
-			'qs'=>$produit->getQs(),
-			''=>$produit->getPrixProd(),
-			'imgProd'=>$produit->getImgProd(),
-			'bouton'=>'Modifier'
+			'idEvent'=>$evenement->getIdEvent(),
+			'nomEvent'=>$evenement->getNomEvent(),
+			'descEvent'=>$evenement->getDescEvent(),
+			'dateEvent'=>$evenement->getDateEvent()->format('Y-m-d H:i:s'),
+			'lieuEvent'=>$evenement->getLieuEvent(),
+			'prixEvent'=>$evenement->getPrixEvent(),
+			'roleAutoriseMin'=>$evenement->getRoleAutorise()->getNom(),
+			'imgEvent'=>$evenement->getImgEvent()
 		],$this->getAllPostParams()); //Get submitted data
 		$errors = [];
 
@@ -122,10 +125,10 @@ class EvenementController extends Controller {
 				}
 
 				// Gestion de l'image
-				$imgProd = $produit->getImgProd(); // Image existante par défaut
-				if (!empty($_FILES['imgProd']['name'])) {
-					$targetDir = "assets/images/boutique/";
-					$targetFile = $targetDir . basename($_FILES['imgProd']['name']);
+				$imgEvent = $evenement->getImgEvent(); // Image existante par défaut
+				if (!empty($_FILES['imgEvent']['name'])) {
+					$targetDir = "assets/images/evenements/";
+					$targetFile = $targetDir . basename($_FILES['imgEvent']['name']);
 					$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
 					// Vérification du type de fichier
@@ -135,8 +138,8 @@ class EvenementController extends Controller {
 					}
 
 					// Déplacement du fichier uploadé
-					if (empty($errors) && move_uploaded_file($_FILES['imgProd']['tmp_name'], $targetFile)) {
-						$imgProd = basename($_FILES['imgProd']['name']); // Nouveau nom de fichier
+					if (empty($errors) && move_uploaded_file($_FILES['imgEvent']['tmp_name'], $targetFile)) {
+						$imgEvent = basename($_FILES['imgEvent']['name']); // Nouveau nom de fichier
 					} else {
 						$errors[] = 'Erreur lors de l\'upload de l\'image.';
 					}
@@ -147,26 +150,29 @@ class EvenementController extends Controller {
 				}
 
 				// Mise à jour de l'objet produit
-				$produit->setIdProd($data['idProd']);
-				$produit->setNomProd($data['nomProd']);
-				$produit->setQs((int)$data['qs']);
-				$produit->setPrixProd((float)$data['prixProd']);
-				$produit->setImgProd($imgProd);
+				$evenement->setIdEvent($idEvent);
+				$evenement->setNomEvent($data['nomProd']);
+				$evenement->setDescEvent($data['descProd']);
+				$evenement->setDateEvent(new DateTime($data['dateProd']));
+				$evenement->setLieuEvent($data['lieuProd']);
+				$evenement->setPrixEvent((float)$data['prixProd']);
+				$evenement->setRoleAutorise((new RoleRepository())->findByNom($data['roleAutoriseMin']));
+				$evenement->setImgEvent($imgEvent);
 
 
 				// Sauvegarde dans la base de données
-				if (!$repository->update($produit)) {
-					throw new Exception('Erreur lors de la mise à jour du produit.');
+				if (!$repository->update($evenement)) {
+					throw new Exception('Erreur lors de la mise à jour du évènement.');
 				}
 
-				$this->redirectTo('produits.php'); // Redirection après mise à jour
+				$this->redirectTo('evenements.php'); // Redirection après mise à jour
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
 		}
 
 		// Affichage du formulaire de mise à jour
-		$this->view('/produit/form.html.twig', ['data' => $data, 'errors' => $errors, 'idProd' => $idProd]);
+		$this->view('/evenement/form.html.twig', ['data' => $data, 'errors' => $errors, 'idEvent' => $idEvent]);
 	}
 
 	public function delete()
@@ -177,17 +183,17 @@ class EvenementController extends Controller {
 		$produit = $repository->findById($idProd);
 
 		if ($produit === null) {
-			throw new Exception('Produit non trouvé');
+			throw new Exception('Évènement non trouvé');
 		}
 
 		try {
 			if (!$repository->deleteById($produit->getIdProd())) {
-				throw new Exception('Erreur lors de la suppression du produit.');
+				throw new Exception('Erreur lors de la suppression du évènement.');
 			}
 
-			$this->redirectTo('produits.php'); // Redirection après suppression
+			$this->redirectTo('evenements.php'); // Redirection après suppression
 		} catch (Exception $e) {
-			$this->view('/produit/gestionProduits.html.twig', [
+			$this->view('/evenement/gestionEvenement.html.twig', [
 				'errors' => [$e->getMessage()]
 			]);
 		}
