@@ -15,9 +15,19 @@ class ProduitController extends Controller {
 		$repository = new ProduitRepository();
 		$produits = $repository->findAll();
 
-		// Ensuite, affiche la vue
-		$this->view('/produit/index.html.twig',  ['produits' => $produits]);
-	}
+        // Ensuite, affiche la vue
+        $this->view('/produit/index.html.twig',  ['produits' => $produits]);
+        
+    }
+
+	/**
+     * Checks if the current request is a POST request.
+     *
+     * @return bool
+     */
+    private function isPost(): bool {
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
+    }
 
 	public function create() {
 		$data = $this->getAllPostParams(); // Récupération des données soumises
@@ -129,5 +139,29 @@ class ProduitController extends Controller {
 
 		// Display update form
 		$this->view('/produit/form.html.twig',  ['data' => $data, 'errors' => $errors, 'idProd' => $idProd]);
+	}
+
+	public function delete()
+	{
+		$idProd = $this->getQueryParam('idProd');
+
+		$repository = new ProduitRepository();
+		$produit = $repository->findById($idProd);
+
+		if ($produit === null) {
+			throw new Exception('Produit non trouvé');
+		}
+
+		if ($this->isPost()) {
+			try {
+				if (!$repository->deleteById($produit->getIdProd())) {
+					throw new Exception('Erreur lors de la suppression du produit.');
+				}
+
+				$this->redirectTo('boutique.php'); // Redirection après suppression
+			} catch (Exception $e) {
+				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
+			}
+		}
 	}
 }

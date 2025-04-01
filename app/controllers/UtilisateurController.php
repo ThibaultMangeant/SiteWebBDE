@@ -12,6 +12,14 @@ class UtilisateurController extends Controller {
     use AuthTrait;
 
 
+	public function index() {
+		$repository = new UtilisateurRepository();
+		$utilisateurs = $repository->findAll();
+
+		// Ensuite, affiche la vue
+		$this->view('/utilisateur/index.html.twig',  ['utilisateurs' => $utilisateurs]);
+		
+	}
     public function create() {
         $data = $this->getAllPostParams(); // Récupération des données soumises
         $errors = [];
