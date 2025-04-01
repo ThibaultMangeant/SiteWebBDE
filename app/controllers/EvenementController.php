@@ -104,7 +104,7 @@ class EvenementController extends Controller {
 			'dateEvent'=>$evenement->getDateEvent()->format('Y-m-d H:i:s'),
 			'lieuEvent'=>$evenement->getLieuEvent(),
 			'prixEvent'=>$evenement->getPrixEvent(),
-			'roleAutoriseMin'=>$evenement->getRoleAutorise()->getNom(),
+			'roleAutoriseMin'=>$evenement->getRoleAutorise()->getNomRole(),
 			'imgEvent'=>$evenement->getImgEvent()
 		],$this->getAllPostParams()); //Get submitted data
 		$errors = [];

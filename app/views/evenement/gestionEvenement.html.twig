@@ -1,53 +1,38 @@
 {% extends '_template/base.html.twig' %}
 
-{% block body %}
+{% block css %}
+<link rel="stylesheet" href="assets/css/gestionEvenement.css">
+{% endblock %}
 
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Liste des Evements</h2>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Image</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-			{% for error in errors %}
-				<tr>
-					<td colspan="6" class="text-danger text-center">
-						{{ error }}
-					</td>
-				</tr>
-			{% endfor %}
-			{% for produit in produits|sort((a, b) => a.idProd <=> b.idProd) %}
-				<tr>
-					<td>{{ produit.idProd }}</td>
-					<td>{{ produit.nomProd }}</td>
-					<td>{{ produit.qs }}</td>
-					<td>{{ produit.prixProd | number_format(2, ',', ' ') }} €</td>
-					<td>
-						<img src="assets/images/boutique/{{ produit.imgProd }}" alt="{{ produit.nomProd }}" style="width: 50px; height: 50px; object-fit: cover;">
-					</td>
-					<td>
-						<a href="produit_update.php?idProd={{ produit.idProd }}" class="btn btn-warning btn-sm">
-							<i class="fa fa-edit"></i> Modifier
-						</a>
-						<a href="produit_delete.php?idProd={{ produit.idProd }}" class="btn btn-danger btn-sm">
-							<i class="fa fa-trash"></i> Supprimer
-						</a>
-					</td>
-				</tr>
-			{% endfor %}
-        </tbody>
-    </table>
-    <div class="d-flex flex-row-reverse">
-        <a href="produit_create.php" class="btn btn-success">
-            <i class="fa fa-plus"></i> Ajouter un produit
-        </a>
+{% block body %}
+<div class="evenement-container">
+    <!-- Partie droite : Détails de l'événement -->
+    <div class="evenement-left evenement-right">
+        <h2 class="section-title">Nom :</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ selectedEvenement.nomEvent }}" placeholder="Nom de l'événement">
+        </div>
+        <h2 class="section-title">Description :</h2>
+        <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Description de l'événement">{{ selectedEvenement.descEvent }}</textarea>
+        </div>
+        <h2 class="section-title">Date :</h2>
+        <div class="form-group">
+            <input type="date" class="form-control" value="{{ selectedEvenement.dateEvent|date('Y-m-d') }}">
+        </div>
+        <h2 class="section-title">Lieu :</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ selectedEvenement.lieuEvent }}" placeholder="Lieu de l'événement">
+        </div>
+        <h2 class="section-title">Prix :</h2>
+        <div class="form-group">
+            <input type="number" step="0.01" class="form-control" value="{{ selectedEvenement.prixEvent }}" placeholder="Prix de l'événement">
+        </div>
+        <h2 class="section-title">Image :</h2>
+        <div class="form-group">
+            <input type="file" class="form-control">
+        </div>
+        <button class="btn btn-success">Enregistrer</button>
     </div>
 </div>
 {% endblock %}
