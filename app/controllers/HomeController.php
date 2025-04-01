@@ -44,8 +44,17 @@ class HomeController extends Controller
 	{
 		$produitRepo = new ProduitRepository();
 
-		$articles = $produitRepo->findAll();
+		$produits = $produitRepo->findAll();
 
-		$this->view('boutique.html.twig', ['articles' => $articles]);
+		$this->view('boutique.html.twig', ['produits' => $produits]);
+	}
+
+	public function evenement()
+	{
+		$evenementRepo = new EvenementRepository();
+
+		$evenements = $evenementRepo->findAll();
+
+		$this->view('evenement.html.twig', ['evenements' => $evenements]);
 	}
 }

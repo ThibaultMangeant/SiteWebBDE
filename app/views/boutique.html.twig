@@ -10,8 +10,8 @@
 			<ul>
 				{% for purchase in purchases %}
 					<li>
-						{{ purchase.article.name }} x{{ purchase.quantity }} -
-						{{ purchase.article.price|number_format(2, ',', ' ') }}€
+						{{ purchase.produit.nomProd }} x{{ purchase.quantity }} -
+						{{ purchase.produit.prixProd|number_format(2, ',', ' ') }}€
 					</li>
 				{% endfor %}
 			</ul>
@@ -37,29 +37,29 @@
 			<p>Explorez nos produits populaires et découvrez des articles exclusifs à des prix compétitifs.</p>
 		</div>
 		<div class="row">
-			{% for article in articles %}
+			{% for produit in produits %}
 			<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 				<div class="card h-100 shadow-sm border-light">
-					<!-- Image de l'article -->
-					<img src="assets/images/{{ article.imgProd }}"
-						alt="{{ article.nomProd }}"
+					<!-- Image du produit -->
+					<img src="assets/images/{{ produit.imgProd }}"
+						alt="{{ produit.nomProd }}"
 						class="card-img-top"
 						style="object-fit: cover; height: 200px;">
 
 					<!-- Contenu de la carte -->
 					<div class="card-body">
-						<h5 class="card-title">{{ article.nomProd }}</h5>
+						<h5 class="card-title">{{ produit.nomProd }}</h5>
 					</div>
 
 					<!-- Footer de la carte -->
 					<div class="card-footer d-flex">
 						<div>
-							<span class="badge bg-primary">Stock: {{ article.qs }}</span>
-							<span class="badge bg-success">Prix: {{ article.prixProd | number_format(2, ',', ' ') }}€</span>
+							<span class="badge bg-primary">Stock: {{ produit.qs }}</span>
+							<span class="badge bg-success">Prix: {{ produit.prixProd | number_format(2, ',', ' ') }}€</span>
 						</div>
-						<form method="post" action="purchase.php?article_idProd={{ article.idProd }}">
+						<form method="post" action="purchase.php?produit_idProd={{ produit.idProd }}">
 							<div class="input-group">
-								<input type="number" name="quantity" min="1" max="{{ article.qs }}" class="form-control" placeholder="Qt" required>
+								<input type="number" name="quantity" min="1" max="{{ produit.qs }}" class="form-control" placeholder="Qt" required>
 								<button class="btn btn-warning btn-sm" type="submit"><i class="fa-solid fa-cart-plus"></i></button>
 							</div>
 						</form>
