@@ -19,7 +19,11 @@ class HomeController extends Controller
 
 	public function vitrine()
 	{
-		$this->view('vitrine.html.twig',  []);
+		$actualiteRepo = new ActualiteRepository();
+
+		$actualites = $actualiteRepo->findAll();
+
+		$this->view('vitrine.html.twig',  ["actualites" => $actualites]);
 	}
 
 	public function boutique()
