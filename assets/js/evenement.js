@@ -42,10 +42,14 @@ document.addEventListener("DOMContentLoaded", function ()
 	const redirectionGererEvenements = document.createElement("a");
 	redirectionGererEvenements.href = "evenements.php";
 
+
 	const btnGererEvenements = document.createElement("button");
+
+	// Gestion du style du bouton
 	btnGererEvenements.textContent = "Gerer les évenements";
 	btnGererEvenements.classList.add("btn");
-	btnGererEvenements.classList.add("btn-outline-secondary");
+	btnGererEvenements.classList.add("btn-danger");
+
 
 	redirectionGererEvenements.appendChild(btnGererEvenements);
 	divGestionEvenements.appendChild(redirectionGererEvenements);

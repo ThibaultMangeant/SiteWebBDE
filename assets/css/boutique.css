@@ -1,0 +1,23 @@
+/* Style pour le bouton panier */
+#floatingCartButton {
+    position: fixed;
+    bottom: 14vh; /* Positionné à 20px au-dessus du bas de l'écran */
+    left: 50%; /* Centré horizontalement */
+    transform: translateX(-50%); /* Ajuste pour centrer parfaitement */
+    background-color: rgba(0, 123, 255, 0.8); /* Bleu avec transparence */
+    color: white;
+    border: none;
+    border-radius: 30px; /* Bouton arrondi */
+    padding: 10px 20px;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    z-index: 1000; /* Toujours au-dessus des autres éléments */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none; /* Supprime le soulignement du texte */
+    text-align: center;
+}
+
+#floatingCartButton:hover {
+    background-color: rgba(0, 123, 255, 1); /* Bleu opaque au survol */
+    transform: translateX(-50%) scale(1.05); /* Légère mise en avant au survol */
+}

@@ -39,10 +39,14 @@ document.addEventListener("DOMContentLoaded", function ()
 	const redirectionGererActualites = document.createElement("a");
 	redirectionGererActualites.href = "actualites.php";
 
+
 	const btnGererActualite = document.createElement("button");
+
+	// Gestion du style du bouton
 	btnGererActualite.textContent = "Gerer les actualités";
 	btnGererActualite.classList.add("btn");
 	btnGererActualite.classList.add("btn-outline-secondary");
+
 
 	redirectionGererActualites.appendChild(btnGererActualite);
 	divGestionActualites.appendChild(redirectionGererActualites);

@@ -1,1 +1,46 @@
-<p>{{articles}}</p>
+{% extends '_template/base.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="assets/css/vitrine.css">
+{% endblock %}
+
+{% block body %}
+<div class="vitrine-container">
+    <!-- Section 1: Les Statuts -->
+    <div class="vitrine-section">
+        <h2 class="vitrine-title">Les Statuts</h2>
+        <p class="vitrine-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p class="vitrine-text">
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </div>
+
+    <!-- Section 2: Nos Locaux -->
+    <div class="vitrine-section">
+        <h2 class="vitrine-title">Nos Locaux</h2>
+        <p class="vitrine-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
+        </p>
+        <p class="vitrine-text">
+            Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
+        </p>
+    </div>
+
+    <!-- Section 3: Nos Partenaires -->
+    <div class="vitrine-section">
+        <h2 class="vitrine-title">Nos Partenaires</h2>
+        <p class="vitrine-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh.
+        </p>
+        <p class="vitrine-text">
+            Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.
+        </p>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="assets/js/vitrine.js"></script>
+{% endblock %}
