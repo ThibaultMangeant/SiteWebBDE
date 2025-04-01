@@ -19,18 +19,44 @@
     text-align: center; /* Centre le texte */
 }
 
-/* Conteneur principal pour les événements */
-.event-container {
-	position: fixed; /* Fixe le conteneur à droite de l'écran */
-	top: var(--header-height, 128px); /* Ajuste en fonction de la hauteur du header */
-	right: 20px; /* Ajoute un espace de 20px entre le conteneur et le bord droit */
-	width: 30%; /* Réduit la largeur à 30% de l'écran */
-	bottom: var(--footer-height, 100px); /* Ajuste en fonction de la hauteur du footer */
-	overflow-y: scroll; /* Active le défilement vertical */
-	scroll-snap-type: y mandatory; /* Active le snap scrolling */
-	background-color: #f8f9fa; /* Couleur de fond */
-	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour séparer visuellement */
-	padding: 10px; /* Espacement interne */
+/* Conteneur principal pour les événements à gauche */
+.event-container-left {
+    position: fixed; /* Fixe le conteneur à gauche de l'écran */
+    top: var(--header-height, 128px); /* Ajuste en fonction de la hauteur du header */
+    left: 20px; /* Ajoute un espace de 20px entre le conteneur et le bord gauche */
+    width: 30%; /* Réduit la largeur à 30% de l'écran */
+    bottom: var(--footer-height, 100px); /* Ajuste en fonction de la hauteur du footer */
+    overflow-y: scroll; /* Active le défilement vertical */
+    scroll-snap-type: y mandatory; /* Active le snap scrolling */
+    background-color: #f8f9fa; /* Couleur de fond */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour séparer visuellement */
+    padding: 10px; /* Espacement interne */
+    scrollbar-width: none; /* Pour les navigateurs basés sur Firefox */
+    -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
+}
+
+.event-container-left::-webkit-scrollbar {
+    display: none; /* Pour les navigateurs basés sur Webkit (Chrome, Safari) */
+}
+
+/* Conteneur principal pour les événements à droite */
+.event-container-right {
+    position: fixed; /* Fixe le conteneur à droite de l'écran */
+    top: var(--header-height, 128px); /* Ajuste en fonction de la hauteur du header */
+    right: 20px; /* Ajoute un espace de 20px entre le conteneur et le bord droit */
+    width: 30%; /* Réduit la largeur à 30% de l'écran */
+    bottom: var(--footer-height, 100px); /* Ajuste en fonction de la hauteur du footer */
+    overflow-y: scroll; /* Active le défilement vertical */
+    scroll-snap-type: y mandatory; /* Active le snap scrolling */
+    background-color: #f8f9fa; /* Couleur de fond */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour séparer visuellement */
+    padding: 10px; /* Espacement interne */
+    scrollbar-width: none; /* Pour les navigateurs basés sur Firefox */
+    -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
+}
+
+.event-container-right::-webkit-scrollbar {
+    display: none; /* Pour les navigateurs basés sur Webkit (Chrome, Safari) */
 }
 
 /* Chaque carte d'événement */
