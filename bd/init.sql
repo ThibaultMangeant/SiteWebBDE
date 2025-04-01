@@ -20,7 +20,18 @@ INSERT INTO Produit (nomProd, qs, prixProd, imgProd) VALUES
 	('Pins', 200, 0.99, 'pins.jpeg'),
 	('Sac', 100, 2.99, 'sac.jpeg'),
 	('Coque téléphone', 10, 49.99, 'coquetel.jpeg'),
-	('Teddy bear', 5, 29.99, 'teddybear.jpeg');
+	('Teddy bear', 5, 29.99, 'teddybear.jpeg'),
+	('Boite pour Air pods',12,34.99,'airPods.jpeg'),
+	('Boxers',50,4.99,'boxer.jpeg'),
+	('Shorts',12,19.99,'short.jpeg'),
+	('Pendentif',20,39.99,'pendentif.jpeg'),
+	('Pot',15,49.99,'potDeMayonnaise.jpeg'),
+	('Tapis',10,59.99,'tapisYoga.jpeg'),
+	('Enceinte',5,89.99,'enceinte.jpeg'),
+	('Crocs',5,69.99,'crocs.jpeg'),
+	('couverture de livre',10,39.99,'couvertureBible.jpeg'),
+	('Chargeur sans fil',2,499.99,'chargeurBlutooth.jpeg'),
+	('pantalon',5,19.99,'pantalon.jpeg');
 
 
 -- Insertion des évenements
