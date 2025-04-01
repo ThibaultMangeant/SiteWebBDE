@@ -58,7 +58,7 @@
 							<span class="badge bg-success">Prix: {{ produit.prixProd | number_format(2, ',', ' ') }}€</span>
 						</div>
 						<form method="post" action="purchase.php?produit_idProd={{ produit.idProd }}">
-							<div class="input-group">
+							<div class="input-group" style="padding-left: 20px;">
 								<input type="number" name="quantity" min="1" max="{{ produit.qs }}" class="form-control" placeholder="Qt" required>
 								<button class="btn btn-warning btn-sm" type="submit"><i class="fa-solid fa-cart-plus"></i></button>
 							</div>
