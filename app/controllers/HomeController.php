@@ -3,6 +3,7 @@
 require_once './app/core/Controller.php';
 require_once './app/repositories/ProduitRepository.php';
 require_once './app/repositories/EvenementRepository.php';
+require_once './app/repositories/ActualiteRepository.php';
 require_once './app/trait/FormTrait.php';
 
 class HomeController extends Controller
@@ -14,16 +15,16 @@ class HomeController extends Controller
 
 		$evenements = $evenementRepo->findAll();
 
-		$this->view('index.html.twig', ["evenements" => $evenements]);
-	}
-
-	public function vitrine()
-	{
 		$actualiteRepo = new ActualiteRepository();
 
 		$actualites = $actualiteRepo->findAll();
 
-		$this->view('vitrine.html.twig',  ["actualites" => $actualites]);
+		$this->view('index.html.twig', ["evenements" => $evenements, "actualites" => $actualites]);
+	}
+
+	public function vitrine()
+	{
+		$this->view('vitrine.html.twig',  []);
 	}
 
 	public function boutique()

@@ -15,11 +15,11 @@
 			{% for actualite in actualites %}
 				<div class="event-card">
 					<div class="event-content">
-						<h5 class="event-title">{{ actualite.nomEvent }}</h5>
+						<h5 class="event-title">{{ actualite.titreActu }}</h5>
 					</div>
-					<a>
-						actualite desc
-					</a>
+					<div >
+						<p>{{ actualite.descActu }}</p>
+					</div>
 				</div>
 			{% endfor %}
 		</div>
@@ -27,7 +27,7 @@
 		<!-- Conteneur des événements à droite -->
 		<div class="event-container-right">
 			<h2 class="section-title">Évènements à venir :</h2>
-			{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) | slice(1) %}
+			{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) %}
 			{% for evenement in trie_evenements %}
 				<div class="event-card">
 					<!-- Image de l'événement -->
