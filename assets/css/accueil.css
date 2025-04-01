@@ -28,8 +28,6 @@
     bottom: var(--footer-height, 100px); /* Ajuste en fonction de la hauteur du footer */
     overflow-y: scroll; /* Active le défilement vertical */
     scroll-snap-type: y mandatory; /* Active le snap scrolling */
-    background-color: #f8f9fa; /* Couleur de fond */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour séparer visuellement */
     padding: 10px; /* Espacement interne */
     scrollbar-width: none; /* Pour les navigateurs basés sur Firefox */
     -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
@@ -48,8 +46,6 @@
     bottom: var(--footer-height, 100px); /* Ajuste en fonction de la hauteur du footer */
     overflow-y: scroll; /* Active le défilement vertical */
     scroll-snap-type: y mandatory; /* Active le snap scrolling */
-    background-color: #f8f9fa; /* Couleur de fond */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour séparer visuellement */
     padding: 10px; /* Espacement interne */
     scrollbar-width: none; /* Pour les navigateurs basés sur Firefox */
     -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
