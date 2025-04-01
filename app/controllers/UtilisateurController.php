@@ -122,6 +122,12 @@ class UtilisateurController extends Controller {
                 if (empty($data['password']) || strlen($data['password']) < 6) {
                     $errors[] = 'Le mot de passe doit contenir au moins 6 caractères.';
                 }
+				if (empty($data['demande'])) {
+					$errors[] = 'La demande est requise.';
+				}
+				if (empty($data['type_notification'])) {
+					$errors[] = 'Le type de notification est requis.';
+				}
 
                 if (!empty($errors)) {
                     throw new Exception(implode(', ', $errors));
@@ -134,7 +140,7 @@ class UtilisateurController extends Controller {
                 $utilisateur->setEmail($data['email']);
 				$utilisateur->setTypeNotification($data['type_notification']);
 				$utilisateur->setRole((new RoleRepository())->findByNom($data['role']));
-				$utilisateur->setDemande($data['demande']);
+				$utilisateur->setDemande((bool)$data['demande']);
 
                 // Si le mot de passe est fourni, le hacher et le mettre à jour
                 if (!empty($data['password'])) {
