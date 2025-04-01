@@ -1,7 +1,7 @@
 const groupOptions = document.getElementById("groupOptions");
 
 const redirectionGererBoutique = document.createElement("a");
-redirectionGererBoutique.href = "produit/produits.php";
+redirectionGererBoutique.href = "produits.php";
 
 const btnGererBoutique = document.createElement("button");
 btnGererBoutique.textContent = "Gerer la boutique";
