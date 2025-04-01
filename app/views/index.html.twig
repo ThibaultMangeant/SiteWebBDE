@@ -9,20 +9,16 @@
 	<div id="gestionActualite">
 	</div>
 	<div class="container" style="padding-top: 26vh;">
-		<!-- Conteneur des événements à gauche -->
+		<!-- Conteneur du Fil d'actualité -->
 		<div class="event-container-left">
 			<h2 class="section-title">Fil d'actualité :</h2>
-			{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) %}
-			{% for evenement in trie_evenements %}
+			{% for actualite in actualites %}
 				<div class="event-card">
-					<!-- Image de l'événement -->
-					<img src="assets/images/evenements/{{ evenement.imgevent }}"
-						alt="{{ evenement.nomEvent }}"
-						class="event-image">
-					<a href="evenement_detail.php?id={{ evenement.idEvent }}" class="event-link">
-						<div class="event-content">
-							<h5 class="event-title">{{ evenement.nomEvent }}</h5>
-						</div>
+					<div class="event-content">
+						<h5 class="event-title">{{ actualite.nomEvent }}</h5>
+					</div>
+					<a>
+						actualite desc
 					</a>
 				</div>
 			{% endfor %}
