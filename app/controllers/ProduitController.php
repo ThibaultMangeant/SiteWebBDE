@@ -81,30 +81,46 @@ class ProduitController extends Controller {
 		}
 
 		$data = array_merge([
-			'idProd'=>$produit->getIdProd(),
-			'nomProd'=>$produit->getNomProd(),
-			'qs'=>$produit->getQs(),
-			'prixProd'=>$produit->getPrixProd(),
-			'imgProd'=>$produit->getImgProd()
-		],$this->getAllPostParams()); //Get submitted data
+			'idProd' => $produit->getIdProd(),
+			'nomProd' => $produit->getNomProd(),
+			'qs' => $produit->getQs(),
+			'prixProd' => $produit->getPrixProd(),
+			'imgProd' => $produit->getImgProd()
+		], $this->getAllPostParams());
 		$errors = [];
 
-		if (!empty($this->getAllPostParams())) {
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			try {
-				$errors = [];
-
-				// Data validation
+				// Validation des données
 				if (empty($data['nomProd'])) {
 					$errors[] = 'Le nom du produit est requis.';
 				}
 				if (empty($data['qs']) || !is_numeric($data['qs'])) {
-					$errors[] = 'Le quantité en stock doit être valide.';
+					$errors[] = 'La quantité en stock doit être valide.';
 				}
 				if (empty($data['prixProd']) || !is_numeric($data['prixProd'])) {
 					$errors[] = 'Le prix du produit doit être valide.';
 				}
-				if (empty($data['imgProd'])) {
-					$errors[] = 'Le produit nécessite une image.';
+
+				// Gestion de l'image
+				$imgProd = $produit->getImgProd(); // Image existante par défaut
+				if (!empty($_FILES['imgProd']['name'])) {
+					$targetDir = "assets/images/boutique/";
+					$targetFile = $targetDir . basename($_FILES['imgProd']['name']);
+					$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+					// Vérification du type de fichier
+					$allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+					if (!in_array($imageFileType, $allowedTypes)) {
+						$errors[] = 'Le fichier image doit être au format JPG, JPEG, PNG ou GIF.';
+					}
+
+					// Déplacement du fichier uploadé
+					if (empty($errors) && move_uploaded_file($_FILES['imgProd']['tmp_name'], $targetFile)) {
+						$imgProd = basename($_FILES['imgProd']['name']); // Nouveau nom de fichier
+					} else {
+						$errors[] = 'Erreur lors de l\'upload de l\'image.';
+					}
 				}
 
 				if (!empty($errors)) {
@@ -115,22 +131,21 @@ class ProduitController extends Controller {
 				$produit->setNomProd($data['nomProd']);
 				$produit->setQs((int)$data['qs']);
 				$produit->setPrixProd((float)$data['prixProd']);
-				$produit->setImgProd($data['imgProd']);
+				$produit->setImgProd($imgProd);
 
 				// Sauvegarde dans la base de données
 				if (!$repository->update($produit)) {
 					throw new Exception('Erreur lors de la mise à jour du produit.');
 				}
 
-				$this->redirectTo('produits.php'); // Redirect after update
-
+				$this->redirectTo('boutique.php'); // Redirection après mise à jour
 			} catch (Exception $e) {
-				$errors = explode(', ', $e->getMessage()); // Error retrieval
+				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
 		}
 
-		// Display update form
-		$this->view('/produit/form.html.twig',  ['data' => $data, 'errors' => $errors, 'idProd' => $idProd]);
+		// Affichage du formulaire de mise à jour
+		$this->view('/produit/form.html.twig', ['data' => $data, 'errors' => $errors, 'idProd' => $idProd]);
 	}
 
 	public function delete()
