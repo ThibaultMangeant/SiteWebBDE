@@ -14,16 +14,16 @@ class HomeController extends Controller
 
 		$evenements = $evenementRepo->findAll();
 
-		$this->view('index.html.twig', ["evenements" => $evenements]);
-	}
-
-	public function vitrine()
-	{
 		$actualiteRepo = new ActualiteRepository();
 
 		$actualites = $actualiteRepo->findAll();
 
-		$this->view('vitrine.html.twig',  ["actualites" => $actualites]);
+		$this->view('index.html.twig', ["evenements" => $evenements, "actualites" => $actualites]);
+	}
+
+	public function vitrine()
+	{
+		$this->view('vitrine.html.twig',  []);
 	}
 
 	public function boutique()
