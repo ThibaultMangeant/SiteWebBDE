@@ -44,4 +44,9 @@ class HomeController extends Controller
 
 		$this->view('evenement.html.twig', ['evenements' => $evenements]);
 	}
+
+	public function contact()
+	{
+		$this->view('contact.html.twig', []);
+	}
 }
