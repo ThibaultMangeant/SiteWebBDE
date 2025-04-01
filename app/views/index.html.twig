@@ -27,7 +27,7 @@
 		<!-- Conteneur des événements à droite -->
 		<div class="event-container-right">
 			<h2 class="section-title">Évènements à venir :</h2>
-			{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) | slice(1) %}
+			{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) %}
 			{% for evenement in trie_evenements %}
 				<div class="event-card">
 					<!-- Image de l'événement -->
