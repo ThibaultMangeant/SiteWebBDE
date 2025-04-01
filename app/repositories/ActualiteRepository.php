@@ -37,9 +37,9 @@ class ActualiteRepository
 	public function createActualiteFromRow(array $row): Actualite
 	{
 		return new Actualite(
-			(int)$row['idevent'],
-			$row['nomevent'],
-			$row['descevent']
+			(int)$row['idactu'],
+			$row['titreactu'],
+			$row['descactu']
 		);
 	}
 

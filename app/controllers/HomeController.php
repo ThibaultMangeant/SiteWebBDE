@@ -3,6 +3,7 @@
 require_once './app/core/Controller.php';
 require_once './app/repositories/ProduitRepository.php';
 require_once './app/repositories/EvenementRepository.php';
+require_once './app/repositories/ActualiteRepository.php';
 require_once './app/trait/FormTrait.php';
 
 class HomeController extends Controller
