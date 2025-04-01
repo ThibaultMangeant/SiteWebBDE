@@ -11,7 +11,11 @@ class HomeController extends Controller
 	use FormTrait;
 	public function index()
 	{
-		$this->view('index.html.twig', []);
+		$evenementRepo = new EvenementRepository();
+
+		$evenements = $evenementRepo->findAll();
+
+		$this->view('index.html.twig', ["evenements" => $evenements]);
 	}
 
 	public function purchase()

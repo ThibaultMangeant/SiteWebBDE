@@ -1,11 +1,12 @@
 -- Insertion des produits
 INSERT INTO Produit (nomProd, qs, prixProd, imgProd) VALUES
-	('Clé USB', 10, 5.99, 'usb.png'),
-	('T-shirt', 35, 3.99, 'tshirt.png'),
-	('Tasse', 20, 4.99, 'tasse.png'),
-	('Gourde', 10, 5.99, 'gourde.png'),
-	('Bloc-note', 25, 6.99, 'bloc-note.png'),
-	('Stylo', 150, 0.99, 'stylo.png');
+	('Clé USB', 10, 14.99, 'usb.png'),
+	('T-shirt', 35, 39.99, 'tshirt.png'),
+	('Tasse', 20, 7.99, 'tasse.png'),
+	('Gourde', 10, 9.99, 'gourde.png'),
+	('Bloc-note', 25, 8.99, 'bloc-note.png'),
+	('Stylo', 150, 0.99, 'stylo.png'),
+	('Casquette', 30, 29.99, 'casquette.png');
 
 -- Insertion des évenements
 INSERT INTO Evenement (nomEvent, descEvent, dateEvent, lieuEvent, prixEvent, roleAutoriseMin, imgEvent) VALUES
