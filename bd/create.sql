@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS Inscrit     CASCADE;
 DROP TABLE IF EXISTS Autorise    CASCADE;
 DROP TABLE IF EXISTS Produit     CASCADE;
 DROP TABLE IF EXISTS Evenement   CASCADE;
+DROP TABLE IF EXISTS Actualite   CASCADE;
 DROP TABLE IF EXISTS "Role"      CASCADE;
 DROP TABLE IF EXISTS Utilisateur CASCADE;
 
@@ -14,14 +15,14 @@ CREATE TABLE Produit
 	nomProd   VARCHAR(255)  NOT NULL,
 	qs        INT           NOT NULL CHECK (qs >= 0),
 	prixProd  FLOAT         NOT NULL CHECK (prixProd >= 0),
-	imgProd VARCHAR(255)    NOT NULL
+	imgProd   VARCHAR(255)  NOT NULL
 );
 
 -- Création de la table "Role"
 CREATE TABLE "Role"
 (
-	nomRole VARCHAR(10) PRIMARY KEY,
-	niveau  INT NOT NULL
+	nomRole VARCHAR(10) PRIMARY KEY CHECK (nomRole IN ('admin', 'adherant', 'membre')),
+	niveau  INT         NOT NULL
 );
 
 -- Création de la table 'Evenement'
@@ -39,18 +40,26 @@ CREATE TABLE Evenement
 	FOREIGN KEY (roleAutoriseMin) REFERENCES "Role"(nomRole) ON DELETE CASCADE
 );
 
+-- Création de la table 'Actualite'
+CREATE TABLE Actualite
+(
+	idActu    SERIAL       PRIMARY KEY,
+	titreActu VARCHAR(255) NOT NULL,
+	descActu  TEXT         NOT NULL
+);
+
 -- Création de la table 'Utilisateur'
 CREATE TABLE Utilisateur
 (
-	netud INT PRIMARY KEY,
-	nom VARCHAR(255) NOT NULL,
-	prenom VARCHAR(255) NOT NULL,
-	tel VARCHAR(10),
-	email VARCHAR(255) NOT NULL,
-	mdp VARCHAR(255) NOT NULL,
-	typeNotification VARCHAR(10) NOT NULL CHECK (typeNotification IN ('Discord', 'Mail', 'Les deux')),
-	role VARCHAR(10) NOT NULL,
-	demande BOOLEAN NOT NULL,
+	netud            INT          PRIMARY KEY,
+	nom              VARCHAR(255) NOT NULL,
+	prenom           VARCHAR(255) NOT NULL,
+	tel              VARCHAR(10),
+	email            VARCHAR(255) NOT NULL,
+	mdp              VARCHAR(255) NOT NULL,
+	typeNotification VARCHAR(10)  NOT NULL CHECK (typeNotification IN ('Discord', 'Mail', 'Les deux')),
+	role             VARCHAR(10)  NOT NULL,
+	demande          BOOLEAN      NOT NULL,
 
 	-- Clé étrangère vers "Role" sur nomRole
 	FOREIGN KEY (role) REFERENCES "Role"(nomRole) ON DELETE CASCADE
@@ -59,13 +68,13 @@ CREATE TABLE Utilisateur
 -- Création de la table Commande
 CREATE TABLE Commande
 (
-	netud INT NOT NULL,
-	idProd INT NOT NULL,
+	netud       INT NOT NULL,
+	idProd      INT NOT NULL,
 	numCommande INT NOT NULL,
-	qa INT NOT NULL CHECK (qa >= 0),
+	qa          INT NOT NULL CHECK (qa >= 0),
 
-	FOREIGN KEY (netud) REFERENCES Utilisateur(netud) ON DELETE CASCADE,
-	FOREIGN KEY (idProd) REFERENCES Produit(idProd) ON DELETE CASCADE,
+	FOREIGN KEY (netud ) REFERENCES Utilisateur(netud ) ON DELETE CASCADE,
+	FOREIGN KEY (idProd) REFERENCES Produit    (idProd) ON DELETE CASCADE,
 
 	PRIMARY KEY (netud, idProd)
 );
@@ -73,13 +82,13 @@ CREATE TABLE Commande
 -- Création de la table Inscrit
 CREATE TABLE Inscrit
 (
-	netud INT NOT NULL,
-	idEvent INT NOT NULL,
-	note INT,
+	netud       INT NOT NULL,
+	idEvent     INT NOT NULL,
+	note        INT,
 	commentaire TEXT,
 
-	FOREIGN KEY (netud) REFERENCES Utilisateur(netud) ON DELETE CASCADE,
-	FOREIGN KEY (idEvent) REFERENCES Evenement(idEvent) ON DELETE CASCADE,
+	FOREIGN KEY (netud  ) REFERENCES Utilisateur(netud  ) ON DELETE CASCADE,
+	FOREIGN KEY (idEvent) REFERENCES Evenement  (idEvent) ON DELETE CASCADE,
 
 	PRIMARY KEY (netud, idEvent)
 );
