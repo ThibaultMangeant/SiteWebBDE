@@ -12,11 +12,17 @@
 
 /* Conteneur principal pour les événements */
 .event-container {
-	display: flex;
-	flex-direction: column;
-	overflow-y: scroll; /* Permet le défilement vertical */
-	height: 80vh; /* Hauteur visible */
+	position: fixed; /* Fixe le conteneur à droite de l'écran */
+	top: var(--header-height, 128px); /* Ajuste en fonction de la hauteur du header */
+	right: 20px; /* Ajoute un espace de 20px entre le conteneur et le bord droit */
+	width: 30%; /* Réduit la largeur à 30% de l'écran */
+	bottom: var(--footer-height, 100px); /* Ajuste en fonction de la hauteur du footer */
+	overflow-y: scroll; /* Active le défilement vertical */
 	scroll-snap-type: y mandatory; /* Active le snap scrolling */
+	background-color: #f8f9fa; /* Couleur de fond */
+	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour séparer visuellement */
+	padding: 10px; /* Espacement interne */
+	border-radius: 10px; /* Coins arrondis pour un design plus esthétique */
 }
 
 /* Chaque carte d'événement */
@@ -25,21 +31,22 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	scroll-snap-align: start; /* Aligne chaque événement au début */
 	padding: 20px;
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	margin: 10px 0;
-	background-color: #f8f9fa;
+	background-color: #ffffff;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: transform 0.5s, opacity 0.3s; /* Animation pour le grossissement */
+	width: 100%; /* S'adapte à la largeur du conteneur */
 }
 
 /* Image de l'événement */
 .event-image {
-	width: 100%;
-	max-height: 300px;
-	object-fit: cover;
-	border-radius: 10px;
+	width: 100%; /* L'image occupe toute la largeur de son conteneur */
+	height: auto; /* Maintient les proportions de l'image */
+	object-fit: cover; /* Coupe l'image si elle dépasse les dimensions du conteneur */
+	border-radius: 10px; /* Coins arrondis pour l'image */
 }
 
 /* Contenu de l'événement */
@@ -49,11 +56,50 @@
 }
 
 .event-title {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	font-weight: bold;
+	position: relative;
+	color: black;
+	transition: color 0.3s ease; /* Animation de la couleur */
+}
+
+a {
+	text-decoration: none; /* Supprime le soulignement par défaut des liens */
+}
+
+.event-title::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 3px; /* Épaisseur de la barre */
+	border-radius: 5px; /* Coins arrondis pour la barre */
+	background-color: #008dce; /* Couleur de la barre */
+	transform: translateX(-50%);
+	transition: width 0.3s ease; /* Animation de l'apparition de la barre */
+}
+
+.event-title:hover::after {
+	width: 100%; /* La barre s'étend sur toute la largeur du texte */
+}
+
+.event-title:hover {
+	color: #0056b3; /* Change la couleur du texte au survol */
 }
 
 .event-description {
 	font-size: 1rem;
 	color: #555;
+}
+
+/* Animation pour les cartes */
+.event-card.active {
+	transform: scale(1.0); /* Grossissement */
+	opacity: 1; /* Pleine opacité */
+}
+
+.event-card.inactive {
+	transform: scale(0.6); /* Réduction */
+	opacity: 0.5; /* Opacité réduite */
 }
