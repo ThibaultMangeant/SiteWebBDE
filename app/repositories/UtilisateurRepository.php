@@ -1,10 +1,10 @@
 <?php
 
 require_once './app/core/Repository.php';
-require_once './app/entities/Temporaire/Utilisateur.php';
+require_once './app/entities/Utilisateur.php';
 
-require_once './app/entities/Temporaire/Role.php';
-require_once './app/repositories/Temporaire/RoleRepository.php';
+require_once './app/entities/Role.php';
+require_once './app/repositories/RoleRepository.php';
 
 class UtilisateurRepository
 {

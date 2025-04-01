@@ -1,7 +1,7 @@
 <?php
 require_once './app/core/Repository.php';
-require_once './app/entities/Temporaire/Evenement.php';
-require_once './app/repositories/Temporaire/RoleRepository.php';
+require_once './app/entities/Evenement.php';
+require_once './app/repositories/RoleRepository.php';
 
 class EvenementRepository
 {
@@ -11,7 +11,7 @@ class EvenementRepository
 	
 	public function findAll(): array 
 	{
-		$stmt = $this->pdo->query('SELECT * FROM Evenement');
+		$stmt = $this->pdo->query('SELECT * FROM Evenement ORDER BY dateEvent DESC');
 		$evenements = [];
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$evenements[] = $this->createEvenementFromRow($row);

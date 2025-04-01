@@ -1,5 +1,4 @@
 <?php
-require_once 'Role.php';
 
 class Evenement 
 {

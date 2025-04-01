@@ -1,6 +1,6 @@
 <?php
 require_once './app/core/Repository.php';
-require_once './app/entities/Temporaire/Produit.php';
+require_once './app/entities/Produit.php';
 
 class ProduitRepository
 {
