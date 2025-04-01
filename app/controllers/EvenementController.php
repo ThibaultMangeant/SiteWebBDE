@@ -87,20 +87,20 @@ class EvenementController extends Controller {
 
 	public function update()
 	{
-		$idProd = $this->getQueryParam('idProd');
+		$idProd = $this->getQueryParam('idEvent');
 
 		$repository = new ProduitRepository();
 		$produit = $repository->findById($idProd);
 
 		if ($produit === null) {
-			throw new Exception('Produit non trouvé');
+			throw new Exception('Évènement non trouvé');
 		}
 
 		$data = array_merge([
-			'idProd'=>$produit->getIdProd(),
-			'nomProd'=>$produit->getNomProd(),
+			'idEvent'=>$produit->getIdProd(),
+			'nomEvent'=>$produit->getNomProd(),
 			'qs'=>$produit->getQs(),
-			'prixProd'=>$produit->getPrixProd(),
+			''=>$produit->getPrixProd(),
 			'imgProd'=>$produit->getImgProd(),
 			'bouton'=>'Modifier'
 		],$this->getAllPostParams()); //Get submitted data
