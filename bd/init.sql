@@ -29,9 +29,9 @@ INSERT INTO Produit (nomProd, qs, prixProd, imgProd) VALUES
 	('Tapis',10,59.99,'tapisYoga.jpeg'),
 	('Enceinte',5,89.99,'enceinte.jpeg'),
 	('Crocs',5,69.99,'crocs.jpeg'),
-	('couverture de livre',10,39.99,'couvertureBible.jpeg'),
+	('Couverture de livre',10,39.99,'couvertureBible.jpeg'),
 	('Chargeur sans fil',2,499.99,'chargeurBlutooth.jpeg'),
-	('pantalon',5,19.99,'pantalon.jpeg');
+	('Pantalon',5,19.99,'pantalon.jpeg');
 
 
 -- Insertion des évenements
