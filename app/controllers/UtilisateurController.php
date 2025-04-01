@@ -56,14 +56,14 @@ class UtilisateurController extends Controller {
 
 				(new AuthService())->setUtilisateur($utilisateur); // Connexion de l'utilisateur après création
 
-                $this->redirectTo('utilisateurs.php'); // Redirection après création
+                $this->redirectTo('index.php'); // Redirection après création
             } catch (Exception $e) {
                 $errors = explode(', ', $e->getMessage()); // Récupération des erreurs
             }
         }
 
         // Affichage du formulaire
-        $this->view('/utilisateur/form.html.twig',  [
+        $this->view('/utilisateur/register.html.twig',  [
             'data' => $data,
             'errors' => $errors,
         ]);
@@ -157,6 +157,6 @@ class UtilisateurController extends Controller {
         }
 
         // Display update form
-        $this->view('/user/form.html.twig',  ['data' => $data, 'errors' => $errors, 'id' => $netud]);
+        $this->view('/utilisateur/compte.html.twig',  ['data' => $data, 'errors' => $errors, 'id' => $netud]);
     }
 }
