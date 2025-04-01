@@ -60,11 +60,11 @@ class ProduitRepository
 		);
 	}
 
-	public function create(Produit $produit): void
+	public function create(Produit $produit): bool
 	{
 		$stmt = $this->pdo->prepare('INSERT INTO Produit (nomprod, qs, prixprod,imgprod) VALUES (:nomprod, :qs, :prixprod, :imgprod)');
 
-		$stmt->execute([
+		return $stmt->execute([
 			':nomprod' => $produit->getNomProd(),
 			':qs' => $produit->getQs(),
 			':prixprod' => $produit->getPrixProd(),
