@@ -49,4 +49,9 @@ class HomeController extends Controller
 	{
 		$this->view('contact.html.twig', []);
 	}
+
+	public function actualiteModif()
+	{
+		$this->view('actualite_modif.html.twig', []);
+	}
 }
