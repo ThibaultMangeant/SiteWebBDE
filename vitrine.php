@@ -1,5 +1,5 @@
 <?php
-require_once './app/controllers/ProduitController.php';
+require_once './app/controllers/HomeController.php';
 
-$controller = new ProduitController();
-$controller->index();
+$controller = new HomeController();
+$controller->vitrine();
