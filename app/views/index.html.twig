@@ -9,7 +9,7 @@
     <div class="container" style="padding-top: 26vh;">
         <!-- Conteneur des événements à gauche -->
         <div class="event-container-left">
-            <h2 class="section-title">Évènements à venir (Gauche)</h2>
+            <h2 class="section-title">Fil d'actualité :</h2>
             {% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) %}
             {% for evenement in trie_evenements %}
                 <div class="event-card">
@@ -28,7 +28,7 @@
 
         <!-- Conteneur des événements à droite -->
         <div class="event-container-right">
-            <h2 class="section-title">Évènements à venir</h2>
+            <h2 class="section-title">Évènements à venir :</h2>
             {% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) %}
             {% for evenement in trie_evenements %}
                 <div class="event-card">
