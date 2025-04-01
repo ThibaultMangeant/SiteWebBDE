@@ -9,6 +9,11 @@
     .event-card .event-title {
         cursor: pointer; /* Curseur en mode main pour les titres */
     }
+    .event-description {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #555; /* Couleur grise pour la description */
+    }
 </style>
 {% endblock %}
 
@@ -17,14 +22,17 @@
         <div class="row">
             <!-- Section de l'événement le plus récent -->
             <div class="col-md-8">
-                <h2>Événement le plus récent :</h2>
+                <h2 class="section-title">Événement le plus récent :</h2>
                 {% if evenements|length > 0 %}
                     {% set evenement_recent = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent)|first %}
                     <a href="evenement_detail.php?id={{ evenement_recent.idEvent }}" class="text-decoration-none">
-                        <div class="card mb-4 shadow-sm" style="border: none; border-bottom: 1px solid #ddd;">
+                        <div class="card mb-4 shadow-sm" style="border: none;">
                             <img src="assets/images/evenements/{{ evenement_recent.imgEvent }}" class="card-img-top" alt="{{ evenement_recent.nomEvent }}" style="cursor: pointer;">
                             <div class="card-body">
-                                <h5 class="card-title">{{ evenement_recent.nomEvent }} : {{ evenement_recent.dateEvent|date('d/m/Y') }}</h5>
+                                <h5 class="card-title"><strong>{{ evenement_recent.nomEvent }}</strong></h5>
+                                <p class="card-text"><strong>Date :</strong>{{ evenement_recent.dateEvent|date('d/m/Y') }}</p>
+                                <p class="card-text"><strong>Lieu :</strong> {{ evenement_recent.lieuEvent }}</p>
+                                <p class="event-description">{{ evenement_recent.descEvent }}</p>
                             </div>
                         </div>
                     </a>
@@ -32,16 +40,17 @@
                     <p>Aucun événement disponible.</p>
                 {% endif %}
             </div>
+            </div>
             <div class="d-flex justify-content-center" id="gestionEvenement">
             </div>
 
             <!-- Section des autres événements -->
             <div class="event-container-right">
-                <h2 class="section-title">Évènements à venir</h2>
+                <h2 class="section-title">Autres évènements :</h2>
                 {% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) | slice(1) %}
                 {% for evenement in evenements %}
                     <a href="evenement_detail.php?id={{ evenement.idEvent }}" class="text-decoration-none">
-                        <div class="event-card mb-4 shadow-sm" style="border: none; border-bottom: 1px solid #ddd;">
+                        <div class="event-card mb-4 shadow-sm" style="border: none;">
                             <!-- Image de l'événement -->
                             <img src="assets/images/evenements/{{ evenement.imgevent }}"
                                 alt="{{ evenement.nomEvent }}"

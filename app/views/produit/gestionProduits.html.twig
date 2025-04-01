@@ -23,25 +23,25 @@
 					</td>
 				</tr>
 			{% endfor %}
-            {% for produit in produits %}
-                <tr>
-                    <td>{{ produit.idProd }}</td>
-                    <td>{{ produit.nomProd }}</td>
-                    <td>{{ produit.qs }}</td>
-                    <td>{{ produit.prixProd | number_format(2, ',', ' ') }} €</td>
-                    <td>
-                        <img src="assets/images/boutique/{{ produit.imgProd }}" alt="{{ produit.nomProd }}" style="width: 50px; height: 50px; object-fit: cover;">
-                    </td>
-                    <td>
-                        <a href="produit_update.php?idProd={{ produit.idProd }}" class="btn btn-warning btn-sm">
-                            <i class="fa fa-edit"></i> Modifier
-                        </a>
-                        <a href="produit_delete.php?idProd={{ produit.idProd }}" class="btn btn-danger btn-sm">
-                            <i class="fa fa-trash"></i> Supprimer
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
+			{% for produit in produits|sort((a, b) => a.idProd <=> b.idProd) %}
+				<tr>
+					<td>{{ produit.idProd }}</td>
+					<td>{{ produit.nomProd }}</td>
+					<td>{{ produit.qs }}</td>
+					<td>{{ produit.prixProd | number_format(2, ',', ' ') }} €</td>
+					<td>
+						<img src="assets/images/boutique/{{ produit.imgProd }}" alt="{{ produit.nomProd }}" style="width: 50px; height: 50px; object-fit: cover;">
+					</td>
+					<td>
+						<a href="produit_update.php?idProd={{ produit.idProd }}" class="btn btn-warning btn-sm">
+							<i class="fa fa-edit"></i> Modifier
+						</a>
+						<a href="produit_delete.php?idProd={{ produit.idProd }}" class="btn btn-danger btn-sm">
+							<i class="fa fa-trash"></i> Supprimer
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
         </tbody>
     </table>
     <div class="d-flex flex-row-reverse">

@@ -42,9 +42,25 @@ class ProduitController extends Controller {
 				if (empty($data['prixProd']) || !is_numeric($data['prixProd'])) {
 					$errors[] = 'Le prix du produit doi être valide.';
 				}
-				if (empty($data['imgProd'])) {
-					$errors[] = 'Le produit nécessite une image.';
+				if (!empty($_FILES['imgProd']['name'])) {
+					$targetDir = "assets/images/boutique/";
+					$targetFile = $targetDir . basename($_FILES['imgProd']['name']);
+					$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+					// Vérification du type de fichier
+					$allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+					if (!in_array($imageFileType, $allowedTypes)) {
+						$errors[] = 'Le fichier image doit être au format JPG, JPEG, PNG ou GIF.';
+					}
+
+					// Déplacement du fichier uploadé
+					if (empty($errors) && move_uploaded_file($_FILES['imgProd']['tmp_name'], $targetFile)) {
+						$imgProd = basename($_FILES['imgProd']['name']); // Nouveau nom de fichier
+					} else {
+						$errors[] = 'Erreur lors de l\'upload de l\'image.';
+					}
 				}
+				$data['imgProd'] = $imgProd;
 
 				if (!empty($errors)) {
 					throw new Exception(implode(', ', $errors));
@@ -93,6 +109,8 @@ class ProduitController extends Controller {
 		],$this->getAllPostParams()); //Get submitted data
 		$errors = [];
 
+
+
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			try {
 				// Validation des données
@@ -132,17 +150,19 @@ class ProduitController extends Controller {
 				}
 
 				// Mise à jour de l'objet produit
+				$produit->setIdProd($data['idProd']);
 				$produit->setNomProd($data['nomProd']);
 				$produit->setQs((int)$data['qs']);
 				$produit->setPrixProd((float)$data['prixProd']);
 				$produit->setImgProd($imgProd);
+
 
 				// Sauvegarde dans la base de données
 				if (!$repository->update($produit)) {
 					throw new Exception('Erreur lors de la mise à jour du produit.');
 				}
 
-				$this->redirectTo('boutique.php'); // Redirection après mise à jour
+				$this->redirectTo('produits.php'); // Redirection après mise à jour
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
