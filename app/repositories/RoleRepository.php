@@ -1,6 +1,6 @@
 <?php
 require_once './app/core/Repository.php';
-require_once './app/entities/Temporaire/Role.php';
+require_once './app/entities/Role.php';
 
 class RoleRepository
 {

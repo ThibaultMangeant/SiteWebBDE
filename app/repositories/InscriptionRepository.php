@@ -1,9 +1,9 @@
 <?php
 require_once './app/core/Repository.php';
-require_once './app/entities/Temporaire/Inscription.php';
+require_once './app/entities/Inscription.php';
 
-require_once './app/repositories/Temporaire/EvenementRepository.php';
-require_once './app/repositories/Temporaire/UtilisateurRepository.php';
+require_once './app/repositories/EvenementRepository.php';
+require_once './app/repositories/UtilisateurRepository.php';
 
 class InscriptionRepository
 {

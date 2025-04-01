@@ -1,9 +1,9 @@
 <?php
 require_once './app/core/Repository.php';
-require_once './app/entities/Temporaire/Commande.php';
+require_once './app/entities/Commande.php';
 
-require_once './app/repositories/Temporaire/ProduitRepository.php';
-require_once './app/entities/Temporaire/UtilisateurRepository.php';
+require_once './app/repositories/ProduitRepository.php';
+require_once './app/entities/UtilisateurRepository.php';
 
 class CommandeRepository
 {
