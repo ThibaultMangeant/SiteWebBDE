@@ -30,7 +30,7 @@ class Commande
 	{
 		$this->numCommande = $data['numCommande'];
 		$this->qa = $data['qa'];
-		$this->produit = new Produit(0,"",0,0.0);
+		$this->produit = new Produit(0,"",0,0.0,"");
 		$this->produit->__unserialize($data['produit']);
 		$this->utilisateur = new Utilisateur(0,"","","","","","", new Role("",0), true);
 		$this->utilisateur->__unserialize($data['utilisateur']);
