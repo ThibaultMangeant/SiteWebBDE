@@ -51,7 +51,7 @@ class UtilisateurRepository
 			'mdp' => $utilisateur->getMdp(),
 			'typeNotification' => $utilisateur->getTypeNotification(),
 			'nomRole' => $utilisateur->getRole()->getNomRole(),
-			'demande' => $utilisateur->getDemande()
+			'demande' => (bool)($utilisateur->getDemande())
 		]);
 	}
 
@@ -60,7 +60,7 @@ class UtilisateurRepository
 		$stmt = $this->pdo->prepare('UPDATE Utilisateur SET role = (SELECT nomRole FROM "Role" WHERE niveau > :niveau ORDER BY niveau LIMIT 1) WHERE netud = :netud AND EXISTS(SELECT nomRole FROM "Role" WHERE niveau > :niveau ORDER BY niveau LIMIT 1)');
 		return $stmt->execute([
 			'netud' => $utilisateur->getNetud(),
-			'niveau' => $utilisateur->getRole()->getNiveau(),
+			'niveau' => $utilisateur->getRole()->getNiveau()
 		]);
 	}
 
@@ -69,7 +69,7 @@ class UtilisateurRepository
 		$stmt = $this->pdo->prepare('UPDATE Utilisateur SET role = (SELECT nomRole FROM "Role" WHERE niveau < :niveau ORDER BY niveau LIMIT 1) WHERE netud = :netud AND EXISTS(SELECT nomRole FROM "Role" WHERE niveau < :niveau limit 1)');
 		return $stmt->execute([
 			'netud' => $utilisateur->getNetud(),
-			'niveau' => $utilisateur->getRole()->getNiveau(),
+			'niveau' => $utilisateur->getRole()->getNiveau()
 		]);
 	}
 

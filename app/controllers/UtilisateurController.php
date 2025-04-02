@@ -46,18 +46,18 @@ class UtilisateurController extends Controller {
 			throw new Exception('Utilisateur non trouvé');
 		}
 
+		$utilisateur->setDemande(false);
 		if ($action === 'accepter' || $action === 'promouvoir') {
-			$utilisateur->setDemande(false);
 			$repository->upgradeRole($utilisateur);
 		} elseif ($action === 'refuser') {
-			$utilisateur->setDemande(false);
 			$repository->update($utilisateur);			
 		} elseif ($action === 'retrograder') {
-			$utilisateur->setDemande(false);
 			$repository->degradeRole($utilisateur);
 		} else {
 			throw new Exception('Action non valide.');
 		}
+
+		$repository->update($utilisateur); // Mise à jour de l'utilisateur
 
 		$this->redirectTo('utilisateurs_gestion.php'); // Redirection après traitement
 	}
