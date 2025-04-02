@@ -1,0 +1,41 @@
+{% extends '_template/base.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="assets/css/compte.css">
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
+	<div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<button class="btn btn-danger">Supprimer le compte</button>
+			<button class="btn btn-primary">Devenir adhérant</button>
+		</div>
+		<div class="row">
+			<!-- Informations personnelles -->
+			<div class="col-md-6">
+				<h5 class="fw-bold">Informations personnelles</h5>
+				<p><strong>Prénom : </strong> {{ utilisateur.prenom }}</p>
+				<p><strong>Nom : </strong> {{ utilisateur.nom }}</p>
+				<p><strong>Mail : </strong> {{ utilisateur.email }}</p>
+				<p><strong>N° étudiant : </strong> {{ utilisateur.netud }}</p>
+			</div>
+			<!-- Options -->
+			<div class="col-md-6">
+				<h5 class="fw-bold">Options</h5>
+				<label for="notificationSelect" class="form-label">Notifications</label>
+				<select id="notificationSelect" class="form-select">
+					<option value="aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
+					<option value="email" {% if utilisateur.typeNotification == 'E-mail' %}selected{% endif %}>E-mail</option>
+					<option value="discord" {% if utilisateur.typeNotification == 'Discord' %}selected{% endif %}>Discord</option>
+					<option value="les_deux" {% if utilisateur.typeNotification == 'Les deux' %}selected{% endif %}>Les deux</option>
+				</select>
+			</div>
+		</div>
+		<div class="d-flex justify-content-between align-items-center mt-4">
+			<button class="btn btn-outline-primary">Modifier <i class="fa fa-edit"></i></button>
+			<button class="btn btn-outline-danger">Déconnexion <i class="fa fa-power-off"></i></button>
+		</div>
+	</div>
+</div>
+{% endblock %}

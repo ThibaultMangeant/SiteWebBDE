@@ -7,32 +7,66 @@ require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
 
 class AuthController extends Controller {
-    use FormTrait;
-    use AuthTrait;
+	use FormTrait;
+	use AuthTrait;
 
-    public function login() {
-        $authService = new AuthService();
+	public function login() {
+		$authService = new AuthService();
 
-        // Récupérer les données POST nettoyées
-        $postData = $this->getAllPostParams();
-        $data = [];
+		// Vérifier si l'utilisateur est déjà connecté
+		if ($authService->isLoggedIn()) {
+			// Appeler la méthode compte() si l'utilisateur est connecté
+			$this->compte();
+			return;
+		}
 
-        // Si aucune donnée n'est envoyée en POST ou si la connexion échoue, afficher le formulaire
-        if (!empty($postData))
-        {
-            $utilisateurRepository = new UtilisateurRepository();
+		// Récupérer les données POST nettoyées
+		$postData = $this->getAllPostParams();
+		$data = [];
 
-            $utilisateur = $utilisateurRepository->findById($this->getPostParam('numero_etudiant'));
+		// Si des données sont envoyées en POST
+		if (!empty($postData)) {
+			$utilisateurRepository = new UtilisateurRepository();
 
-            if($utilisateur !== null /*&& $this->verify($this->getPostParam('password'),$utilisateur->getMdp())*/)
-            {
-                $authService->setUtilisateur($utilisateur);
-                $this->redirectTo('index.php');
-            }
-            $data= empty($postData) ? []:['error'=>'Numéro étudiant ou mot de passe invalide'];// si des données existent, elles ne sont pas valide
+			$utilisateur = $utilisateurRepository->findById($this->getPostParam('numero_etudiant'));
 
-        }
+			// Vérifier si l'utilisateur existe et si le mot de passe est correct
+			if ($utilisateur !== null /* && $this->verify($this->getPostParam('password'), $utilisateur->getMdp()) */) {
+				$authService->setUtilisateur($utilisateur);
+				$this->compte(); // Rediriger vers la méthode compte()
+				return;
+			}
 
-        $this->view('utilisateur/login.html.twig', $data ); // Affiche la vue login.php
-    }
+			// Si les informations sont invalides
+			$data = ['error' => 'Numéro étudiant ou mot de passe invalide'];
+		}
+
+		// Afficher la vue de connexion avec les éventuelles erreurs
+		$this->view('utilisateur/login.html.twig', $data);
+	}
+
+	public function compte() {
+		$authService = new AuthService();
+
+		// Vérifier si l'utilisateur est connecté
+		if (!$authService->isLoggedIn()) {
+			// Rediriger vers la page de connexion si non connecté
+			$this->redirectTo('login.php');
+			return;
+		}
+
+		// Récupérer les informations de l'utilisateur connecté
+		$utilisateur = $authService->getUtilisateur();
+
+		// Passer les données de l'utilisateur à la vue compte.html.twig
+		$this->view('utilisateur/compte.html.twig', [
+			'utilisateur' => [
+				'prenom' => $utilisateur->getPrenom(),
+				'nom' => $utilisateur->getNom(),
+				'email' => $utilisateur->getEmail(),
+				'netud' => $utilisateur->getNetud(),
+				'typeNotification' => $utilisateur->getTypeNotification() // Exemple de champ supplémentaire
+			]
+		]);
+	}
 }
