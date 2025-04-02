@@ -39,16 +39,12 @@ document.addEventListener("DOMContentLoaded", function ()
 
 	const divGestionEvenements = document.getElementById("gestionEvenement");
 
+	divGestionEvenements.innerHTML = `<a href="gestionEvenement.php" id="floatingGestionEvenementButton" class="text-decoration-none">
+			<i class="fa-solid fa-calendar-plus p-2"></i> Gérer les évènements
+		</a>`;
+
 	const redirectionGererEvenements = document.createElement("a");
 	redirectionGererEvenements.href = "gestionEvenement.php";
-
-
-	const btnGererEvenements = document.createElement("button");
-
-	// Gestion du style du bouton
-	btnGererEvenements.textContent = "Gerer les évenements";
-	btnGererEvenements.classList.add("btn");
-	btnGererEvenements.classList.add("btn-danger");
 
 
 	redirectionGererEvenements.appendChild(btnGererEvenements);

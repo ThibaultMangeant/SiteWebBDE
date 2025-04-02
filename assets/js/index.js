@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function ()
 	const divGestionActualites = document.getElementById("gestionActualite");
 
 	divGestionActualites.innerHTML = `<a href="gestionActualite.php" id="floatingGestionActualiteButton" class="text-decoration-none">
-			<i class="fa-solid fa-newspaper"></i> Gérer le fil d'actualité
+			<i class="fa-solid fa-newspaper p-2"></i> Gérer le fil d'actualité
 		</a>`;
 
 	const redirectionGererActualites = document.createElement("a");
