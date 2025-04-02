@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function ()
 	const divGestionEvenements = document.getElementById("gestionEvenement");
 
 	divGestionEvenements.innerHTML = `<a href="gestionEvenement.php" id="floatingGestionEvenementButton" class="text-decoration-none">
-			<i class="fa-solid fa-newspaper"></i> Gérer le fil d'actualité
+			<i class="fa-solid fa-calendar-plus p-2"></i> Gérer les évènements
 		</a>`;
 
 	const redirectionGererEvenements = document.createElement("a");
