@@ -134,6 +134,24 @@ a {
 	opacity: 0.5; /* Opacité réduite */
 }
 
+/* Lorsque l'image est survolée, appliquez les styles au texte associé */
+.event-card:hover .event-title {
+    color: #0056b3; /* Change la couleur du texte en bleu */
+}
+
+.event-card:hover .event-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%; /* La barre s'étend sur toute la largeur du texte */
+    height: 3px; /* Épaisseur de la barre */
+    border-radius: 5px; /* Coins arrondis pour la barre */
+    background-color: #008dce; /* Couleur de la barre */
+    transform: translateX(-50%);
+    transition: width 0.3s ease; /* Animation de l'apparition de la barre */
+}
+
 /* Style pour le bouton de gestion du fil d'actualité */
 #floatingGestionActualiteButton {
     position: fixed;
