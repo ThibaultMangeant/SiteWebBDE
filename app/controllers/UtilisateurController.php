@@ -30,9 +30,6 @@ class UtilisateurController extends Controller {
 	}
 
 	public function traiter(){
-		$repository = new UtilisateurRepository();
-		$utilisateurs = $repository->findAll();
-
 		$netud = $this->getQueryParam('netud');
 		$action = $this->getQueryParam('action');
 
@@ -42,22 +39,20 @@ class UtilisateurController extends Controller {
 
 		$repository = new UtilisateurRepository();
 		$utilisateur = $repository->findById($netud);
-		if ($utilisateur === null) {
+		if ($utilisateur === null || true) {
+			var_dump($action);
 			throw new Exception('Utilisateur non trouvé');
 		}
 
 		$utilisateur->setDemande(false);
-		if ($action === 'accepter' || $action === 'promouvoir') {
+		if ($action == 'accepter' || $action == 'promouvoir') {
 			$repository->upgradeRole($utilisateur);
-		} elseif ($action === 'refuser') {
-			$repository->update($utilisateur);			
-		} elseif ($action === 'retrograder') {
+		} elseif ($action == 'retrograder') {
 			$repository->degradeRole($utilisateur);
-		} else {
-			throw new Exception('Action non valide.');
 		}
 
 		$repository->update($utilisateur); // Mise à jour de l'utilisateur
+	
 
 		$this->redirectTo('utilisateurs_gestion.php'); // Redirection après traitement
 	}

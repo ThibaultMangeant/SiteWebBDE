@@ -13,7 +13,7 @@ class Utilisateur
 	public function getMdp(): string { return $this->mdp; }
 	public function getTypeNotification(): string { return $this->typeNotification;	}
 	public function getRole(): Role { return $this->role; }
-	public function getDemande(): string { return (string)($this->demande); }
+	public function getDemande(): bool { return $this->demande; }
 
 
 	// Setters

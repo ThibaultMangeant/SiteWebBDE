@@ -51,7 +51,7 @@ class UtilisateurRepository
 			'mdp' => $utilisateur->getMdp(),
 			'typeNotification' => $utilisateur->getTypeNotification(),
 			'nomRole' => $utilisateur->getRole()->getNomRole(),
-			'demande' => (bool)($utilisateur->getDemande())
+			'demande' => (bool)($utilisateur->getDemande()) ? 'true' : 'false'
 		]);
 	}
 
