@@ -35,10 +35,10 @@
 					<td>{{ utilisateur.typeNotification }}</td>
 					<td>{{ utilisateur.role.nomRole }}</td>
 					<td>
-						<a href="produit_promouvoir.php?idProd={{ utilisateur.netud }}" class="btn btn-warning btn-sm">
+						<a href="produit_promouvoir.php?netud={{ utilisateur.netud }}" class="btn btn-warning btn-sm">
 							<i class="fa fa-edit"></i> Promouvoir
 						</a>
-						<a href="produit_retrograder.php?idProd={{ utilisateur.netud }}" class="btn btn-danger btn-sm">
+						<a href="produit_retrograder.php?netud={{ utilisateur.netud }}" class="btn btn-danger btn-sm">
 							<i class="fa fa-trash"></i> Rétrograder
 						</a>
 					</td>
@@ -66,16 +66,16 @@
 					<td>{{ utilisateur.nom }}</td>
 					<td>{{ utilisateur.prenom }}</td>
 					<td>
-						<a href="demande_accepter.php?id={{ utilisateur.netud }}" class="btn btn-success btn-sm">
+						<a href="utilisateur_taiter_demande.php?netud={{ utilisateur.netud }}&action=accepter" class="btn btn-success btn-sm">
 							<i class="fa fa-check"></i> Accepter
 						</a>
-						<a href="demande_refuser.php?id={{ utilisateur.netud }}" class="btn btn-danger btn-sm">
+						<a href="utilisateur_taiter_demande.php?netud={{ utilisateur.netud }}&action=refuser" class="btn btn-danger btn-sm">
 							<i class="fa fa-times"></i> Refuser
 						</a>
 					</td>
 				</tr>
 			{% endfor %}
 		</tbody>
-
+	</table>
 </div>
 {% endblock %}

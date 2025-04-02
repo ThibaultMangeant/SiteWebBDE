@@ -55,6 +55,15 @@ class UtilisateurRepository
 		]);
 	}
 
+	public function upgradeRole(Utilisateur $utilisateur): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Utilisateur SET role = (SELECT nomRole FROM Role WHERE niveau > :niveau limit 1) WHERE netud = :netud');
+		return $stmt->execute([
+			'netud' => $utilisateur->getNetud(),
+			'niveau' => $utilisateur->getRole()->getNiveau(),
+		]);
+	}
+
 	public function createUtilisateurFromRow(array $row)
 	{
 		return new Utilisateur(

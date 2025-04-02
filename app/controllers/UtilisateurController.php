@@ -29,8 +29,35 @@ class UtilisateurController extends Controller {
 		$this->view('/utilisateur/gestionUtilisateurs.html.twig',  ['utilisateurs' => $utilisateurs]);
 	}
 
+	public function traiterDemande(){
+		$netud = $this->getQueryParam('netud');
+		$action = $this->getQueryParam('action');
+
+		if ($netud === null) {
+			throw new Exception('Numero étudiant nécéssaire.');
+		}
+
+		$repository = new UtilisateurRepository();
+		$utilisateur = $repository->findById($netud);
+		if ($utilisateur === null) {
+			throw new Exception('Utilisateur non trouvé');
+		}
+
+		if ($action === 'accepter') {
+			$utilisateur->setDemande(false);
+			$repository->upgradeRole($utilisateur);
+			$this->redirectTo('index.php');
+		} elseif ($action === 'refuser') {
+			$utilisateur->setDemande(false);
+			$repository->update($utilisateur);
+			$this->redirectTo('index.php');
+		} else {
+			throw new Exception('Action non valide.');
+		}
+	}
+
 	public function delete() {
-		$netud = $this->getQueryParam('numero_etudiant');
+		$netud = $this->getQueryParam('id');
 		if ($netud === null) {
 			throw new Exception('Numero étudiant nécéssaire.');
 		}
@@ -99,7 +126,7 @@ class UtilisateurController extends Controller {
 
     public function update()
     {
-        $netud = $this->getQueryParam('numero_etudiant');
+        $netud = $this->getQueryParam('netud');
 
         if ($netud === null) {
                 throw new Exception('Numero étudiant nécéssaire.');
