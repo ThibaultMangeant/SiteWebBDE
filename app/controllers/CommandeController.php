@@ -28,6 +28,8 @@ class UtilisateurController extends Controller {
 
 		$data = $this->getAllPostParams();
 
+		$data['idUtilisateur'] = (new AuthService())->getUtilisateur()->getNetud();
+
 		if (!empty($data)) {
 			try {
 				$errors = [];
