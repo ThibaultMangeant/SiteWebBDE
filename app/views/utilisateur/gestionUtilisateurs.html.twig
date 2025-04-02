@@ -60,20 +60,22 @@
             </tr>
         </thead>
 		<tbody>
-			{% for utilisateur in utilisateurs if utilisateur.demande %}
-				<tr>
-					<td>{{ utilisateur.netud }}</td>
-					<td>{{ utilisateur.nom }}</td>
-					<td>{{ utilisateur.prenom }}</td>
-					<td>
-						<a href="utilisateur_taiter_demande.php?netud={{ utilisateur.netud }}&action=accepter" class="btn btn-success btn-sm">
-							<i class="fa fa-check"></i> Accepter
-						</a>
-						<a href="utilisateur_taiter_demande.php?netud={{ utilisateur.netud }}&action=refuser" class="btn btn-danger btn-sm">
-							<i class="fa fa-times"></i> Refuser
-						</a>
-					</td>
-				</tr>
+			{% for utilisateur in utilisateurs %}
+				{% if utilisateur.demande %}
+					<tr>
+						<td>{{ utilisateur.netud }}</td>
+						<td>{{ utilisateur.nom }}</td>
+						<td>{{ utilisateur.prenom }}</td>
+						<td>
+							<a href="utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=accepter" class="btn btn-success btn-sm">
+								<i class="fa fa-check"></i> Accepter
+							</a>
+							<a href="utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=refuser" class="btn btn-danger btn-sm">
+								<i class="fa fa-times"></i> Refuser
+							</a>
+						</td>
+					</tr>
+				{% endif %}
 			{% endfor %}
 		</tbody>
 	</table>

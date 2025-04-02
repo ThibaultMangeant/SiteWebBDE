@@ -29,7 +29,7 @@ class UtilisateurController extends Controller {
 		$this->view('/utilisateur/gestionUtilisateurs.html.twig',  ['utilisateurs' => $utilisateurs]);
 	}
 
-	public function traiterDemande(){
+	public function traiter(){
 		$netud = $this->getQueryParam('netud');
 		$action = $this->getQueryParam('action');
 
@@ -57,7 +57,7 @@ class UtilisateurController extends Controller {
 	}
 
 	public function delete() {
-		$netud = $this->getQueryParam('id');
+		$netud = $this->getQueryParam('netud');
 		if ($netud === null) {
 			throw new Exception('Numero étudiant nécéssaire.');
 		}
