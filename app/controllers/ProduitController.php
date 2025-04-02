@@ -5,6 +5,7 @@ require_once './app/repositories/ProduitRepository.php';
 require_once './app/entities/Produit.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
+require_once './app/services/AuthService.php';
 
 class ProduitController extends Controller {
 
@@ -15,8 +16,11 @@ class ProduitController extends Controller {
 		$repository = new ProduitRepository();
 		$produits = $repository->findAll();
 
+		$service = new AuthService();
+		$isAdmin = $service->isAdmin();
+
         // Ensuite, affiche la vue
-        $this->view('/produit/gestionBoutique.html.twig',  ['produits' => $produits]);
+        $this->view('/produit/gestionBoutique.html.twig',  ['produits' => $produits, 'isAdmin' => $isAdmin]);
         
     }
 

@@ -21,12 +21,16 @@ class UtilisateurController extends Controller {
 		
 	}
 
-	public function gestion() {
+	public function gestion()
+	{
 		$repository = new UtilisateurRepository();
 		$utilisateurs = $repository->findAll();
 
+		$service = new AuthService();
+		$isAdmin = $service->isAdmin();
+
 		// Ensuite, affiche la vue
-		$this->view('/utilisateur/gestionUtilisateurs.html.twig',  ['utilisateurs' => $utilisateurs]);
+		$this->view('/utilisateur/gestionUtilisateurs.html.twig',  ['utilisateurs' => $utilisateurs, 'isAdmin' => $isAdmin]);
 	}
 
 	public function traiter(){

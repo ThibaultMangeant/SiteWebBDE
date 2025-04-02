@@ -5,6 +5,7 @@ require_once './app/repositories/ActualiteRepository.php';
 require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
+require_once './app/services/AuthService.php';
 
 class ActualiteController extends Controller
 {
@@ -17,8 +18,11 @@ class ActualiteController extends Controller
 		$repository = new ActualiteRepository();
 		$actualites = $repository->findAll();
 
+		$service = new AuthService();
+		$isAdmin = $service->isAdmin();
+
 		// Ensuite, affiche la vue
-		$this->view('/gestionActualite.html.twig',  ['actualites' => $actualites]);
+		$this->view('/gestionActualite.html.twig',  ['actualites' => $actualites, 'isAdmin' => $isAdmin]);
 	}
 
 

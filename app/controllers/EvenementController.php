@@ -7,6 +7,7 @@ require_once './app/entities/Evenement.php';
 require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
+require_once './app/services/AuthService.php';
 
 class EvenementController extends Controller
 {
@@ -19,8 +20,11 @@ class EvenementController extends Controller
 		$repository = new EvenementRepository();
 		$evenements = $repository->findAll();
 
+		$service = new AuthService();
+		$isAdmin = $service->isAdmin();
+
 		// Ensuite, affiche la vue
-		$this->view('/evenement/gestionEvenement.html.twig', ['evenements' => $evenements]);
+		$this->view('/evenement/gestionEvenement.html.twig', ['evenements' => $evenements, 'isAdmin' => $isAdmin]);
 	}
 
 	public function detail()
