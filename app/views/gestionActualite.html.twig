@@ -14,7 +14,7 @@
             {% for actualite in actualites %}
                 <div class="actualite-card {% if actualite.id == selectedActualite.id %}selected{% endif %}">
                     <h5 class="actualite-title">{{ actualite.titreActu }}</h5>
-                    <p class="actualite-desc">{{ actualite.descActu|slice(0, 100) ~ '...' }}</p>
+                    <p class="actualite-desc">{{ actualite.descActu }}</p>
                 </div>
             {% endfor %}
         </div>
@@ -24,11 +24,11 @@
     <div class="actualite-right">
         <h2 class="section-title">Titre :</h2>
         <div class="form-group">
-            <input type="text" class="form-control" value="{{ selectedActualite.titreActu }}" placeholder="Titre de l'actualité">
+            <input type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité">
         </div>
         <h2 class="section-title">Description :</h2>
         <div class="form-group">
-            <textarea class="form-control" rows="5" placeholder="Description de l'actualité">{{ selectedActualite.descActu }}</textarea>
+            <textarea class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité"></textarea>
         </div>
         <button class="btn btn-success">Enregistrer</button>
     </div>
