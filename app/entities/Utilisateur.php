@@ -37,7 +37,7 @@ class Utilisateur
 			'email' => $this->email,
 			'mdp' => $this->mdp,
 			'typeNotification' => $this->typeNotification,
-			'role' => serialize($this->role),
+			'role' => $this->role->getNomRole(),
 			'demande' => $this->demande ? "true" : "false"
 		];
 	}
@@ -51,7 +51,7 @@ class Utilisateur
 		$this->email = $data['email'];
 		$this->mdp = $data['mdp'];
 		$this->typeNotification = $data['typeNotification'];
-		$this->role = (new RoleRepository())->findByNom($data['role']['nomRole']);
+		$this->role = (new RoleRepository())->findByNom($data['role']);
 		$this->demande = (bool)$data['demande'];
 	}
 	public function __toString(): string
