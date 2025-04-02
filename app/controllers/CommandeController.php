@@ -29,7 +29,9 @@ class CommandeController extends Controller {
 	public function create() {
 		$errors = [];
 
-		$data = $this->getAllPostParams();
+		$data = array_merge([
+			'idProduit' => $this->getQueryParam('idProduit')
+		], $this->getAllPostParams()); //Get submitted data
 
 		$data['idUtilisateur'] = (new AuthService())->getUtilisateur()->getNetud();
 
@@ -42,25 +44,27 @@ class CommandeController extends Controller {
 					$errors[] = 'La quantité d\'achat doit être valide.';
 				}
 				if (empty($data['idProduit'])) {
-					$errors[] = 'La description de l\'évènement est requis.';
+					$errors[] = 'L\'idProd est requis.';
 				}
 				if (empty($data['idUtilisateur'])) {
-					$errors[] = 'La date de l\'évènement est requis.';
+					$errors[] = 'L\'idUtilisateur est requis.';
 				}
 
+				var_dump($data);
+				var_dump($errors);
 				if (!empty($errors)) {
 					throw new Exception(implode(', ', $errors));
 				}
 
 				// Création de l'objet commande
 				$commande = new Commande(0, (int)$data['qa'],(new ProduitRepository())->findById($data['idProduit']),(new UtilisateurRepository())->findById($data['idUtilisateur']));
-
+				var_dump($data);
 				// Sauvegarde dans la base de données
 				$commandeRepo = new CommandeRepository();
 				if (!$commandeRepo->create($commande)) {
 					throw new Exception(message: 'Erreur lors de l\'enregistrement de la commande.');
 				}
-
+				var_dump($data);
 				$this->redirectTo('boutique.php'); // Redirection après création
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
