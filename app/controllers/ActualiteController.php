@@ -2,7 +2,6 @@
 
 require_once './app/core/Controller.php';
 require_once './app/repositories/ActualiteRepository.php';
-require_once './app/entities/Evenement.php';
 require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
@@ -60,7 +59,7 @@ class ActualiteController extends Controller
 					throw new Exception(message: 'Erreur lors de l\'enregistrement de l\'actualité.');
 				}
 
-				$this->redirectTo('actualite.php'); // Redirection après création
+				$this->redirectTo('/gestionActualite.php'); // Redirection après création
 			}
 			catch (Exception $e)
 			{
@@ -127,7 +126,7 @@ class ActualiteController extends Controller
 					throw new Exception('Erreur lors de la mise à jour de l\'actualité.');
 				}
 
-				$this->redirectTo('actualite.php'); // Redirection après mise à jour
+				$this->redirectTo('/gestionActualite.php'); // Redirection après mise à jour
 			}
 			catch (Exception $e)
 			{
@@ -162,7 +161,7 @@ class ActualiteController extends Controller
 		}
 		catch (Exception $e)
 		{
-			$this->view('/actualite/gestionActualite.html.twig', [
+			$this->view('/gestionActualite.html.twig', [
 				'errors' => [$e->getMessage()]
 			]);
 		}

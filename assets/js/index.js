@@ -36,16 +36,12 @@ document.addEventListener("DOMContentLoaded", function ()
 
 	const divGestionActualites = document.getElementById("gestionActualite");
 
+	divGestionActualites.innerHTML = `<a href="gestionActualite.php" id="floatingGestionActualiteButton" class="text-decoration-none">
+			<i class="fa-solid fa-newspaper"></i> Gérer le fil d'actualité
+		</a>`;
+
 	const redirectionGererActualites = document.createElement("a");
-	redirectionGererActualites.href = "actualites.php";
-
-
-	const btnGererActualite = document.createElement("button");
-
-	// Gestion du style du bouton
-	btnGererActualite.textContent = "Gerer les actualités";
-	btnGererActualite.classList.add("btn");
-	btnGererActualite.classList.add("btn-danger");
+	redirectionGererActualites.href = "gestionActualite.php";
 
 
 	redirectionGererActualites.appendChild(btnGererActualite);
