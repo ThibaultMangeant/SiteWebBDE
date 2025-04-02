@@ -51,22 +51,22 @@ class EvenementRepository
 
 	public function create(Evenement $evenement): bool
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Evenement (nomEvent, descEvent, dateEvent, lieuEvent, prixEvent, roleAutoriseMin, imgEvent) VALUES (:nomEvent , :descEvent , TIMESTAMP :dateEvent, :lieuEvent, :prixEvent, :roleAutoriseMin, :imgEvent)');
+		$stmt = $this->pdo->prepare('INSERT INTO Evenement (nomEvent, descEvent, dateEvent, lieuEvent, prixEvent, roleAutoriseMin, imgEvent) VALUES (:nomEvent , :descEvent , :dateEvent, :lieuEvent, :prixEvent, :roleAutoriseMin, :imgEvent)');
 
 		return $stmt->execute([
 			':nomEvent' => $evenement->getNomEvent(),
 			':descEvent' => $evenement->getDescEvent(),
-			':dateEvent' => $evenement->getDateEvent()->format('Y-m-d H:i:s'),
+			':dateEvent' => $evenement->getDateEvent()->format('d-m-Y'),
 			':lieuEvent' => $evenement->getLieuEvent(),
 			':prixEvent' => $evenement->getPrixEvent(),
-			':roleAutoriseMin' => $evenement->getRoleAutorise(),
+			':roleAutoriseMin' => $evenement->getRoleAutorise()->getNomRole(),
 			':imgEvent' => $evenement->getImgEvent()
 		]);
 	}
 
 	public function update(Evenement $evenement): bool
 	{
-		$stmt = $this->pdo->prepare('UPDATE Evenement SET nomEvent = :nomEvent, descEvent = :descEvent, dateEvent = TIMESTAMP :dateEvent, lieuEvent = :lieuEvent, prixEvent = :prixEvent, roleAutoriseMin = :roleAutoriseMin, imgEvent = :imgEvent WHERE idEvent = :idEvenement');
+		$stmt = $this->pdo->prepare('UPDATE Evenement SET nomEvent = :nomEvent, descEvent = :descEvent, dateEvent = :dateEvent, lieuEvent = :lieuEvent, prixEvent = :prixEvent, roleAutoriseMin = :roleAutoriseMin, imgEvent = :imgEvent WHERE idEvent = :idEvenement');
 
 		return $stmt->execute([
 			':idEvenement' => $evenement->getIdEvent(),

@@ -59,7 +59,7 @@ class UtilisateurController extends Controller {
 			throw new Exception('Action non valide.');
 		}
 
-		$this->view('/utilisateur/gestionUtilisateurs.html.twig',  ['utilisateurs' => $utilisateurs]);
+		$this->redirectTo('utilisateurs_gestion.php'); // Redirection après traitement
 	}
 
 	public function delete() {
