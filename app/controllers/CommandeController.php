@@ -7,7 +7,7 @@ require_once './app/services/AuthService.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
 
-class UtilisateurController extends Controller {
+class CommandeController extends Controller {
 
     use FormTrait;
     use AuthTrait;
