@@ -16,9 +16,9 @@
                     <span class="cart-item-name">{{ commande.produit.nomProd }}</span>
                 </div>
                 <div class="cart-item-quantity d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="decrease" data-id="{{ commande.produit.idProd }}">-</button>
+                    <button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=1" data-action="decrease" data-id="{{ commande.produit.idProd }}">-</button>
                     <span class="quantity">{{ commande.qa }}</span>
-                    <button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="increase" data-id="{{ commande.produit.idProd }}">+</button>
+                    <button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=-1" data-action="increase" data-id="{{ commande.produit.idProd }}">+</button>
                 </div>
                 <div class="cart-item-price">
 					{{ (commande.produit.prixProd) | number_format(2, ',', ' ') }} €

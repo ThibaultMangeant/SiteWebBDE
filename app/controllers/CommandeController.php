@@ -30,7 +30,7 @@ class CommandeController extends Controller {
 		$errors = [];
 
 		$data = array_merge([
-			'idProd' => $this->getQueryParam('idProduit')
+			'idProd' => $this->getQueryParam('idProd')
 		], $this->getAllPostParams()); //Get submitted data
 
 		$data['idUtilisateur'] = (new AuthService())->getUtilisateur()->getNetud();
@@ -43,7 +43,7 @@ class CommandeController extends Controller {
 				if (empty($data['qa']) || !is_numeric($data['qa'])) {
 					$errors[] = 'La quantité d\'achat doit être valide.';
 				}
-				if (empty($data['idProduit'])) {
+				if (empty($data['idProd'])) {
 					$errors[] = 'L\'idProd est requis.';
 				}
 				if (empty($data['idUtilisateur'])) {
@@ -74,6 +74,8 @@ class CommandeController extends Controller {
 
 	public function update() {
 		$idCommande = $this->getQueryParam('idCommande');
+		$change     = (int)($this->getQueryParam('change'));
+
 		$repository = new CommandeRepository();
 		$commande = $repository->findById($idCommande);
 
@@ -85,7 +87,7 @@ class CommandeController extends Controller {
 
 		$data = array_merge([
 			'idCommande' => $commande->getNumCommande(),
-			'qa' => $commande->getQa(),
+			'qa' => $commande->getQa()+$change,
 			'idProduit' => $commande->getProduit()->getIdProd(),
 			'idUtilisateur' => $commande->getUtilisateur()->getNetud()
 		], $this->getAllPostParams()); //Get submitted data
