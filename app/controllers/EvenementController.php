@@ -14,10 +14,10 @@ class EvenementController extends Controller {
 
 	public function index() {
 		$repository = new EvenementRepository();
-		$produits = $repository->findAll();
+		$evenements = $repository->findAll();
 
         // Ensuite, affiche la vue
-        $this->view('/evenement/gestionEvenement.html.twig',  ['produits' => $produits]);
+        $this->view('/evenement/gestionEvenement.html.twig',  ['evenements' => $evenements]);
     }
 
 
@@ -64,7 +64,7 @@ class EvenementController extends Controller {
 					throw new Exception(implode(', ', $errors));
 				}
 
-				// Création de l'objet utilisateur
+				// Création de l'objet evenement
 				$evenement = new Evenement(0, $data['nomEvent'], $data['descEvent'], new DateTime($data['dateEvent']), $data['lieuEvent'], (float)$data['prixEvent'], (new RoleRepository())->findByNom($data['roleAutoriseMin']), $data['imgEvent']);
 
 				// Sauvegarde dans la base de données
@@ -149,7 +149,7 @@ class EvenementController extends Controller {
 					throw new Exception(implode(', ', $errors));
 				}
 
-				// Mise à jour de l'objet produit
+				// Mise à jour de l'objet evenement
 				$evenement->setIdEvent($idEvent);
 				$evenement->setNomEvent($data['nomProd']);
 				$evenement->setDescEvent($data['descProd']);
