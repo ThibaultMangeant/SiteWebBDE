@@ -30,8 +30,39 @@ class Commande
 	{
 		$this->numCommande = $data['numCommande'];
 		$this->qa = $data['qa'];
-		$this->produit = unserialize($data['produit']);
-		$this->utilisateur = unserialize($data['utilisateur']);
+
+		// Vérification du type de $data['produit']
+		if (is_array($data['produit'])) {
+			$this->produit = new Produit(
+				$data['produit']['idProd'], 
+				$data['produit']['nomProd'], 
+				$data['produit']['qs'], 
+				$data['produit']['prixProd'], 
+				$data['produit']['imgProd']
+			);
+		} else {
+			$this->produit = unserialize($data['produit']);
+		}
+
+		// Vérification du type de $data['utilisateur']
+		if (is_array($data['utilisateur'])) {
+			$this->utilisateur = new Utilisateur(
+				$data['utilisateur']['netud'], 
+				$data['utilisateur']['nom'], 
+				$data['utilisateur']['prenom'], 
+				$data['utilisateur']['tel'], 
+				$data['utilisateur']['email'], 
+				$data['utilisateur']['mdp'], 
+				$data['utilisateur']['typeNotification'], 
+				new Role(
+					$data['utilisateur']['role']['nomRole'], 
+					$data['utilisateur']['role']['niveau']
+				), 
+				$data['utilisateur']['demande']
+			);
+		} else {
+			$this->utilisateur = unserialize($data['utilisateur']);
+		}
 	}
 	public function __toString(): string
 	{

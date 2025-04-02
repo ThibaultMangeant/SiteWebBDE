@@ -47,7 +47,11 @@ class Evenement
 		$this->dateEvent = $data['dateEvent'];
 		$this->lieuEvent = $data['lieuEvent'];
 		$this->prixEvent = $data['prixEvent'];
-		$this->roleAutorise = unserialize((new RoleRepository())->findByNom($data['roleAutorise']));
+		if (isset($data['roleAutorise'])) {
+			$this->roleAutorise = unserialize($data['roleAutorise']);
+		} else {
+			$this->roleAutorise = new RoleRepository()->findByNom('Visiteur');
+		}
 		$this->imgEvent = $data['imgEvent'];
 	}
 	public function __toString(): string
