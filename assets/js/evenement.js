@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function ()
 	const divGestionEvenements = document.getElementById("gestionEvenement");
 
 	const redirectionGererEvenements = document.createElement("a");
-	redirectionGererEvenements.href = "evenements.php";
+	redirectionGererEvenements.href = "gestionEvenement.php";
 
 
 	const btnGererEvenements = document.createElement("button");

@@ -16,7 +16,7 @@ class ProduitController extends Controller {
 		$produits = $repository->findAll();
 
         // Ensuite, affiche la vue
-        $this->view('/produit/gestionProduits.html.twig',  ['produits' => $produits]);
+        $this->view('/produit/gestionBoutique.html.twig',  ['produits' => $produits]);
         
     }
 
@@ -75,7 +75,7 @@ class ProduitController extends Controller {
 					throw new Exception('Erreur lors de l\'enregistrement du produit.');
 				}
 
-				$this->redirectTo('produits.php'); // Redirection après création
+				$this->redirectTo('gestionBoutique.php'); // Redirection après création
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
@@ -162,7 +162,7 @@ class ProduitController extends Controller {
 					throw new Exception('Erreur lors de la mise à jour du produit.');
 				}
 
-				$this->redirectTo('produits.php'); // Redirection après mise à jour
+				$this->redirectTo('gestionBoutique.php'); // Redirection après mise à jour
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
@@ -188,9 +188,9 @@ class ProduitController extends Controller {
 				throw new Exception('Erreur lors de la suppression du produit.');
 			}
 
-			$this->redirectTo('produits.php'); // Redirection après suppression
+			$this->redirectTo('gestionBoutique.php'); // Redirection après suppression
 		} catch (Exception $e) {
-			$this->view('/produit/gestionProduits.html.twig', [
+			$this->view('/produit/gestionBoutique.html.twig', [
 				'errors' => [$e->getMessage()]
 			]);
 		}

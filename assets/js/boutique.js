@@ -1,7 +1,7 @@
-const divGestionBoutique = document.getElementById("gestionProduit");
+const divGestionBoutique = document.getElementById("gestionBoutique");
 
 const redirectionGererBoutique = document.createElement("a");
-redirectionGererBoutique.href = "produits.php";
+redirectionGererBoutique.href = "gestionBoutique.php";
 
 
 const btnGererBoutique = document.createElement("button");
