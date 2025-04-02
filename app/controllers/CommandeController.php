@@ -50,21 +50,35 @@ class CommandeController extends Controller {
 					$errors[] = 'L\'idUtilisateur est requis.';
 				}
 
-				var_dump($data);
-				var_dump($errors);
 				if (!empty($errors)) {
 					throw new Exception(implode(', ', $errors));
 				}
 
 				// Création de l'objet commande
-				$commande = new Commande(0, (int)$data['qa'],(new ProduitRepository())->findById($data['idProduit']),(new UtilisateurRepository())->findById($data['idUtilisateur']));
-				var_dump($data);
+				$qa = (int)($data['qa']);
+				if ($qa + (new ProduitRepository())->findById($data['idProd'])->getQs() > (new ProduitRepository())->findById($data['idProd'])->getQs()) {
+					$qa = (new ProduitRepository())->findById($data['idProd'])->getQs();
+				}
+				$commande = new Commande(0, $qa,(new ProduitRepository())->findById($data['idProd']),(new UtilisateurRepository())->findById($data['idUtilisateur']));
+
 				// Sauvegarde dans la base de données
 				$commandeRepo = new CommandeRepository();
-				if (!$commandeRepo->create($commande)) {
+
+				if ($commandeRepo->findByProduitAndUtilisateur($data['idProd'], $data['idUtilisateur']) !== null) {
+					$qa = $commande->getQa() +(int)($data['qa']);
+
+					if ($qa > $commande->getProduit()->getQs()) {
+						$qa = $commande->getProduit()->getQs();
+					}
+
+					$commande = $commandeRepo->findByProduitAndUtilisateur($data['idProd'], $data['idUtilisateur']);
+					$commande->setQa($qa);
+					$commandeRepo->update($commande);
+				}
+				elseif (!$commandeRepo->create($commande)) {
 					throw new Exception(message: 'Erreur lors de l\'enregistrement de la commande.');
 				}
-				var_dump($data);
+
 				$this->redirectTo('boutique.php'); // Redirection après création
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
@@ -87,7 +101,7 @@ class CommandeController extends Controller {
 
 		$data = array_merge([
 			'idCommande' => $commande->getNumCommande(),
-			'qa' => $commande->getQa()+$change,
+			'qa' => $commande->getQa(),
 			'idProduit' => $commande->getProduit()->getIdProd(),
 			'idUtilisateur' => $commande->getUtilisateur()->getNetud()
 		], $this->getAllPostParams()); //Get submitted data
@@ -112,7 +126,10 @@ class CommandeController extends Controller {
 				}
 
 				// Création de l'objet evenement
-				$commande->setQa((int)$data['qa']);
+				$commande->setQa((int)$data['qa']+$change);
+				if ($commande->getQa() > $commande->getProduit()->getQs()) {
+					$commande->setQa($commande->getProduit()->getQs());
+				}
 				$commande->setProduit((new ProduitRepository())->findById($data['idProduit']));
 				$commande->setUtilisateur((new UtilisateurRepository())->findById($data['idUtilisateur']));
 

@@ -70,7 +70,7 @@ CREATE TABLE Commande
 (
 	netud       INT NOT NULL,
 	idProd      INT NOT NULL,
-	numCommande INT NOT NULL,
+	numCommande SERIAL NOT NULL,
 	qa          INT NOT NULL CHECK (qa >= 0),
 
 	FOREIGN KEY (netud ) REFERENCES Utilisateur(netud ) ON DELETE CASCADE,

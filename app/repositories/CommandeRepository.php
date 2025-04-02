@@ -65,6 +65,16 @@ class CommandeRepository
 		return $commandes;
 	}
 
+	public function findByProduitAndUtilisateur($idProduit, $idUtilisateur): ?Commande
+	{
+		$stmt = $this->pdo->prepare('SELECT * FROM Commande WHERE idProd = :idProduit AND netud = :idUtilisateur');
+		$stmt->bindParam(':idProduit', $idProduit);
+		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $row ? $this->createCommandeFromRow($row) : null;
+	}
+
 	public function deleteById($numCommande): bool
 	{
 		$stmt = $this->pdo->prepare('DELETE FROM Commande WHERE numCommande = :numCommande');
@@ -74,7 +84,6 @@ class CommandeRepository
 
 	public function createCommandeFromRow(array $row)
 	{
-		var_dump($row);
 		$commande = new Commande(
 			$row['numcommande'],
 			(int)$row['qa'],
