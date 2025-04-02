@@ -69,3 +69,11 @@ INSERT INTO Actualite (titreActu, descActu) VALUES
 	('Concours de programmation – Prix à gagner',
 	 'Participez à notre concours de programmation pour une chance de gagner des prix excitants ! Les inscriptions sont ouvertes, et le concours débutera le mois prochain. Ne manquez pas cette occasion de montrer vos compétences.'
 	);
+
+
+-- Insertion des inscriptions
+INSERT INTO Inscrit (netud, idEvent, note, commentaire) VALUES
+	(1234, 1, 5, 'Pour la super-terre !'),
+	(1235, 1, 3, 'Je me suis fait défoncer !'),
+	(1236, 1, 4, 'Democracy !'),
+	(1234, 2, 5, 'Superbe destroyer');
