@@ -21,17 +21,21 @@ class UtilisateurController extends Controller {
 		
 	}
 
+	public function gestion() {
+		$repository = new UtilisateurRepository();
+		$utilisateurs = $repository->findAll();
+
+		// Ensuite, affiche la vue
+		$this->view('/utilisateur/gestionUtilisateurs.html.twig',  ['utilisateurs' => $utilisateurs]);
+	}
+
 	public function delete() {
 		$netud = $this->getQueryParam('numero_etudiant');
 		if ($netud === null) {
 			throw new Exception('Numero étudiant nécéssaire.');
 		}
 		$repository = new UtilisateurRepository();
-		$utilisateur = $repository->findById($netud);
-		if ($utilisateur === null) {
-			throw new Exception('Utilisateur non trouvé');
-		}
-		if (!$repository->delete($utilisateur)) {
+		if (!$repository->deleteById($netud)) {
 			throw new Exception('Erreur lors de la suppression d\'utilisateur.');
 		}
 		$this->redirectTo('index.php'); // Redirection après suppression
