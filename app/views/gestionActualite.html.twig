@@ -1,7 +1,7 @@
 {% extends '_template/base.html.twig' %}
 
 {% block css %}
-<link rel="stylesheet" href="assets/css/actualite_modif.css">
+<link rel="stylesheet" href="assets/css/gestionActualite.css">
 {% endblock %}
 
 {% block body %}
@@ -12,7 +12,7 @@
         <button class="btn btn-primary mb-3">+ Ajouter une actu</button>
         <div class="actualite-list">
             {% for actualite in actualites %}
-                <div class="actualite-card {% if actualite.id == selectedActualite.id %}selected{% endif %}">
+                <div class="actualite-card">
                     <h5 class="actualite-title">{{ actualite.titreActu }}</h5>
                     <p class="actualite-desc">{{ actualite.descActu }}</p>
                 </div>

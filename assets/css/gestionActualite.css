@@ -35,8 +35,8 @@
 }
 
 .actualite-card.selected {
-    border: 2px solid #007bff;
-    background-color: #e9f5ff;
+    border: 2px solid #ff0000;
+    background-color: #ffe9e9;
 }
 
 .actualite-title {
