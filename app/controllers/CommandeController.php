@@ -113,7 +113,7 @@ class UtilisateurController extends Controller {
 					throw new Exception(message: 'Erreur lors de l\'enregistrement de la commande.');
 				}
 
-				$this->redirectTo('boutique.php'); // Redirection après création
+				$this->redirectTo('panier.php'); // Redirection après création
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
