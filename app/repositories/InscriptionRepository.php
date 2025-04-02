@@ -23,7 +23,7 @@ class InscriptionRepository
 
 	public function findByUtilisateur($idUtilisateur): ?Inscription
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Inscription WHERE netud = :idUtilisateur');
+		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE netud = :idUtilisateur');
 		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -32,7 +32,7 @@ class InscriptionRepository
 
 	public function findByEvenement($idevenement): array
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Inscription WHERE idEvent = :idevenement');
+		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE idEvent = :idevenement');
 		$stmt->bindParam(':idevenement', $idevenement);
 		$stmt->execute();
 		$inscriptions = [];
@@ -44,7 +44,7 @@ class InscriptionRepository
 
 	public function findByUtilisateurAndEvenement($idUtilisateur, $idEvenement): ?Inscription
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Inscription WHERE netud = :idUtilisateur AND idEvent = :idEvenement');
+		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE netud = :idUtilisateur AND idEvent = :idEvenement');
 		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
 		$stmt->bindParam(':idEvenement', $idEvenement);
 		$stmt->execute();
@@ -54,7 +54,7 @@ class InscriptionRepository
 
 	public function deleteByUtilisateurAndEvenement($idUtilisateur, $idEvenement): bool
 	{
-		$stmt = $this->pdo->prepare('DELETE FROM Inscription WHERE netud = :idUtilisateur AND idEvent = :idEvenement');
+		$stmt = $this->pdo->prepare('DELETE FROM Inscrit WHERE netud = :idUtilisateur AND idEvent = :idEvenement');
 		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
 		$stmt->bindParam(':idEvenement', $idEvenement);
 		return $stmt->execute();
@@ -62,14 +62,14 @@ class InscriptionRepository
 
 	public function deleteByUtilisateur($idUtilisateur): bool
 	{
-		$stmt = $this->pdo->prepare('DELETE FROM Inscription WHERE netud = :idUtilisateur');
+		$stmt = $this->pdo->prepare('DELETE FROM Inscrit WHERE netud = :idUtilisateur');
 		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
 		return $stmt->execute();
 	}
 
 	public function deleteByEvenement($idEvenement): bool
 	{
-		$stmt = $this->pdo->prepare('DELETE FROM Inscription WHERE idEvent = :idEvenement');
+		$stmt = $this->pdo->prepare('DELETE FROM Inscrit WHERE idEvent = :idEvenement');
 		$stmt->bindParam(':idEvenement', $idEvenement);
 		return $stmt->execute();
 	}
@@ -77,7 +77,7 @@ class InscriptionRepository
 	private function createInscriptionFromRow(array $row): Inscription
 	{
 		return new Inscription(
-			(new EvenementRepository())->findById($row['idEvent']),
+			(new EvenementRepository())->findById($row['idevent']),
 			(new UtilisateurRepository())->findById($row['netud']),
 			$row['note'],
 			$row['commentaire']
@@ -86,7 +86,7 @@ class InscriptionRepository
 
 	public function create(Inscription $inscription): void
 	{
-		$stmt = $this->pdo->prepare('INSERT INTO Inscription (idEvent, netud, note, commentaire) VALUES (:idevent, :netud, :note, :commentaire)');
+		$stmt = $this->pdo->prepare('INSERT INTO Inscrit (idEvent, netud, note, commentaire) VALUES (:idevent, :netud, :note, :commentaire)');
 		$stmt->execute([
 			':idevent' => $inscription->getEvenement()->getIdEvent(),
 			':netud' => $inscription->getUtilisateur()->getNetud(),

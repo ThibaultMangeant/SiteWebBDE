@@ -2,6 +2,7 @@
 
 require_once './app/core/Controller.php';
 require_once './app/repositories/EvenementRepository.php';
+require_once './app/repositories/InscriptionRepository.php';
 require_once './app/entities/Evenement.php';
 require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
@@ -25,14 +26,17 @@ class EvenementController extends Controller
 	public function detail()
 	{
 		$idEvent = $this->getQueryParam('idEvent');
-		$repository = new EvenementRepository();
+		$eventRepository = new EvenementRepository();
 
-		$evenement = $repository->findById($idEvent);
+		$inscritRepository = new InscriptionRepository();
+		$inscriptions = $inscritRepository->findByEvenement($idEvent);
+
+		$evenement = $eventRepository->findById($idEvent);
 		if ($evenement === null) {
 			throw new Exception('Évènement non trouvé');
 		}
 
-		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent]);
+		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent, 'inscrits' => $inscriptions]);
 	}
 
 	public function create()
