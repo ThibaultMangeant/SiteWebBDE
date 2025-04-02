@@ -68,7 +68,7 @@ class ActualiteController extends Controller
 		}
 
 		// Affichage du formulaire
-		$this->view('/actualite/form.html.twig',  [
+		$this->view('/gestionActualite.html.twig',  [
 			'data' => $data,
 			'errors' => $errors,
 		]);
@@ -77,6 +77,11 @@ class ActualiteController extends Controller
 	public function update()
 	{
 		$idActu = $this->getQueryParam('idActu');
+
+		if (!$idActu)
+		{
+			throw new Exception('ID de l\'actualité manquant.');
+		}
 
 		$repository = new ActualiteRepository();
 		$actualite = $repository->findById($idActu);
@@ -157,7 +162,7 @@ class ActualiteController extends Controller
 				throw new Exception('Erreur lors de la suppression de l\'actualité.');
 			}
 
-			$this->redirectTo('actualite.php'); // Redirection après suppression
+			$this->redirectTo('/gestionActualite.php'); // Redirection après suppression
 		}
 		catch (Exception $e)
 		{
