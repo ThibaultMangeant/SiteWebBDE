@@ -9,11 +9,11 @@
     <div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
         <h2 class="text-center mb-4">Panier</h2>
         <div class="cart-items">
-            {% for item in panier %}
+            {% for commande in commandes %}
             <div class="cart-item d-flex align-items-center justify-content-between mb-3">
                 <div class="cart-item-info d-flex align-items-center">
-                    <img src="assets/images/boutique/{{ item.image }}" alt="Article" class="cart-item-image">
-                    <span class="cart-item-name">{{ item.nom }}</span>
+                    <img src="assets/images/boutique/{{ commande.produit.imgProd }}" alt="Article" class="cart-item-image">
+                    <span class="cart-item-name">{{ commande.produit.nomProd }}</span>
                 </div>
                 <div class="cart-item-quantity d-flex align-items-center">
                     <button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="decrease" data-id="{{ item.id }}">-</button>
@@ -21,9 +21,9 @@
                     <button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="increase" data-id="{{ item.id }}">+</button>
                 </div>
                 <div class="cart-item-price">
-                    {{ item.prix | number_format(2, ',', ' ') }} €
+                    {{ commande.produit.prixProd  | number_format(2, ',', ' ') }} €
                 </div>
-                <button class="btn btn-danger btn-sm delete-btn" data-id="{{ item.id }}">
+                <button class="btn btn-danger btn-sm delete-btn" data-id="{{ commande.produit.idProd }}">
                     <i class="fa fa-trash"></i>
                 </button>
             </div>
