@@ -6,7 +6,9 @@
 
 {% block body %}
 <div class="product-form-container">
-	<h2 class="form-title">Page Création Produit ADMIN</h2>
+	<h2 class="form-title">
+		{% if data.idProd is defined %}Modifier un Produit{% else %}Créer un Produit{% endif %}
+	</h2>
 	<form method="POST" enctype="multipart/form-data" class="product-form">
 		<!-- Image du produit -->
 		<div class="form-group image-preview">

@@ -1,87 +1,183 @@
 /* Conteneur principal */
 .evenement-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
+	display: flex;
+	gap: 20px;
+	padding: 20px;
 }
 
 /* Partie gauche : Liste des événements */
 .evenement-left {
-    flex: 1;
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	flex: 1;
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .evenement-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }
 
 .evenement-card {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+	padding: 15px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	background-color: #fff;
+	cursor: pointer;
+	transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .evenement-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transform: scale(1.02);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .evenement-card.selected {
-    border: 2px solid #007bff;
-    background-color: #e9f5ff;
+	border: 2px solid #007bff;
+	background-color: #e9f5ff;
 }
 
 .evenement-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-bottom: 5px;
 }
 
 .evenement-desc {
-    font-size: 0.9rem;
-    color: #555;
+	font-size: 0.9rem;
+	color: #555;
 }
 
 /* Partie droite : Détails de l'événement */
 .evenement-right {
-    flex: 1;
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	flex: 1;
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 1rem;
 }
 
 .btn-success {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	background-color: #28a745;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .btn-success:hover {
-    background-color: #218838;
+	background-color: #218838;
+}
+
+/* Conteneur principal */
+.evenement-form-container {
+	max-width: 100vh;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre du formulaire */
+.form-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #333;
+	text-align: center;
+}
+
+/* Formulaire */
+.evenement-form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+/* Groupe de formulaire */
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+/* Champs de formulaire */
+.evenement-form input[type="text"],
+.evenement-form input[type="number"],
+.evenement-form input[type="date"],
+.evenement-form textarea {
+	align-self: center;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+
+/* Bouton de soumission */
+.btn-primary {
+	width: fit-content;
+	align-self: center;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+	background-color: #0056b3;
+}
+
+/* Aperçu de l'image */
+.image-preview {
+	position: relative;
+	width: 40vh;
+	height: 30vh;
+	border: 1px dashed #ddd;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e9ecef;
+}
+
+.image-preview img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+}
+
+/* Messages d'erreur */
+.error-messages {
+	color: red;
+	font-size: 0.9rem;
+	margin-top: 10px;
+}
+
+.error-messages ul {
+	list-style: none;
+	padding: 0;
 }
