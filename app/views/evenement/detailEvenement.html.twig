@@ -1,0 +1,53 @@
+{% extends '_template/base.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="assets/css/detailEvenement.css">
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <!-- Section principale de l'événement -->
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="section-title">{{ evenement.nomEvent }}</h2>
+            <div class="event-details">
+                <img src="assets/images/evenements/{{ evenement.imgEvent }}" alt="{{ evenement.nomEvent }}" class="event-image mb-3">
+                <p class="event-description">{{ evenement.descEvent }}</p>
+                <ul class="event-info">
+                    <li><strong>Date :</strong> {{ evenement.dateEvent|date('d/m/Y H:i') }}</li>
+                    <li><strong>Lieu :</strong> {{ evenement.lieuEvent }}</li>
+                    <li><strong>Prix :</strong> {{ evenement.prixEvent > 0 ? evenement.prixEvent ~ ' €' : 'Gratuit' }}</li>
+                </ul>
+                {% if evenement.roleAutoriseMin %}
+                    <p class="text-danger">Limité aux : {{ evenement.roleAutoriseMin|capitalize }}</p>
+                {% endif %}
+                <a href="#" class="btn btn-primary mt-3">Réserver</a>
+            </div>
+        </div>
+
+        <!-- Section des avis -->
+        <div class="col-md-4">
+            <h3 class="section-title">Votre avis</h3>
+            <form method="post" action="submitComment.php">
+                <textarea name="commentaire" class="form-control mb-3" rows="4" placeholder="Écrivez votre avis ici..."></textarea>
+                <button type="submit" class="btn btn-primary">Publier</button>
+            </form>
+            <hr>
+            <h3 class="section-title">Avis des participants</h3>
+            <div class="reviews">
+                {% for inscrit in inscrits %}
+                    <div class="review">
+                        <p><strong>{{ inscrit.note }}</strong> - <span class="text-muted">{{ avis.date|date('d/m/Y') }}</span></p>
+                        <p>{{ inscrit.commentaire }}</p>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="assets/js/detailEvenement.js"></script>
+{% endblock %}
