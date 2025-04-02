@@ -7,22 +7,27 @@
 {% block body %}
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
 	<div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
+		<div class="text-center mb-4">
+			<i class="fa fa-user-circle avatar-icon"></i>
+		</div>
 		<div class="d-flex justify-content-between align-items-center mb-4">
 			<button class="btn btn-danger">Supprimer le compte</button>
 			<button class="btn btn-primary">Devenir adhérant</button>
 		</div>
 		<div class="row">
 			<!-- Informations personnelles -->
-			<div class="col-md-6">
+			<div class="col-md-7">
 				<h5 class="fw-bold">Informations personnelles</h5>
+				</br>
 				<p><strong>Prénom : </strong> {{ utilisateur.prenom }}</p>
 				<p><strong>Nom : </strong> {{ utilisateur.nom }}</p>
 				<p><strong>Mail : </strong> {{ utilisateur.email }}</p>
 				<p><strong>N° étudiant : </strong> {{ utilisateur.netud }}</p>
 			</div>
 			<!-- Options -->
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<h5 class="fw-bold">Options</h5>
+				</br>
 				<label for="notificationSelect" class="form-label">Notifications</label>
 				<select id="notificationSelect" class="form-select">
 					<option value="aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
