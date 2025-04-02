@@ -37,6 +37,6 @@ class AuthService {
 	public function isAdmin(): bool {
 		if(session_status() == PHP_SESSION_NONE)
 			session_start();
-		return isset($_SESSION['utilisateur']) && $this->getUtilisateur()->getRole()->getNomRole() === 'admin';
+		return $this->isLoggedIn() && $this->getUtilisateur()->getRole()->getNomRole() === 'admin';
 	}
 }
