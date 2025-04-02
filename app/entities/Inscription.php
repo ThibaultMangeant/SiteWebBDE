@@ -1,5 +1,6 @@
 <?php
-
+require_once './app/repositories/EvenementRepository.php';
+require_once './app/repositories/UtilisateurRepository.php';
 class Inscription
 {
 	public function __construct(private Evenement $evenement, private Utilisateur $utilisateur, private int $note, private string $commentaire) {}
@@ -28,8 +29,8 @@ class Inscription
 	}
 	public function __unserialize(array $data): void
 	{
-		$this->evenement = unserialize($data['evenement']);
-		$this->utilisateur = unserialize($data['utilisateur']);
+		$this->evenement = (new EvenementRepository())->findById($data['evenement']['idEvent']);
+		$this->utilisateur = (new UtilisateurRepository())->findById($data['utilisateur']['idUtilisateur']);
 		
 		$this->note = $data['note'];
 		$this->commentaire = $data['commentaire'];

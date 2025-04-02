@@ -51,11 +51,7 @@ class Utilisateur
 		$this->email = $data['email'];
 		$this->mdp = $data['mdp'];
 		$this->typeNotification = $data['typeNotification'];
-		if (is_array($data['role'])) {
-			$this->role = new Role($data['role']['nomRole'], $data['role']['niveau']);
-		} else {
-			$this->role = unserialize($data['role']);
-		}
+		$this->role = (new RoleRepository())->findByNom($data['role']['nomRole']);
 		$this->demande = (bool)$data['demande'];
 	}
 	public function __toString(): string
