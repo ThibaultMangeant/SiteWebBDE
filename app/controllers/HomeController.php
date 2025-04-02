@@ -4,13 +4,21 @@ require_once './app/core/Controller.php';
 require_once './app/repositories/ProduitRepository.php';
 require_once './app/repositories/EvenementRepository.php';
 require_once './app/repositories/ActualiteRepository.php';
+require_once './app/services/AuthService.php';
 require_once './app/trait/FormTrait.php';
 
 class HomeController extends Controller
 {
 	use FormTrait;
 
-	private $isAdmin = true;
+	private $isAdmin;
+
+	public function __construct()
+	{
+		$service = new AuthService();
+		$this->isAdmin = $service->isAdmin();
+	}
+
 	public function index()
 	{
 		$evenementRepo = new EvenementRepository();
