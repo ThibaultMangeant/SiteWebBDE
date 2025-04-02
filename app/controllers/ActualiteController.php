@@ -50,7 +50,7 @@ class ActualiteController extends Controller
 				}
 
 				// Création de l'objet Actualite
-				$actualite = new Actualite(0, $data['titreActu'], $data['descActu']);
+				$actualite = new Actualite($data['idActu'], $data['titreActu'], $data['descActu']);
 
 				// Sauvegarde dans la base de données
 				$actualiteRepo = new ActualiteRepository();
@@ -76,7 +76,16 @@ class ActualiteController extends Controller
 
 	public function update()
 	{
-		$idActu = $this->getQueryParam('idActu');
+		if (isset($_POST['idActu']))
+		{
+			$idActu = $this->getPostParam('idActu');
+			// Vérifiez si $idActu existe dans votre base de données et continuez le traitement
+		}
+		else
+		{
+			// Gérer le cas où l'ID n'est pas envoyé
+			echo "L'ID de l'actualité est manquant.";
+		}
 
 		if (!$idActu)
 		{

@@ -9,6 +9,8 @@ require_once './app/trait/FormTrait.php';
 class HomeController extends Controller
 {
 	use FormTrait;
+
+	private $isAdmin = true;
 	public function index()
 	{
 		$evenementRepo = new EvenementRepository();
@@ -19,12 +21,12 @@ class HomeController extends Controller
 
 		$actualites = $actualiteRepo->findAll();
 
-		$this->view('index.html.twig', ["evenements" => $evenements, "actualites" => $actualites]);
+		$this->view('index.html.twig', ["evenements" => $evenements, "actualites" => $actualites,"isAdmin" => $this->isAdmin]);
 	}
 
 	public function vitrine()
 	{
-		$this->view('vitrine.html.twig',  []);
+		$this->view('vitrine.html.twig',  ["isAdmin" => $this->isAdmin]);
 	}
 
 	public function boutique()
@@ -33,7 +35,7 @@ class HomeController extends Controller
 
 		$produits = $produitRepo->findAll();
 
-		$this->view('boutique.html.twig', ['produits' => $produits]);
+		$this->view('boutique.html.twig', ['produits' => $produits, "isAdmin" => $this->isAdmin]);
 	}
 
 	public function evenement()
@@ -42,7 +44,7 @@ class HomeController extends Controller
 
 		$evenements = $evenementRepo->findAll();
 
-		$this->view('evenement.html.twig', ['evenements' => $evenements]);
+		$this->view('evenement.html.twig', ['evenements' => $evenements, "isAdmin" => $this->isAdmin]);
 	}
 
 	public function contact()

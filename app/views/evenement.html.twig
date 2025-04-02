@@ -59,8 +59,13 @@
 					</a>
 				{% endfor %}
 			</div>
-			<div id="gestionEvenement">
-			</div>
+			{% if (isAdmin) %}
+				<div id="gestionEvenement">
+					<a href="gestionEvenement.php" id="floatingGestionEvenementButton" class="text-decoration-none">
+						<i class="fa-solid fa-calendar-plus p-1"></i> Gérer les évènements
+					</a>
+				</div>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

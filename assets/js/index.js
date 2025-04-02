@@ -33,17 +33,4 @@ document.addEventListener("DOMContentLoaded", function ()
 			activateVisibleCards(container);
 		});
 	});
-
-	const divGestionActualites = document.getElementById("gestionActualite");
-
-	divGestionActualites.innerHTML = `<a href="gestionActualite.php" id="floatingGestionActualiteButton" class="text-decoration-none">
-			<i class="fa-solid fa-newspaper p-1"></i> Gérer le fil d'actualité
-		</a>`;
-
-	const redirectionGererActualites = document.createElement("a");
-	redirectionGererActualites.href = "gestionActualite.php";
-
-
-	redirectionGererActualites.appendChild(btnGererActualite);
-	divGestionActualites.appendChild(redirectionGererActualites);
 });

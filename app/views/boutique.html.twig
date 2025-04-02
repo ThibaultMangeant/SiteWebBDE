@@ -54,8 +54,11 @@
             </div>
             {% endfor %}
         </div>
-		<div id="gestionBoutique">
-		</div>
+		{% if (isAdmin) %}
+			<a href="gestionBoutique.php" id="floatingGestionBoutiqueButton" class="text-decoration-none">
+				<i class="fa-solid fa-store p-1"></i> Gérer la boutique
+			</a>
+		{% endif %}
     </div>
 </div>
 

@@ -36,17 +36,4 @@ document.addEventListener("DOMContentLoaded", function ()
 			activateVisibleCards(container);
 		});
 	});
-
-	const divGestionEvenements = document.getElementById("gestionEvenement");
-
-	divGestionEvenements.innerHTML = `<a href="gestionEvenement.php" id="floatingGestionEvenementButton" class="text-decoration-none">
-			<i class="fa-solid fa-calendar-plus p-1"></i> Gérer les évènements
-		</a>`;
-
-	const redirectionGererEvenements = document.createElement("a");
-	redirectionGererEvenements.href = "gestionEvenement.php";
-
-
-	redirectionGererEvenements.appendChild(btnGererEvenements);
-	divGestionEvenements.appendChild(redirectionGererEvenements);
 });

@@ -40,8 +40,11 @@
 					</a>
 				{% endfor %}
 		</div>
-		<div id="gestionActualite">
-		</div>
+		{% if (isAdmin) %}
+			<a href="gestionActualite.php" id="floatingGestionActualiteButton" class="text-decoration-none">
+				<i class="fa-solid fa-newspaper p-1"></i> Gérer le fil d'actualité
+			</a>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}

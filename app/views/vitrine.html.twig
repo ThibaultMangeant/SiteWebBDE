@@ -68,13 +68,10 @@
     </div>
 </div>
 
-<div class="text-end" id="gestionVitrine">
-    <a href="gestionActualite.php" id="floatingGestionVitrineButton" class="text-decoration-none">
-        <i class="fa-solid fa-book p-1"></i> Gérer la vitrine
-    </a>
-</div>
-{% endblock %}
+{% if (isAdmin) %}
+	<a href="gestionActualite.php" id="floatingGestionVitrineButton" class="text-decoration-none">
+		<i class="fa-solid fa-book p-1"></i> Gérer la vitrine
+	</a>
+{% endif %}
 
-{% block javascript %}
-<script src="assets/js/vitrine.js"></script>
 {% endblock %}
