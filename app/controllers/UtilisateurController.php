@@ -20,6 +20,22 @@ class UtilisateurController extends Controller {
 		$this->view('/utilisateur/index.html.twig',  ['utilisateurs' => $utilisateurs]);
 		
 	}
+
+	public function delete() {
+		$netud = $this->getQueryParam('numero_etudiant');
+		if ($netud === null) {
+			throw new Exception('Numero étudiant nécéssaire.');
+		}
+		$repository = new UtilisateurRepository();
+		$utilisateur = $repository->findById($netud);
+		if ($utilisateur === null) {
+			throw new Exception('Utilisateur non trouvé');
+		}
+		if (!$repository->delete($utilisateur)) {
+			throw new Exception('Erreur lors de la suppression d\'utilisateur.');
+		}
+		$this->redirectTo('index.php'); // Redirection après suppression
+	}
     public function create() {
         $data = $this->getAllPostParams(); // Récupération des données soumises
         $errors = [];
