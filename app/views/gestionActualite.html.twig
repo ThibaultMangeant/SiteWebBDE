@@ -24,13 +24,15 @@
     <div class="actualite-right">
         <h2 class="section-title">Titre :</h2>
         <div class="form-group">
-            <input type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité">
+            <input for="titreActu" type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité">
         </div>
         <h2 class="section-title">Description :</h2>
         <div class="form-group">
-            <textarea class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité"></textarea>
+            <textarea for="descActu" class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité"></textarea>
         </div>
-        <button class="btn btn-success">Enregistrer</button>
+		<a href="actualite_update.php">
+        	<button class="btn btn-success" type="submit">Enregistrer</button>
+		</a>
     </div>
 </div>
 {% endblock %}

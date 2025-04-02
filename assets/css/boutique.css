@@ -1,10 +1,34 @@
-/* Style pour le bouton panier */
-#floatingCartButton {
+/* Conteneur pour le bouton du panier */
+#cartButtonContainer {
+    position: relative;
+    text-align: right; /* Aligne le bouton à droite */
+    margin-top: 20px; /* Ajoute un espace en haut */
+    margin-right: 20px; /* Ajoute un espace à droite */
+}
+
+/* Style pour le bouton du panier */
+#cartButton {
+    background-color: #007bff; /* Bleu primaire */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Coins légèrement arrondis */
+    font-size: 1rem;
+    text-decoration: none; /* Supprime le soulignement */
+}
+
+#cartButton:hover {
+    background-color: #0056b3; /* Bleu plus foncé au survol */
+    color: white;
+}
+
+/* Style pour le bouton de gestion du fil d'actualité */
+#floatingGestionBoutiqueButton {
     position: fixed;
-    bottom: 10vh; /* Positionné à 20px au-dessus du bas de l'écran */
+    bottom: 10vh; /* Positionné à 10% au-dessus du bas de l'écran */
     left: 50%; /* Centré horizontalement */
     transform: translateX(-50%); /* Ajuste pour centrer parfaitement */
-    background-color: rgba(0, 123, 255, 0.8); /* Bleu avec transparence */
+    background-color: rgba(255, 0, 0, 0.8); /* Rouge avec transparence */
     color: white;
     border: none;
     border-radius: 30px; /* Bouton arrondi */
@@ -17,7 +41,7 @@
     text-align: center;
 }
 
-#floatingCartButton:hover {
-    background-color: rgba(0, 123, 255, 1); /* Bleu opaque au survol */
+#floatingGestionBoutiqueButton:hover {
+    background-color: rgba(255, 0, 0, 1); /* Rouge opaque au survol */
     transform: translateX(-50%) scale(1.05); /* Légère mise en avant au survol */
 }

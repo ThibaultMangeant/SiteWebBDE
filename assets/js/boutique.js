@@ -1,16 +1,11 @@
 const divGestionBoutique = document.getElementById("gestionBoutique");
 
+divGestionBoutique.innerHTML = `<a href="gestionBoutique.php" id="floatingGestionBoutiqueButton" class="text-decoration-none">
+			<i class="fa-solid fa-store p-1"></i> Gérer la boutique
+		</a>`;
+
 const redirectionGererBoutique = document.createElement("a");
 redirectionGererBoutique.href = "gestionBoutique.php";
-
-
-const btnGererBoutique = document.createElement("button");
-
-// Gestion du style du bouton
-btnGererBoutique.textContent = "Gerer la boutique";
-btnGererBoutique.classList.add("btn");
-btnGererBoutique.classList.add("btn-outline-secondary");
-
 
 redirectionGererBoutique.appendChild(btnGererBoutique);
 divGestionBoutique.appendChild(redirectionGererBoutique);
