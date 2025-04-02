@@ -25,7 +25,7 @@
 				<h2 class="section-title">Événement le plus récent :</h2>
 				{% if evenements|length > 0 %}
 					{% set evenement_recent = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent)|first %}
-					<a href="detailEvenement.php?id={{ evenement_recent.idEvent }}" class="text-decoration-none">
+					<a href="detailEvenement.php?idEvent={{ evenement_recent.idEvent }}" class="text-decoration-none">
 						<div class="card mb-4 shadow-sm" style="border: none;">
 							<img src="assets/images/evenements/{{ evenement_recent.imgEvent }}" class="card-img-top" alt="{{ evenement_recent.nomEvent }}" style="cursor: pointer;">
 							<div class="card-body">
@@ -46,7 +46,7 @@
 				<h2 class="section-title">Autres évènements :</h2>
 				{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) | slice(1) %}
 				{% for evenement in trie_evenements %}
-					<a href="detailEvenement.php?id={{ evenement.idEvent }}" class="text-decoration-none">
+					<a href="detailEvenement.php?idEvent={{ evenement.idEvent }}" class="text-decoration-none">
 						<div class="event-card mb-4 shadow-sm" style="border: none;">
 							<!-- Image de l'événement -->
 							<img src="assets/images/evenements/{{ evenement.imgevent }}"

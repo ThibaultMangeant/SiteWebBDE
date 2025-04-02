@@ -27,7 +27,7 @@
 			<h2 class="section-title">Évènements à venir :</h2>
 			{% set trie_evenements = evenements|sort((a, b) => b.dateEvent <=> a.dateEvent) %}
 				{% for evenement in trie_evenements %}
-					<a href="detailEvenement.php?id={{ evenement.idEvent }}" class="text-decoration-none">
+					<a href="detailEvenement.php?idEvent={{ evenement.idEvent }}" class="text-decoration-none">
 						<div class="event-card mb-4 shadow-sm" style="border: none;">
 							<!-- Image de l'événement -->
 							<img src="assets/images/evenements/{{ evenement.imgevent }}"
