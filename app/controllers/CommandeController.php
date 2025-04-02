@@ -3,6 +3,7 @@
 require_once './app/core/Controller.php';
 require_once './app/repositories/CommandeRepository.php';
 require_once './app/entities/Commande.php';
+require_once './app/services/AuthService.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
 
@@ -47,15 +48,15 @@ class UtilisateurController extends Controller {
 				}
 
 				// Création de l'objet evenement
-				$evenement = new Commande(null, $data['qa'],(new ProduitRepository())->findById($data['idProduit']),(new UtilisateurRepository())->findById($data['idUtilisateur']));
+				$commande = new Commande(0, (int)$data['qa'],(new ProduitRepository())->findById($data['idProduit']),(new UtilisateurRepository())->findById($data['idUtilisateur']));
 
 				// Sauvegarde dans la base de données
-				$evenementRepo = new EvenementRepository();
-				if (!$evenementRepo->create($evenement)) {
-					throw new Exception(message: 'Erreur lors de l\'enregistrement de l\'évènement.');
+				$commandeRepo = new CommandeRepository();
+				if (!$commandeRepo->create($commande)) {
+					throw new Exception(message: 'Erreur lors de l\'enregistrement de la commande.');
 				}
 
-				$this->redirectTo('gestionEvenement.php'); // Redirection après création
+				$this->redirectTo('boutique.php'); // Redirection après création
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
