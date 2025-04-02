@@ -4,7 +4,7 @@
 	+ permettre aux administrateurs la suppression d'avis
 	+ finaliser l'HTML de la partie admin des évènement
 	+ permettre la modification de la page vitrine
-	
+
 - Version autre
 	+ faire page compte
 		* afficher differement le compte en fonction du rôle
