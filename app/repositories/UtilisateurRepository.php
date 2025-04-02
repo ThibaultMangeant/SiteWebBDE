@@ -84,7 +84,7 @@ class UtilisateurRepository
 			$row['mdp'],
 			$row['typenotification'],
 			(new RoleRepository())->findByNom($row['role']),
-			(bool)$row['demande'],
+			(bool)$row['demande']
 		);
 	}
 

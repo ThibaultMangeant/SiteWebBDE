@@ -39,8 +39,7 @@ class UtilisateurController extends Controller {
 
 		$repository = new UtilisateurRepository();
 		$utilisateur = $repository->findById($netud);
-		if ($utilisateur === null || true) {
-			var_dump($action);
+		if ($utilisateur === null ) {
 			throw new Exception('Utilisateur non trouvé');
 		}
 
