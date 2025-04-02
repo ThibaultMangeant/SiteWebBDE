@@ -47,7 +47,7 @@ class UtilisateurController extends Controller {
 					throw new Exception(implode(', ', $errors));
 				}
 
-				// Création de l'objet evenement
+				// Création de l'objet commande
 				$commande = new Commande(0, (int)$data['qa'],(new ProduitRepository())->findById($data['idProduit']),(new UtilisateurRepository())->findById($data['idUtilisateur']));
 
 				// Sauvegarde dans la base de données
@@ -101,9 +101,9 @@ class UtilisateurController extends Controller {
 				}
 
 				// Création de l'objet evenement
-				$commande.setQa((int)$data['qa']);
-				$commande.setProduit((new ProduitRepository())->findById($data['idProduit']));
-				$commande.setUtilisateur((new UtilisateurRepository())->findById($data['idUtilisateur']));
+				$commande->setQa((int)$data['qa']);
+				$commande->setProduit((new ProduitRepository())->findById($data['idProduit']));
+				$commande->setUtilisateur((new UtilisateurRepository())->findById($data['idUtilisateur']));
 
 				// Sauvegarde dans la base de données
 				$commandeRepo = new CommandeRepository();
@@ -116,5 +116,20 @@ class UtilisateurController extends Controller {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
 		}
+	}
+
+	public function delete() {
+		$idCommande = $this->getQueryParam('idCommande');
+		
+		if ($idCommande === null) {
+			throw new Exception('Commande non trouvée');
+		}
+
+		$commandeRepo = new CommandeRepository();
+		if (!$commandeRepo->deleteById($idCommande)) {
+			throw new Exception('Erreur lors de la suppression de la commande');
+		}
+
+		$this->redirectTo('panier.php'); // Redirection après suppression		
 	}
 }
