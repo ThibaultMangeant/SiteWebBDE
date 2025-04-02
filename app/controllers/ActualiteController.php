@@ -7,7 +7,7 @@ require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
 
-class EvenementController extends Controller
+class ActualiteController extends Controller
 {
 
 	use FormTrait;
@@ -36,17 +36,13 @@ class EvenementController extends Controller
 				$errors = [];
 
 				// Validation des données
-				if (empty($data['nomEvent']))
+				if (empty($data['titreActu']))
 				{
-					$errors[] = 'Le nom de l\'actualité est requis.';
+					$errors[] = 'Le titre de l\'actualité est requis.';
 				}
-				if (empty($data['descEvent']))
+				if (empty($data['descActu']))
 				{
 					$errors[] = 'La description de l\'actualité est requis.';
-				}
-				if (empty($data['dateEvent']))
-				{
-					$errors[] = 'La date de l\'actualité est requis.';
 				}
 				
 				if (!empty($errors))
