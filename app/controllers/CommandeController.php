@@ -30,7 +30,7 @@ class CommandeController extends Controller {
 		$errors = [];
 
 		$data = array_merge([
-			'idProduit' => $this->getQueryParam('idProduit')
+			'idProd' => $this->getQueryParam('idProduit')
 		], $this->getAllPostParams()); //Get submitted data
 
 		$data['idUtilisateur'] = (new AuthService())->getUtilisateur()->getNetud();
