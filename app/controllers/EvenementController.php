@@ -73,7 +73,7 @@ class EvenementController extends Controller {
 					throw new Exception(message: 'Erreur lors de l\'enregistrement de l\'évènement.');
 				}
 
-				$this->redirectTo('evenements.php'); // Redirection après création
+				$this->redirectTo('gestionEvenement.php'); // Redirection après création
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
@@ -165,7 +165,7 @@ class EvenementController extends Controller {
 					throw new Exception('Erreur lors de la mise à jour du évènement.');
 				}
 
-				$this->redirectTo('evenements.php'); // Redirection après mise à jour
+				$this->redirectTo('gestionEvenement.php'); // Redirection après mise à jour
 			} catch (Exception $e) {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
@@ -191,7 +191,7 @@ class EvenementController extends Controller {
 				throw new Exception('Erreur lors de la suppression du évènement.');
 			}
 
-			$this->redirectTo('evenements.php'); // Redirection après suppression
+			$this->redirectTo('gestionEvenement.php'); // Redirection après suppression
 		} catch (Exception $e) {
 			$this->view('/evenement/gestionEvenement.html.twig', [
 				'errors' => [$e->getMessage()]

@@ -1,64 +1,38 @@
 {% extends '_template/base.html.twig' %}
 
 {% block css %}
-<link rel="stylesheet" href="assets/css/produit.css">
+<link rel="stylesheet" href="assets/css/formEvenement.css">
 {% endblock %}
 
 {% block body %}
-<div class="product-form-container">
-	<h2 class="form-title">Page Création Produit ADMIN</h2>
-	<form method="POST" enctype="multipart/form-data" class="product-form">
-		<!-- Image du produit -->
-		<div class="form-group image-preview">
-			<label for="imgProd" class="image-label">
-				<img src="assets/images/boutique/{{ data.imgProd|default('placeholder.png') }}" alt="Aperçu de l'image" id="imagePreview">
-			</label>
-			<input type="file" id="imgProd" name="imgProd" accept="image/*" onchange="previewImage(event)" hidden>
-		</div>
-
-		<!-- Intitulé du produit -->
-		<div class="form-group">
-			<label for="nomProd">Nom du produit :</label>
-			<input type="text" id="nomProd" name="nomProd" value="{{ data.nomProd|default('') }}" required>
-		</div>
-
-		<!-- Identifiant du produit -->
-		<div class="form-group">
-			<label for="idProd">Identifiant du produit :</label>
-			<input type="text" id="idProd" name="idProd" value="{{ data.idProd|default('') }}" readonly>
-		</div>
-
-		<!-- Stock initial -->
-		<div class="form-group">
-			<label for="qs">Quantité en stock :</label>
-			<input type="number" id="qs" name="qs" value="{{ data.qs|default('') }}" required>
-		</div>
-
-		<!-- Prix du produit -->
-		<div class="form-group">
-			<label for="prixProd">Prix :</label>
-			<input type="number" step="0.01" id="prixProd" name="prixProd" value="{{ data.prixProd|default('') }}" required>
-		</div>
-
-		<!-- Bouton de mise à jour -->
-		<div class="form-group">
-			<button type="submit" class="btn btn-primary">{{data.bouton}}</button>
-		</div>
-
-		<!-- Affichage des erreurs -->
-		{% if errors is not empty %}
-			<div class="error-messages">
-				<ul>
-					{% for error in errors %}
-						<li>{{ error }}</li>
-					{% endfor %}
-				</ul>
-			</div>
-		{% endif %}
-	</form>
+<div class="evenement-container">
+    <!-- Partie droite : Détails de l'événement -->
+    <div class="evenement-left evenement-right">
+        <h2 class="section-title">Nom :</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ selectedEvenement.nomEvent }}" placeholder="Nom de l'événement">
+        </div>
+        <h2 class="section-title">Description :</h2>
+        <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Description de l'événement">{{ selectedEvenement.descEvent }}</textarea>
+        </div>
+        <h2 class="section-title">Date :</h2>
+        <div class="form-group">
+            <input type="date" class="form-control" value="{{ selectedEvenement.dateEvent|date('Y-m-d') }}">
+        </div>
+        <h2 class="section-title">Lieu :</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ selectedEvenement.lieuEvent }}" placeholder="Lieu de l'événement">
+        </div>
+        <h2 class="section-title">Prix :</h2>
+        <div class="form-group">
+            <input type="number" step="0.01" class="form-control" value="{{ selectedEvenement.prixEvent }}" placeholder="Prix de l'événement">
+        </div>
+        <h2 class="section-title">Image :</h2>
+        <div class="form-group">
+            <input type="file" class="form-control">
+        </div>
+        <button class="btn btn-success">Enregistrer</button>
+    </div>
 </div>
-{% endblock %}
-
-{% block javascript %}
-<script src="assets/js/produit.js"></script>
 {% endblock %}

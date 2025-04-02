@@ -1,38 +1,58 @@
 {% extends '_template/base.html.twig' %}
 
-{% block css %}
-<link rel="stylesheet" href="assets/css/gestionEvenement.css">
-{% endblock %}
-
 {% block body %}
-<div class="evenement-container">
-    <!-- Partie droite : Détails de l'événement -->
-    <div class="evenement-left evenement-right">
-        <h2 class="section-title">Nom :</h2>
-        <div class="form-group">
-            <input type="text" class="form-control" value="{{ selectedEvenement.nomEvent }}" placeholder="Nom de l'événement">
-        </div>
-        <h2 class="section-title">Description :</h2>
-        <div class="form-group">
-            <textarea class="form-control" rows="5" placeholder="Description de l'événement">{{ selectedEvenement.descEvent }}</textarea>
-        </div>
-        <h2 class="section-title">Date :</h2>
-        <div class="form-group">
-            <input type="date" class="form-control" value="{{ selectedEvenement.dateEvent|date('Y-m-d') }}">
-        </div>
-        <h2 class="section-title">Lieu :</h2>
-        <div class="form-group">
-            <input type="text" class="form-control" value="{{ selectedEvenement.lieuEvent }}" placeholder="Lieu de l'événement">
-        </div>
-        <h2 class="section-title">Prix :</h2>
-        <div class="form-group">
-            <input type="number" step="0.01" class="form-control" value="{{ selectedEvenement.prixEvent }}" placeholder="Prix de l'événement">
-        </div>
-        <h2 class="section-title">Image :</h2>
-        <div class="form-group">
-            <input type="file" class="form-control">
-        </div>
-        <button class="btn btn-success">Enregistrer</button>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Liste des Événements</h2>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for error in errors %}
+                <tr>
+                    <td colspan="8" class="text-danger text-center">
+                        {{ error }}
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for evenement in evenements|sort((a, b) => a.idEvent <=> b.idEvent) %}
+                <tr>
+                    <td>{{ evenement.idEvent }}</td>
+                    <td>{{ evenement.nomEvent }}</td>
+                    <td>{{ evenement.descEvent|slice(0, 50) ~ '...' }}</td>
+                    <td>{{ evenement.dateEvent|date('d/m/Y') }}</td>
+                    <td>{{ evenement.lieuEvent }}</td>
+                    <td>{{ evenement.prixEvent | number_format(2, ',', ' ') }} €</td>
+                    <td>
+                        <img src="assets/images/evenements/{{ evenement.imgEvent }}" alt="{{ evenement.nomEvent }}" style="width: 50px; height: 50px; object-fit: cover;">
+                    </td>
+                    <td>
+                        <a href="evenement_update.php?idEvent={{ evenement.idEvent }}" class="btn btn-warning btn-sm">
+                            <i class="fa fa-edit"></i> Modifier
+                        </a>
+                        <a href="evenement_delete.php?idEvent={{ evenement.idEvent }}" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i> Supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="d-flex flex-row-reverse">
+        <a href="evenement_create.php" class="btn btn-success">
+            <i class="fa fa-plus"></i> Ajouter un événement
+        </a>
     </div>
 </div>
+
 {% endblock %}
