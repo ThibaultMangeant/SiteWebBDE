@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<div class="container mt-5 col-md-6 mx-auto">
+<div class="container mt-5 col-md-12 mx-auto">
     <h2 class="text-center mb-4">Liste des Utilisateurs</h2>
 	{% for error in errors %}
 		<tr>
@@ -35,10 +35,10 @@
 					<td>{{ utilisateur.typeNotification }}</td>
 					<td>{{ utilisateur.role.nomRole }}</td>
 					<td>
-						<a href="produit_promouvoir.php?netud={{ utilisateur.netud }}" class="btn btn-warning btn-sm">
+						<a href="utilisateur_taiter.php?utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=promouvoir" class="btn btn-warning btn-sm">
 							<i class="fa fa-edit"></i> Promouvoir
 						</a>
-						<a href="produit_retrograder.php?netud={{ utilisateur.netud }}" class="btn btn-danger btn-sm">
+						<a href="utilisateur_taiter.php?utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=retrograder" class="btn btn-danger btn-sm">
 							<i class="fa fa-trash"></i> Rétrograder
 						</a>
 					</td>
@@ -48,7 +48,7 @@
     </table>
 </div>
 
-<div class="container mt-5 col-md-6 mx-auto">
+<div class="container mt-5 col-md-12 mx-auto">
 	<h2 class="text-center mb-4">Liste des Demandes d'adhésions</h2>
 	<table class="table table-striped table-hover ">
         <thead>

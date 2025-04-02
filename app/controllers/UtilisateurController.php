@@ -30,6 +30,9 @@ class UtilisateurController extends Controller {
 	}
 
 	public function traiter(){
+		$repository = new UtilisateurRepository();
+		$utilisateurs = $repository->findAll();
+
 		$netud = $this->getQueryParam('netud');
 		$action = $this->getQueryParam('action');
 
@@ -43,17 +46,20 @@ class UtilisateurController extends Controller {
 			throw new Exception('Utilisateur non trouvé');
 		}
 
-		if ($action === 'accepter') {
+		if ($action === 'accepter' || $action === 'promouvoir') {
 			$utilisateur->setDemande(false);
 			$repository->upgradeRole($utilisateur);
-			$this->redirectTo('index.php');
 		} elseif ($action === 'refuser') {
 			$utilisateur->setDemande(false);
-			$repository->update($utilisateur);
-			$this->redirectTo('index.php');
+			$repository->update($utilisateur);			
+		} elseif ($action === 'retrograder') {
+			$utilisateur->setDemande(false);
+			$repository->degradeRole($utilisateur);
 		} else {
 			throw new Exception('Action non valide.');
 		}
+
+		$this->view('/utilisateur/gestionUtilisateurs.html.twig',  ['utilisateurs' => $utilisateurs]);
 	}
 
 	public function delete() {

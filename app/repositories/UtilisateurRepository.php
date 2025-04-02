@@ -57,7 +57,16 @@ class UtilisateurRepository
 
 	public function upgradeRole(Utilisateur $utilisateur): bool
 	{
-		$stmt = $this->pdo->prepare('UPDATE Utilisateur SET role = (SELECT nomRole FROM Role WHERE niveau > :niveau limit 1) WHERE netud = :netud');
+		$stmt = $this->pdo->prepare('UPDATE Utilisateur SET role = (SELECT nomRole FROM Role WHERE niveau > :niveau limit 1) WHERE netud = :netud AND EXISTS(SELECT nomRole FROM Role WHERE niveau > :niveau limit 1)');
+		return $stmt->execute([
+			'netud' => $utilisateur->getNetud(),
+			'niveau' => $utilisateur->getRole()->getNiveau(),
+		]);
+	}
+
+	public function degradeRole(Utilisateur $utilisateur): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Utilisateur SET role = (SELECT nomRole FROM Role WHERE niveau < :niveau limit 1) WHERE netud = :netud AND EXISTS(SELECT nomRole FROM Role WHERE niveau < :niveau limit 1)');
 		return $stmt->execute([
 			'netud' => $utilisateur->getNetud(),
 			'niveau' => $utilisateur->getRole()->getNiveau(),
