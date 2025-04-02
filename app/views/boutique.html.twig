@@ -8,6 +8,13 @@
 <div class="d-flex justify-content-start" id="gestionBoutique">
 </div>
 
+<!-- Bouton pour le panier en haut à droite -->
+<div class="text-end" id="cartButtonContainer">
+    <a href="panier.php" id="cartButton" class="btn btn-primary">
+        <i class="fa-solid fa-cart-shopping"></i> Voir mon panier
+    </a>
+</div>
+
 <!-- Contenu principal de la boutique -->
 <div class="most-popular">
     <div class="container">
@@ -47,13 +54,10 @@
             </div>
             {% endfor %}
         </div>
+		<div id="gestionBoutique">
+		</div>
     </div>
 </div>
-
-<!-- Bouton flottant pour le panier -->
-<a href="panier.php" id="floatingCartButton" class="text-decoration-none">
-    <i class="fa-solid fa-cart-shopping"></i> Voir mon panier
-</a>
 
 {% endblock %}
 
