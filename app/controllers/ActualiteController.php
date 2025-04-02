@@ -19,7 +19,7 @@ class ActualiteController extends Controller
 		$actualites = $repository->findAll();
 
 		// Ensuite, affiche la vue
-		$this->view('/actualites.html.twig',  ['actualites' => $actualites]);
+		$this->view('/gestionActualite.html.twig',  ['actualites' => $actualites]);
 	}
 
 
@@ -60,7 +60,7 @@ class ActualiteController extends Controller
 					throw new Exception(message: 'Erreur lors de l\'enregistrement de l\'actualité.');
 				}
 
-				$this->redirectTo('actualites.php'); // Redirection après création
+				$this->redirectTo('actualite.php'); // Redirection après création
 			}
 			catch (Exception $e)
 			{
@@ -127,7 +127,7 @@ class ActualiteController extends Controller
 					throw new Exception('Erreur lors de la mise à jour de l\'actualité.');
 				}
 
-				$this->redirectTo('actualites.php'); // Redirection après mise à jour
+				$this->redirectTo('actualite.php'); // Redirection après mise à jour
 			}
 			catch (Exception $e)
 			{
@@ -158,7 +158,7 @@ class ActualiteController extends Controller
 				throw new Exception('Erreur lors de la suppression de l\'actualité.');
 			}
 
-			$this->redirectTo('actualites.php'); // Redirection après suppression
+			$this->redirectTo('actualite.php'); // Redirection après suppression
 		}
 		catch (Exception $e)
 		{
