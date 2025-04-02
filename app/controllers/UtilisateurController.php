@@ -43,13 +43,15 @@ class UtilisateurController extends Controller {
 			throw new Exception('Utilisateur non trouvé');
 		}
 
-		$utilisateur->setDemande(false);
+		
 		if ($action == 'accepter' || $action == 'promouvoir') {
 			$repository->upgradeRole($utilisateur);
 		} elseif ($action == 'retrograder') {
 			$repository->degradeRole($utilisateur);
 		}
 
+		$utilisateur = $repository->findById($netud); // Récupération de l'utilisateur après mise à jour
+		$utilisateur->setDemande(false);
 		$repository->update($utilisateur); // Mise à jour de l'utilisateur
 	
 
