@@ -1,3 +1,4 @@
+const inputId = document.getElementById("inputId");
 const inputTitre = document.getElementById("inputTitre");
 const inputDesc  = document.getElementById("inputDesc");
 
@@ -13,11 +14,14 @@ actualiteCard.forEach(card =>
 			cardPrec.classList.remove("selected");
 
 		card.classList.add("selected");
+
+		const id = card.querySelector(".actualite-id").textContent;
+		inputId.value = id;
+
 		const titre = card.querySelector(".actualite-title").textContent;
+		inputTitre.value = titre;
 
 		const description = card.querySelector(".actualite-desc").textContent;
-
-		inputTitre.value = titre;
 		inputDesc.value  = description;
 
 		cardPrec = card;
