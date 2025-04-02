@@ -1,7 +1,7 @@
 <?php
 
 require_once './app/core/Controller.php';
-require_once './app/repositories/EvenementRepository.php';
+require_once './app/repositories/ActualiteRepository.php';
 require_once './app/entities/Evenement.php';
 require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
@@ -19,7 +19,7 @@ class ActualiteController extends Controller
 		$actualites = $repository->findAll();
 
 		// Ensuite, affiche la vue
-		$this->view('/actualite/gestionActualite.html.twig',  ['actualites' => $actualites]);
+		$this->view('/actualites.html.twig',  ['actualites' => $actualites]);
 	}
 
 
