@@ -17,7 +17,10 @@ class AuthService {
     {
         if(session_status() == PHP_SESSION_NONE)
             session_start();
-        $_SESSION['utilisateur'] = serialize($utilisateur);
+		if ($utilisateur != null)
+		{
+        	$_SESSION['utilisateur'] = serialize($utilisateur);
+		}
     }
 
     public function logout(): void
