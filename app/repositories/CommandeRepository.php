@@ -3,7 +3,9 @@ require_once './app/core/Repository.php';
 require_once './app/entities/Commande.php';
 
 require_once './app/repositories/ProduitRepository.php';
-require_once './app/entities/UtilisateurRepository.php';
+require_once './app/entities/Produit.php';
+require_once './app/repositories/UtilisateurRepository.php';
+require_once './app/entities/Utilisateur.php';
 
 class CommandeRepository
 {

@@ -1,4 +1,5 @@
 <?php
+require_once './app/repositories/RoleRepository.php';
 
 class Evenement 
 {
@@ -34,7 +35,7 @@ class Evenement
 			'dateEvent' => $this->dateEvent,
 			'lieuEvent' => $this->lieuEvent,
 			'prixEvent' => $this->prixEvent,
-			'roleAutorise' => $this->roleAutorise->__serialize(),
+			'roleAutorise' => serialize($this->roleAutorise),
 			'imgEvent' => $this->imgEvent
 		];
 	}
@@ -46,8 +47,7 @@ class Evenement
 		$this->dateEvent = $data['dateEvent'];
 		$this->lieuEvent = $data['lieuEvent'];
 		$this->prixEvent = $data['prixEvent'];
-		$this->roleAutorise = (new Role("", 0));
-		$this->roleAutorise->__unserialize($data['roleAutorise']);
+		$this->roleAutorise = unserialize((new RoleRepository())->findByNom($data['roleAutorise']));
 		$this->imgEvent = $data['imgEvent'];
 	}
 	public function __toString(): string

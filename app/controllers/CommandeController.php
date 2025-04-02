@@ -2,7 +2,10 @@
 
 require_once './app/core/Controller.php';
 require_once './app/repositories/CommandeRepository.php';
+require_once './app/repositories/ProduitRepository.php';
+require_once './app/repositories/UtilisateurRepository.php';
 require_once './app/entities/Commande.php';
+require_once './app/entities/Utilisateur.php';
 require_once './app/services/AuthService.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';

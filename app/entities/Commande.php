@@ -22,18 +22,16 @@ class Commande
 		return [
 			'numCommande' => $this->numCommande,
 			'qa' => $this->qa,
-			'produit' => $this->produit->__serialize(),
-			'utilisateur' => $this->utilisateur->__serialize()
+			'produit' => serialize($this->produit),
+			'utilisateur' => serialize($this->utilisateur)
 		];
 	}
 	public function __unserialize(array $data): void
 	{
 		$this->numCommande = $data['numCommande'];
 		$this->qa = $data['qa'];
-		$this->produit = new Produit(0,"",0,0.0,"");
-		$this->produit->__unserialize($data['produit']);
-		$this->utilisateur = new Utilisateur(0,"","","","","","", new Role("",0), true);
-		$this->utilisateur->__unserialize($data['utilisateur']);
+		$this->produit = unserialize($data['produit']);
+		$this->utilisateur = unserialize($data['utilisateur']);
 	}
 	public function __toString(): string
 	{

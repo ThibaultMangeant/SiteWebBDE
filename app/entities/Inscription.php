@@ -20,18 +20,17 @@ class Inscription
 	public function __serialize(): array
 	{
 		return [
-			'evenement' => $this->evenement->__serialize(),
-			'utilisateur' => $this->utilisateur->__serialize(),
+			'evenement' => serialize($this->evenement),
+			'utilisateur' => serialize($this->utilisateur),
 			'note' => $this->note,
 			'commentaire' => $this->commentaire
 		];
 	}
 	public function __unserialize(array $data): void
 	{
-		$this->evenement = new Evenement(0,"","",new DateTime(),"",0.0,new Role("",0),"");
-		$this->evenement->__unserialize($data['evenement']);
-		$this->utilisateur = new Utilisateur(0,"","","","","","", new Role("",0), true);
-		$this->utilisateur->__unserialize($data['utilisateur']);
+		$this->evenement = unserialize($data['evenement']);
+		$this->utilisateur = unserialize($data['utilisateur']);
+		
 		$this->note = $data['note'];
 		$this->commentaire = $data['commentaire'];
 	}

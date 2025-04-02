@@ -1,5 +1,5 @@
 <?php
-
+require_once './app/repositories/RoleRepository.php';
 class Utilisateur 
 {
 	public function __construct(private int $netud, private string $nom, private string $prenom, private string $tel, private string $email, private string $mdp, private string $typeNotification, private Role $role, private bool $demande) {}
@@ -37,8 +37,8 @@ class Utilisateur
 			'email' => $this->email,
 			'mdp' => $this->mdp,
 			'typeNotification' => $this->typeNotification,
-			'role' => $this->role->__serialize(),
-			'demande' => $this->demande
+			'role' => serialize($this->role),
+			'demande' => $this->demande ? "true" : "false"
 		];
 	}
 
@@ -51,9 +51,12 @@ class Utilisateur
 		$this->email = $data['email'];
 		$this->mdp = $data['mdp'];
 		$this->typeNotification = $data['typeNotification'];
-		$this->role = (new Role("", 0));
-		$this->role->__unserialize($data['roleAutorise']);
-		$this->demande = $data['demande'];
+		if (is_array($data['role'])) {
+			$this->role = new Role($data['role']['nomRole'], $data['role']['niveau']);
+		} else {
+			$this->role = unserialize($data['role']);
+		}
+		$this->demande = (bool)$data['demande'];
 	}
 	public function __toString(): string
 	{
