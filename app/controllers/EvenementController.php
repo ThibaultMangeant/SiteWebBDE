@@ -7,21 +7,24 @@ require_once './app/entities/Role.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
 
-class EvenementController extends Controller {
+class EvenementController extends Controller
+{
 
 	use FormTrait;
 	use AuthTrait;
 
-	public function index() {
+	public function index()
+	{
 		$repository = new EvenementRepository();
 		$evenements = $repository->findAll();
 
-        // Ensuite, affiche la vue
-        $this->view('/evenement/gestionEvenement.html.twig',  ['evenements' => $evenements]);
-    }
+		// Ensuite, affiche la vue
+		$this->view('/evenement/gestionEvenement.html.twig', ['evenements' => $evenements]);
+	}
 
 
-	public function create() {
+	public function create()
+	{
 		$errors = [];
 
 		$data = $this->getAllPostParams();
@@ -39,6 +42,12 @@ class EvenementController extends Controller {
 				}
 				if (empty($data['dateEvent'])) {
 					$errors[] = 'La date de l\'évènement est requis.';
+				}
+				if (empty($data['lieuEvent'])) {
+					$errors[] = 'Le lieu de l\'évènement est requis.';
+				}
+				if (empty($data['prixEvent']) || !is_numeric($data['prixEvent'])) {
+					$errors[] = 'Le prix de l\'évènement est requis.';
 				}
 				if (!empty($_FILES['imgEvent']['name'])) {
 					$targetDir = "assets/images/evenements/";
@@ -59,13 +68,13 @@ class EvenementController extends Controller {
 					}
 				}
 				$data['imgEvent'] = $imgEvent;
-				
+
 				if (!empty($errors)) {
 					throw new Exception(implode(', ', $errors));
 				}
 
 				// Création de l'objet evenement
-				$evenement = new Evenement(0, $data['nomEvent'], $data['descEvent'], new DateTime($data['dateEvent']), $data['lieuEvent'], (float)$data['prixEvent'], (new RoleRepository())->findByNom($data['roleAutoriseMin']), $data['imgEvent']);
+				$evenement = new Evenement(0, $data['nomEvent'], $data['descEvent'], new DateTime($data['dateEvent']), $data['lieuEvent'], (float) $data['prixEvent'], (new RoleRepository())->findByNom($data['roleAutoriseMin']), $data['imgEvent']);
 
 				// Sauvegarde dans la base de données
 				$evenementRepo = new EvenementRepository();
@@ -80,7 +89,7 @@ class EvenementController extends Controller {
 		}
 
 		// Affichage du formulaire
-		$this->view('/evenement/form.html.twig',  [
+		$this->view('/evenement/form.html.twig', [
 			'data' => $data,
 			'errors' => $errors,
 		]);
@@ -98,15 +107,15 @@ class EvenementController extends Controller {
 		}
 
 		$data = array_merge([
-			'idEvent'=>$evenement->getIdEvent(),
-			'nomEvent'=>$evenement->getNomEvent(),
-			'descEvent'=>$evenement->getDescEvent(),
-			'dateEvent'=>$evenement->getDateEvent()->format('Y-m-d H:i:s'),
-			'lieuEvent'=>$evenement->getLieuEvent(),
-			'prixEvent'=>$evenement->getPrixEvent(),
-			'roleAutoriseMin'=>$evenement->getRoleAutorise()->getNomRole(),
-			'imgEvent'=>$evenement->getImgEvent()
-		],$this->getAllPostParams()); //Get submitted data
+			'idEvent' => $evenement->getIdEvent(),
+			'nomEvent' => $evenement->getNomEvent(),
+			'descEvent' => $evenement->getDescEvent(),
+			'dateEvent' => $evenement->getDateEvent()->format('Y-m-d H:i:s'),
+			'lieuEvent' => $evenement->getLieuEvent(),
+			'prixEvent' => $evenement->getPrixEvent(),
+			'roleAutoriseMin' => $evenement->getRoleAutorise()->getNomRole(),
+			'imgEvent' => $evenement->getImgEvent()
+		], $this->getAllPostParams()); //Get submitted data
 		$errors = [];
 
 
@@ -114,17 +123,22 @@ class EvenementController extends Controller {
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			try {
 				// Validation des données
-				if (empty($data['nomProd'])) {
-					$errors[] = 'Le nom du produit est requis.';
+				if (empty($data['nomEvent'])) {
+					$errors[] = 'Le nom de l\'évènement est requis.';
 				}
-				if (empty($data['qs']) || !is_numeric($data['qs'])) {
-					$errors[] = 'La quantité en stock doit être valide.';
+				if (empty($data['descEvent'])) {
+					$errors[] = 'La description de l\'évènement est requis.';
 				}
-				if (empty($data['prixProd']) || !is_numeric($data['prixProd'])) {
-					$errors[] = 'Le prix du produit doit être valide.';
+				if (empty($data['dateEvent'])) {
+					$errors[] = 'La date de l\'évènement est requis.';
+				}
+				if (empty($data['lieuEvent'])) {
+					$errors[] = 'Le lieu de l\'évènement est requis.';
+				}
+				if (empty($data['prixEvent']) || !is_numeric($data['prixEvent'])) {
+					$errors[] = 'Le prix de l\'évènement est requis.';
 				}
 
-				// Gestion de l'image
 				$imgEvent = $evenement->getImgEvent(); // Image existante par défaut
 				if (!empty($_FILES['imgEvent']['name'])) {
 					$targetDir = "assets/images/evenements/";
@@ -145,17 +159,18 @@ class EvenementController extends Controller {
 					}
 				}
 
+
 				if (!empty($errors)) {
 					throw new Exception(implode(', ', $errors));
 				}
 
 				// Mise à jour de l'objet evenement
 				$evenement->setIdEvent($idEvent);
-				$evenement->setNomEvent($data['nomProd']);
-				$evenement->setDescEvent($data['descProd']);
-				$evenement->setDateEvent(new DateTime($data['dateProd']));
-				$evenement->setLieuEvent($data['lieuProd']);
-				$evenement->setPrixEvent((float)$data['prixProd']);
+				$evenement->setNomEvent($data['nomEvent']);
+				$evenement->setDescEvent($data['descEvent']);
+				$evenement->setDateEvent(new DateTime($data['dateEvent']));
+				$evenement->setLieuEvent($data['lieuEvent']);
+				$evenement->setPrixEvent((float) $data['prixEvent']);
 				$evenement->setRoleAutorise((new RoleRepository())->findByNom($data['roleAutoriseMin']));
 				$evenement->setImgEvent($imgEvent);
 
@@ -177,17 +192,17 @@ class EvenementController extends Controller {
 
 	public function delete()
 	{
-		$idProd = $this->getQueryParam('idProd');
+		$idEvent = $this->getQueryParam('idEvent');
 
-		$repository = new ProduitRepository();
-		$produit = $repository->findById($idProd);
+		$repository = new EvenementRepository();
+		$evenement = $repository->findById($idEvent);
 
-		if ($produit === null) {
+		if ($evenement === null) {
 			throw new Exception('Évènement non trouvé');
 		}
 
 		try {
-			if (!$repository->deleteById($produit->getIdProd())) {
+			if (!$repository->deleteById($evenement->getIdEvent())) {
 				throw new Exception('Erreur lors de la suppression du évènement.');
 			}
 
