@@ -86,4 +86,16 @@ class CommandeRepository
 			'idUtilisateur' => $commande->getUtilisateur()->getNetud()
 		]);
 	}
+
+	public function update(Commande $commande): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Commande	SET qa = :qa, idProd = :idProduit, netud = :idUtilisateur WHERE numCommande = :numCommande');
+
+		return $stmt->execute([
+			'numCommande' => $commande->getNumCommande(),
+			'qa' => $commande->getQa(),
+			'idProduit' => $commande->getProduit()->getIdProd(),
+			'idUtilisateur' => $commande->getUtilisateur()->getNetud()
+		]);
+	}
 }

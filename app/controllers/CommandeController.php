@@ -61,11 +61,60 @@ class UtilisateurController extends Controller {
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
 		}
+	}
 
-		// Affichage du formulaire
-		$this->view('/evenement/form.html.twig', [
-			'data' => $data,
-			'errors' => $errors,
-		]);
+	public function update() {
+		$idCommande = $this->getQueryParam('idCommande');
+		$repository = new CommandeRepository();
+		$commande = $repository->findById($idCommande);
+
+		if ($commande === null) {
+			throw new Exception('Commande non trouvée');
+		}
+
+		$errors = [];
+
+		$data = array_merge([
+			'idCommande' => $commande->getNumCommande(),
+			'qa' => $commande->getQa(),
+			'idProduit' => $commande->getProduit()->getIdProd(),
+			'idUtilisateur' => $commande->getUtilisateur()->getNetud()
+		], $this->getAllPostParams()); //Get submitted data
+
+		if (!empty($data)) {
+			try {
+				$errors = [];
+
+				// Validation des données
+				if (empty($data['qa']) || !is_numeric($data['qa'])) {
+					$errors[] = 'La quantité d\'achat doit être valide.';
+				}
+				if (empty($data['idProduit'])) {
+					$errors[] = 'La description de l\'évènement est requis.';
+				}
+				if (empty($data['idUtilisateur'])) {
+					$errors[] = 'La date de l\'évènement est requis.';
+				}
+
+				if (!empty($errors)) {
+					throw new Exception(implode(', ', $errors));
+				}
+
+				// Création de l'objet evenement
+				$commande.setQa((int)$data['qa']);
+				$commande.setProduit((new ProduitRepository())->findById($data['idProduit']));
+				$commande.setUtilisateur((new UtilisateurRepository())->findById($data['idUtilisateur']));
+
+				// Sauvegarde dans la base de données
+				$commandeRepo = new CommandeRepository();
+				if (!$commandeRepo->update($commande)) {
+					throw new Exception(message: 'Erreur lors de l\'enregistrement de la commande.');
+				}
+
+				$this->redirectTo('boutique.php'); // Redirection après création
+			} catch (Exception $e) {
+				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
+			}
+		}
 	}
 }
