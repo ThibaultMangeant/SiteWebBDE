@@ -135,7 +135,7 @@ class ActualiteController extends Controller
 		}
 
 		// Affichage du formulaire de mise à jour
-		$this->view('/actualite/form.html.twig', ['data' => $data, 'errors' => $errors, 'idActu' => $idActu]);
+		$this->view('/gestionActualite.html.twig', ['data' => $data, 'errors' => $errors, 'idActu' => $idActu]);
 	}
 
 	public function delete()

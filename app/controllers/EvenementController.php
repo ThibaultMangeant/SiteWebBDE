@@ -22,6 +22,18 @@ class EvenementController extends Controller
 		$this->view('/evenement/gestionEvenement.html.twig', ['evenements' => $evenements]);
 	}
 
+	public function detail()
+	{
+		$idEvent = $this->getQueryParam('idEvent');
+		$repository = new EvenementRepository();
+
+		$evenement = $repository->findById($idEvent);
+		if ($evenement === null) {
+			throw new Exception('Évènement non trouvé');
+		}
+
+		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent]);
+	}
 
 	public function create()
 	{

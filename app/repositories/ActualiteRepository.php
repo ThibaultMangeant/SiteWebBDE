@@ -20,7 +20,7 @@ class ActualiteRepository
 
 	public function findById($idActualite): ?Actualite
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Actualite WHERE idActualite = :idActualite');
+		$stmt = $this->pdo->prepare('SELECT * FROM Actualite WHERE idActu = :idActualite');
 		$stmt->bindParam(':idActualite', $idActualite);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ class ActualiteRepository
 
 	public function deleteById($idActualite): bool
 	{
-		$stmt = $this->pdo->prepare('DELETE FROM Actualite WHERE idActualite = :idActualite');
+		$stmt = $this->pdo->prepare('DELETE FROM Actualite WHERE idActu = :idActualite');
 		$stmt->bindParam(':idActualite', $idActualite);
 		return $stmt->execute();
 	}
