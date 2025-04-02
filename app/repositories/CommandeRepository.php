@@ -23,6 +23,15 @@ class CommandeRepository
         return $commandes;
     }
 
+	public function getTotal($idUtilisateur): float
+	{
+		$stmt = $this->pdo->prepare('SELECT SUM(qa * prixProd) AS total FROM Commande JOIN Produit ON Commande.idProd = Produit.idProd WHERE netud = :idUtilisateur');
+		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		return (float)$row['total'];
+	}
+
 	public function findById($numCommande): ?Commande
 	{
 		$stmt = $this->pdo->prepare('SELECT * FROM Commande WHERE numCommande = :numCommande');

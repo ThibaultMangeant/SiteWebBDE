@@ -23,7 +23,7 @@ class CommandeController extends Controller {
 			$commandes = $repository->findByUtilisateur($utilisateur->getNetud());
 		}
 		// Ensuite, affiche la vue
-		$this->view('panier.html.twig',  ['commandes' => $commandes]);	
+		$this->view('panier.html.twig',  ['commandes' => $commandes,"Total" => $repository->getTotal($utilisateur->getNetud())]);	
 	}
 
 	public function create() {
