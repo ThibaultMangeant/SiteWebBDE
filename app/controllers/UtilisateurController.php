@@ -2,6 +2,7 @@
 
 require_once './app/core/Controller.php';
 require_once './app/repositories/UtilisateurRepository.php';
+require_once './app/repositories/RoleRepository.php';
 require_once './app/services/AuthService.php';
 require_once './app/trait/FormTrait.php';
 require_once './app/trait/AuthTrait.php';
@@ -11,15 +12,6 @@ class UtilisateurController extends Controller {
     use FormTrait;
     use AuthTrait;
 
-
-	public function index() {
-		$repository = new UtilisateurRepository();
-		$utilisateurs = $repository->findAll();
-
-		// Ensuite, affiche la vue
-		$this->view('/utilisateur/index.html.twig',  ['utilisateurs' => $utilisateurs]);
-		
-	}
 
 	public function gestion()
 	{
@@ -59,7 +51,7 @@ class UtilisateurController extends Controller {
 		$repository->update($utilisateur); // Mise à jour de l'utilisateur
 	
 
-		$this->redirectTo('utilisateurs_gestion.php'); // Redirection après traitement
+		$this->redirectTo('gestionUtilisateur.php'); // Redirection après traitement
 	}
 	public function traiterCompte(){
 		$utilisateur = (new AuthService())->getUtilisateur();

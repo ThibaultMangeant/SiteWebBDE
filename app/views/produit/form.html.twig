@@ -18,22 +18,28 @@
 			<input type="file" id="imgProd" name="imgProd" accept="image/*" onchange="previewImage(event)" hidden>
 		</div>
 
+		<!-- Identifiant du produit -->
+		<div class="form-group d-none">
+			<label for="idProd">Identifiant du produit :</label>
+			<input type="text" id="idProd" name="idProd" value="{{ data.idProd|default('') }}" readonly>
+		</div>
+
 		<!-- Intitulé du produit -->
 		<div class="form-group">
 			<label for="nomProd">Nom du produit :</label>
 			<input type="text" id="nomProd" name="nomProd" value="{{ data.nomProd|default('') }}" required>
 		</div>
 
-		<!-- Identifiant du produit -->
-		<div class="form-group">
-			<label for="idProd">Identifiant du produit :</label>
-			<input type="text" id="idProd" name="idProd" value="{{ data.idProd|default('') }}" readonly>
-		</div>
-
 		<!-- Prix du produit -->
 		<div class="form-group">
 			<label for="prixProd">Prix :</label>
-			<input type="number" step="0.01" id="prixProd" name="prixProd" value="{{ data.prixProd|default('') }}" required>
+			<input type="number" step="0.50" id="prixProd" name="prixProd" value="{{ data.prixProd|default('0') }}" min="0" required>
+		</div>
+
+		<!-- Identifiant du produit -->
+		<div class="form-group">
+			<label for="idProd">Quantité en stock :</label>
+			<input type="number" id="qs" name="qs" value="{{ data.qs|default('0') }}" min="0" required>
 		</div>
 
 		<!-- Bouton de mise à jour -->

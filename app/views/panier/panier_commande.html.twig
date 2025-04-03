@@ -8,7 +8,7 @@
 	{% if isLoggedIn %}
 		<div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
 			<div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
-				<h2 class="text-center mb-4">Récapitulatif de commande</h2>
+				<h2 class="text-center mb-4">Merci pour votre commande !</h2>
 				<div class="user-info mb-3">
 					<div class="d-flex justify-content-between">
 						<span><strong>Nom</strong></span>
@@ -45,7 +45,7 @@
 					<div class="d-flex justify-content-between">
 						<span>Total :</span>
 						<span class="cart-total">
-							{{ Total | number_format(2, ',', ' ') }} €
+							{{ Total | number_format(2, ',', ' ') }} € {% if isDiscount %} (avec réduction de 25% ) {% endif %}
 						</span>
 					</div>
 					<a href="boutique.php" style="text-decoration: none; color: inherit;">

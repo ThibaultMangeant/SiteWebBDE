@@ -17,12 +17,21 @@ class InscriptionController extends Controller
 	{
 		$errors = [];
 
+		$idEvent = $this->getQueryParam('idEvent');
+
 		$data = array_merge([
-			'idEvent'   => $this->getQueryParam('idEvent'),
+			'idEvent'   => $idEvent,
 			'prixEvent' => $this->getQueryParam('prixEvent')
 		], $this->getAllPostParams()); //Get submitted data
 
 		$utilisateur = (new AuthService())->getUtilisateur();
+
+		if ($utilisateur == null)
+		{
+			$this->redirectTo('detailEvenement.php?idEvent='.$idEvent); // Redirection si non connecté
+			throw new Exception('Utilisateur non connecté');
+		}
+
 		$data['idUtilisateur'] = $utilisateur->getNetud();
 
 		if (!empty($data))
@@ -50,7 +59,6 @@ class InscriptionController extends Controller
 					throw new Exception(implode(', ', $errors));
 				}
 
-				$idEvent       = $this->getQueryParam('idEvent'      );
 				$idUtilisateur = $data['idUtilisateur'];
 
 				// Création de l'objet commande
@@ -77,6 +85,7 @@ class InscriptionController extends Controller
 			}
 			catch (Exception $e)
 			{
+				$this->redirectTo('detailEvenement.php?idEvent='.$idEvent); // Redirection si formulaire incorrect
 				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
 		}
@@ -105,6 +114,13 @@ class InscriptionController extends Controller
 		], $this->getAllPostParams()); //Get submitted data
 
 		$utilisateur = (new AuthService())->getUtilisateur();
+
+		if ($utilisateur == null)
+		{
+			$this->redirectTo('detailEvenement.php?idEvent='.$idEvent); // Redirection si non connecté
+			throw new Exception('Utilisateur non connecté');
+		}
+
 		$data['idUtilisateur'] = $utilisateur->getNetud();
 
 		if (!empty($data))
@@ -148,6 +164,7 @@ class InscriptionController extends Controller
 
 				if (!empty($errors))
 				{
+					$this->redirectTo('detailEvenement.php?idEvent='.$idEvent); // Redirection si formulaire incorrect
 					throw new Exception(implode(', ', $errors));
 				}
 

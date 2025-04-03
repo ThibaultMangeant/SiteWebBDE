@@ -2,6 +2,7 @@
 
 require_once './app/core/Controller.php';
 require_once './app/repositories/EvenementRepository.php';
+require_once './app/repositories/RoleRepository.php';
 require_once './app/repositories/InscriptionRepository.php';
 require_once './app/entities/Evenement.php';
 require_once './app/entities/Role.php';
@@ -33,7 +34,7 @@ class EvenementController extends Controller
 		$eventRepository = new EvenementRepository();
 
 		$inscritRepository = new InscriptionRepository();
-		$inscriptions = $inscritRepository->findByEvenement($idEvent);
+		$inscriptions = $inscritRepository->findByEvenementWithStars($idEvent);
 
 		$evenement = $eventRepository->findById($idEvent);
 		if ($evenement === null) {
@@ -68,6 +69,9 @@ class EvenementController extends Controller
 				}
 				if (empty($data['prixEvent']) || !is_numeric($data['prixEvent'])) {
 					$errors[] = 'Le prix de l\'évènement est requis.';
+				}
+				if (empty($data['roleAutoriseMin'])) {
+					$errors[] = 'Le rôle autorisé est requis.';
 				}
 				if (!empty($_FILES['imgEvent']['name'])) {
 					$targetDir = "assets/images/evenements/";
@@ -158,7 +162,10 @@ class EvenementController extends Controller
 				if (empty($data['prixEvent']) || !is_numeric($data['prixEvent'])) {
 					$errors[] = 'Le prix de l\'évènement est requis.';
 				}
-
+				if (empty($data['roleAutoriseMin'])) {
+					$errors[] = 'Le rôle autorisé est requis.';
+				}
+				
 				$imgEvent = $evenement->getImgEvent(); // Image existante par défaut
 				if (!empty($_FILES['imgEvent']['name'])) {
 					$targetDir = "assets/images/evenements/";

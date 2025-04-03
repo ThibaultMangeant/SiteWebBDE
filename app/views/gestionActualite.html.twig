@@ -10,7 +10,11 @@
 			<!-- Partie gauche : Fil d'actualités -->
 			<div class="actualite-left">
 				<h2 class="section-title">Fil d'actualités :</h2>
-				<button class="btn btn-primary mb-3">+ Ajouter une actu</button>
+				<a href="actualite_create.php" style="text-decoration: none; color: inherit;">
+					<button class="btn btn-primary mb-3">+ Ajouter une actu</button>
+				</a>
+				<button id="btnSuppr" class="btn btn-danger mb-3">- Supprimer une actu</button>
+				
 				<div class="actualite-list">
 					{% for actualite in actualites %}
 						<div class="actualite-card">
@@ -25,17 +29,16 @@
 			<!-- Partie droite : Détails de l'actualité -->
 			<div class="actualite-right">
 				<form action="actualite_update.php" method="POST">
-					<h2 class="section-title">ID :</h2>
 					<div class="form-group">
-						<input name="idActu" type="text" class="form-control" id="inputId" placeholder="ID de l'actualité" readonly>
+						<input name="idActu" type="text" class="form-control" id="inputId" placeholder="ID de l'actualité" value="{{ actualites|first.idActu }}" readonly>
 					</div>
 					<h2 class="section-title">Titre :</h2>
 					<div class="form-group">
-						<input name="titreActu" type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité">
+						<input name="titreActu" type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité" value="{{ actualites|first.titreActu }}">
 					</div>
 					<h2 class="section-title">Description :</h2>
 					<div class="form-group">
-						<textarea name="descActu" class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité"></textarea>
+						<textarea name="descActu" class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité">{{ actualites|first.descActu }}</textarea>
 					</div>
 					<button class="btn btn-success" type="submit">Enregistrer</button>
 				</form>
