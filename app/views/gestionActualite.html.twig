@@ -5,52 +5,49 @@
 {% endblock %}
 
 {% block body %}
-	{% if (isAdmin) %}
-		<div class="actualite-container">
-			<!-- Partie gauche : Fil d'actualités -->
-			<div class="actualite-left">
-				<h2 class="section-title">Fil d'actualités :</h2>
-				<a href="actualite_create.php" style="text-decoration: none; color: inherit;">
-					<button class="btn btn-primary mb-3">+ Ajouter une actu</button>
-				</a>
-				<button id="btnSuppr" class="btn btn-danger mb-3">- Supprimer une actu</button>
-				
-				<div class="actualite-list">
-					{% for actualite in actualites %}
-						<div class="actualite-card">
-							<p class="actualite-id d-none">{{ actualite.idActu }}</p>
-							<h5 class="actualite-title">{{ actualite.titreActu }}</h5>
-							<p class="actualite-desc">{{ actualite.descActu }}</p>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
+    {% if (isAdmin) %}
+        <div class="actualite-container">
+            <!-- Partie gauche : Fil d'actualités -->
+            <div class="actualite-left">
+                <h2 class="section-title">Fil d'actualités :</h2>
+                <div class="actualite-content">
+                    <div class="actualite-list">
+                        {% for actualite in actualites %}
+                            <div class="actualite-card">
+                                <p class="actualite-id d-none">{{ actualite.idActu }}</p>
+                                <h5 class="actualite-title">{{ actualite.titreActu }}</h5>
+                                <p class="actualite-desc">{{ actualite.descActu }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="buttons-container">
+                        <button id="btnSuppr" class="btn btn-danger">Supprimer</button>
+                        <a href="actualite_create.php" class="btn btn-primary">Ajouter</a>
+                    </div>
+                </div>
+            </div>
 
-			<!-- Partie droite : Détails de l'actualité -->
-			<div class="actualite-right">
-				<form action="actualite_update.php" method="POST">
-					<div class="form-group">
-						<input name="idActu" type="text" class="form-control" id="inputId" placeholder="ID de l'actualité" value="{{ actualites|first.idActu }}" readonly>
-					</div>
-					<h2 class="section-title">Titre :</h2>
-					<div class="form-group">
-						<input name="titreActu" type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité" value="{{ actualites|first.titreActu }}">
-					</div>
-					<h2 class="section-title">Description :</h2>
-					<div class="form-group">
-						<textarea name="descActu" class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité">{{ actualites|first.descActu }}</textarea>
-					</div>
-					<button class="btn btn-success" type="submit">Enregistrer</button>
-				</form>
-			</div>
-		</div>
-	{% else %}
-		<h1>Erreur 404</h1>
-		<h2>Not found</h2>
-		<p>La page que vous essayer d'accéder n'existe pas</p>
-	{% endif %}
-{% endblock %}
-
-{% block javascript %}
-	<script src="assets/js/actualite.js"></script>
+            <!-- Partie droite : Détails de l'actualité -->
+            <div class="actualite-right">
+                <form action="actualite_update.php" method="POST">
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input name="idActu" type="text" class="form-control d-none" id="inputId" placeholder="ID de l'actualité" value="{{ actualites|first.idActu }}" readonly>
+                        </div>
+                        <h2 class="section-title">Titre :</h2>
+                        <div class="form-group">
+                            <input name="titreActu" type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité" value="{{ actualites|first.titreActu }}">
+                        </div>
+                        <h2 class="section-title">Description :</h2>
+                        <div class="form-group">
+                            <textarea name="descActu" class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité">{{ actualites|first.descActu }}</textarea>
+                        </div>
+                        <div class="btn-container-center">
+                            <button class="btn btn-success" type="submit">Enregistrer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
