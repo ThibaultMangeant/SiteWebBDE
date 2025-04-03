@@ -94,4 +94,13 @@ class InscriptionRepository
 			':commentaire' => $inscription->getCommentaire()
 		]);
 	}
+
+	public function update(int $note, string $commentaire): bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Inscrit SET note = :note, commentaire = :commentaire');
+		return $stmt->execute([
+			':note' => $note,
+			':commentaire' => $commentaire
+		]);
+	}
 }

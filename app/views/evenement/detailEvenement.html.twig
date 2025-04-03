@@ -20,14 +20,14 @@
             </div>
             <!-- Bouton Réserver centré -->
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-primary rounded-pill">Réserver</a>
+                <a href="inscription_create.php" class="btn btn-primary rounded-pill">Réserver</a>
             </div>
         </div>
 
         <!-- Section des avis -->
         <div class="col-md-4">
             <h3 class="section-title">Votre avis</h3>
-            <form method="post" action="submitComment.php" class="text-center">
+            <form method="post" action="inscription_update.php" class="text-center">
                 <textarea name="commentaire" class="form-control mb-3" rows="4" placeholder="Écrivez votre avis ici..."></textarea>
                 <button type="submit" class="btn btn-primary px-5 mx-auto d-block rounded-pill">Publier</button>
             </form>
@@ -36,7 +36,7 @@
             <div class="reviews">
                 {% for inscrit in inscrits %}
                     <div class="review">
-                        <p><strong>{{ inscrit.utilisateur.nom }} {{ inscrit.utilisateur.prenom }}</strong></p>
+                        <p><strong>{{ inscrit.utilisateur.prenom }} {{ inscrit.utilisateur.nom }}</strong></p>
                         <p>Note : {{ inscrit.note }}</p>
                         <p>{{ inscrit.commentaire }}</p>
                         <hr>
