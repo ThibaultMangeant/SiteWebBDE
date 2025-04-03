@@ -23,14 +23,24 @@
 			{% for inscrit in inscrits %}
 				{% set idUtilisateurs = idUtilisateurs|merge([inscrit.utilisateur.netud]) %}
 			{% endfor %}
+			{% if utilisateur.netud in idUtilisateurs %}
             <div class="text-center mt-4">
 				<div class="text-center mt-4">
-    				<button type="button" class="btn btn-primary rounded-pill"  onclick="window.location.href='inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}'"
-						{% if utilisateur.netud in idUtilisateurs %}disabled{% endif %}>
+    				<button type="button" class="btn btn-secondary rounded-pill"  onclick="window.location.href='inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}'"
+						disabled>
+        				Réservé
+    				</button>
+				</div>
+            </div>
+			{% else %}
+			<div class="text-center mt-4">
+				<div class="text-center mt-4">
+    				<button type="button" class="btn btn-primary rounded-pill"  onclick="window.location.href='inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}'">
         				Réserver
     				</button>
 				</div>
             </div>
+			{% endif %}
         </div>
 
         <!-- Section des avis -->
