@@ -47,7 +47,6 @@
 
 .evenement-desc {
 	font-size: 0.9rem;
-	color: #555;
 }
 
 /* Partie droite : Détails de l'événement */
@@ -73,7 +72,6 @@
 
 .btn-success {
 	background-color: #28a745;
-	color: #fff;
 	border: none;
 	padding: 10px 20px;
 	border-radius: 5px;
@@ -91,9 +89,10 @@
 	max-width: 100vh;
 	margin: 0 auto;
 	padding: 20px;
-	background-color: #f8f9fa;
+	background-color: var(--form-background);
 	border-radius: 10px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px;
+	text-align: center;
 }
 
 /* Titre du formulaire */
@@ -101,7 +100,6 @@
 	font-size: 1.5rem;
 	font-weight: bold;
 	margin-bottom: 20px;
-	color: #333;
 	text-align: center;
 }
 
@@ -130,6 +128,8 @@
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	font-size: 1rem;
+	color: var(--form-text-color);
+	background-color: var(--form-input-bg);
 }
 
 /* Bouton de soumission */
@@ -137,7 +137,6 @@
 	width: fit-content;
 	align-self: center;
 	background-color: #007bff;
-	color: white;
 	border: none;
 	padding: 10px 20px;
 	border-radius: 5px;
@@ -155,13 +154,13 @@
 	position: relative;
 	width: 40vh;
 	height: 30vh;
-	border: 1px dashed #ddd;
+	border: 1px dashed;
 	border-radius: 10px;
 	overflow: hidden;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #e9ecef;
+    align-items: center; /* Centre verticalement le contenu */
+    justify-content: center; /* Centre horizontalement le contenu */
+    margin: 0 auto; /* Centre la div horizontalement dans son conteneur parent */
 }
 
 .image-preview img {
