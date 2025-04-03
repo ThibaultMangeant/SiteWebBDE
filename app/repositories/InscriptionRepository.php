@@ -66,7 +66,7 @@ class InscriptionRepository
 
 	public function moyenneAvis($idEvenement)
 	{
-		$stmt = $this->pdo->prepare('SELECT AVG(note) FROM Inscrit WHERE idEvent = :idEvenement AND note BETWEEN 1 AND 5');
+		$stmt = $this->pdo->prepare('SELECT ROUND(AVG(note), 0) FROM Inscrit WHERE idEvent = :idEvenement AND note BETWEEN 1 AND 5');
 		$stmt->bindParam(':idEvenement', $idEvenement);
 		return $stmt->execute();
 	}
