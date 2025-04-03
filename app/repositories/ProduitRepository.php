@@ -13,7 +13,7 @@ class ProduitRepository
 
 	public function findAll(): array 
 	{
-		$stmt = $this->pdo->query('SELECT * FROM Produit');
+		$stmt = $this->pdo->query('SELECT * FROM Produit ORDER BY idprod');
 		$produits = [];
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$produits[] = $this->createProduitFromRow($row);

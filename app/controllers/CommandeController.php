@@ -2,6 +2,7 @@
 
 require_once './app/core/Controller.php';
 require_once './app/repositories/CommandeRepository.php';
+require_once './app/repositories/RoleRepository.php';
 require_once './app/repositories/ProduitRepository.php';
 require_once './app/repositories/UtilisateurRepository.php';
 require_once './app/entities/Commande.php';
@@ -183,12 +184,24 @@ class CommandeController extends Controller {
 		$utilisateur = $service->getUtilisateur();
 		$isLoggedIn = $service->isLoggedIn();
 
+		$isDiscounted = $utilisateur->getRole()->getNiveau() >= (new RoleRepository())->findByNom("adherant")->getNiveau();
+
 		$commandes = $repository->findByUtilisateur($utilisateur->getNetud());
 		$total = $repository->getTotal($utilisateur->getNetud());
+		if ($isDiscounted){
+			$total = $total - ($total * 0.25);
+		}
+		
 		if ($utilisateur != null)
 		{
 			if (count($commandes) > 0) {
 				foreach ($commandes as $commande) {
+					$produit = $commande->getProduit();
+
+					$produit->setQs($produit->getQs() - $commande->getQa());
+					$produitRepository = new ProduitRepository();
+					$produitRepository->update($produit);
+
 					$repository->deleteById($commande->getNumCommande());
 				}
 			}
@@ -196,6 +209,6 @@ class CommandeController extends Controller {
 			throw new Exception('Erreur lors de la commande');
 		}
 
-		$this->view('panier/panier_commande.html.twig',  ['utilisateur' => $utilisateur, 'commandes' => $commandes,'Total' => $total,'isLoggedIn' => $isLoggedIn]);
+		$this->view('panier/panier_commande.html.twig',  ['utilisateur' => $utilisateur, 'commandes' => $commandes,'Total' => $total,'isLoggedIn' => $isLoggedIn, 'isDiscount' => $isDiscounted  ]);
 	}
 }

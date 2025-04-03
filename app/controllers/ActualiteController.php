@@ -28,54 +28,22 @@ class ActualiteController extends Controller
 
 	public function create()
 	{
-		$errors = [];
+		$repository = new ActualiteRepository();
+		
+		$service = new AuthService();
+		$isAdmin = $service->isAdmin();
 
-		$data = $this->getAllPostParams();
+		$actualite = new Actualite(0, "VIDE", "VIDE");
 
-		if (!empty($data))
+		// Sauvegarde dans la base de données
+		if (!$repository->create($actualite))
 		{
-			try
-			{
-				$errors = [];
-
-				// Validation des données
-				if (empty($data['titreActu']))
-				{
-					$errors[] = 'Le titre de l\'actualité est requis.';
-				}
-				if (empty($data['descActu']))
-				{
-					$errors[] = 'La description de l\'actualité est requis.';
-				}
-				
-				if (!empty($errors))
-				{
-					throw new Exception(implode(', ', $errors));
-				}
-
-				// Création de l'objet Actualite
-				$actualite = new Actualite($data['idActu'], $data['titreActu'], $data['descActu']);
-
-				// Sauvegarde dans la base de données
-				$actualiteRepo = new ActualiteRepository();
-				if (!$actualiteRepo->create($actualite))
-				{
-					throw new Exception(message: 'Erreur lors de l\'enregistrement de l\'actualité.');
-				}
-
-				$this->redirectTo('/gestionActualite.php'); // Redirection après création
-			}
-			catch (Exception $e)
-			{
-				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
-			}
+			throw new Exception(message: 'Erreur lors de l\'enregistrement de l\'actualité.');
 		}
 
+		$actualites = $repository->findAll();
 		// Affichage du formulaire
-		$this->view('/gestionActualite.html.twig',  [
-			'data' => $data,
-			'errors' => $errors,
-		]);
+		$this->view('/gestionActualite.html.twig',  ['actualites' => $actualites, 'isAdmin' => $isAdmin]);
 	}
 
 	public function update()

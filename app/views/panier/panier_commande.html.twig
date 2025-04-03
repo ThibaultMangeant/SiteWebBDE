@@ -45,7 +45,7 @@
 					<div class="d-flex justify-content-between">
 						<span>Total :</span>
 						<span class="cart-total">
-							{{ Total | number_format(2, ',', ' ') }} €
+							{{ Total | number_format(2, ',', ' ') }} € {% if isDiscount %} (avec réduction de 25% ) {% endif %}
 						</span>
 					</div>
 					<a href="boutique.php" style="text-decoration: none; color: inherit;">
