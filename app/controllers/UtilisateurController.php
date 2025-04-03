@@ -74,7 +74,7 @@ class UtilisateurController extends Controller {
 		if ($action == 'supprimer') {
 			$repository->deleteById($utilisateur->getNetud());
 			(new AuthService())->logout();
-			$this->redirectTo('index.php'); 
+			$this->redirectTo('login.php'); 
 
 		} elseif ($action == 'adhesion') {
 			$utilisateur->setDemande(true);
@@ -91,7 +91,7 @@ class UtilisateurController extends Controller {
 
 		} elseif ($action == 'déconnexion') {
 			(new AuthService())->logout();
-			$this->redirectTo('index.php'); // Redirection après déconnexion
+			$this->redirectTo('login.php'); // Redirection après déconnexion
 		}
 
 		$this->redirectTo('compte.php'); // Redirection après traitement
