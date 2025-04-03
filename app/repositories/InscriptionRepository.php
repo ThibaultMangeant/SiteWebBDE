@@ -76,31 +76,42 @@ class InscriptionRepository
 
 	private function createInscriptionFromRow(array $row): Inscription
 	{
+		$commentaire = $row['commentaire'];
+		if ($commentaire === null)
+			$commentaire = "";
+
 		return new Inscription(
 			(new EvenementRepository())->findById($row['idevent']),
 			(new UtilisateurRepository())->findById($row['netud']),
 			$row['note'],
-			$row['commentaire']
+			$commentaire
 		);
 	}
 
-	public function create(Inscription $inscription): void
+	public function create(Inscription $inscription): bool
 	{
+
+		$commentaire = $inscription->getCommentaire();
+		if ($commentaire === "")
+			$commentaire = null;
+
 		$stmt = $this->pdo->prepare('INSERT INTO Inscrit (idEvent, netud, note, commentaire) VALUES (:idevent, :netud, :note, :commentaire)');
-		$stmt->execute([
+		return $stmt->execute([
 			':idevent' => $inscription->getEvenement()->getIdEvent(),
 			':netud' => $inscription->getUtilisateur()->getNetud(),
 			':note' => $inscription->getNote(),
-			':commentaire' => $inscription->getCommentaire()
+			':commentaire' => $commentaire
 		]);
 	}
 
-	public function update(int $note, string $commentaire): bool
+	public function update(Inscription $inscription): bool
 	{
-		$stmt = $this->pdo->prepare('UPDATE Inscrit SET note = :note, commentaire = :commentaire');
+		$stmt = $this->pdo->prepare('UPDATE Inscrit SET note = :note, commentaire = :commentaire WHERE idEvent = :idEvent AND netud=:netud');
 		return $stmt->execute([
-			':note' => $note,
-			':commentaire' => $commentaire
+			':idEvent'     => $inscription->getEvenement()->getIdEvent(),
+			':netud'       => $inscription->getUtilisateur()->getNetud(),
+			':note'        => $inscription->getNote(),
+			':commentaire' => $inscription->getCommentaire()
 		]);
 	}
 }
