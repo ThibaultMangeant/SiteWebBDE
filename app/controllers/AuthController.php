@@ -57,10 +57,12 @@ class AuthController extends Controller {
 
 		// Récupérer les informations de l'utilisateur connecté
 		$utilisateur = $authService->getUtilisateur();
+		$isAdmin = $authService->isAdmin();
 
 		// Passer les données de l'utilisateur à la vue compte.html.twig
 		$this->view('utilisateur/compte.html.twig', [
-			'utilisateur' => $utilisateur
+			'utilisateur' => $utilisateur,
+			'isAdmin' => $isAdmin
 		]);
 	}
 }
