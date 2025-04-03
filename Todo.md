@@ -1,6 +1,5 @@
 # Todo
 - Version admin
-	+ permettre à l'admin de modifier la page d'accueil (actualités) (en cours, Julien)
 	+ permettre aux administrateurs la suppression d'avis
 	+ finaliser l'HTML de la partie admin des évènement
 	+ permettre la modification de la page vitrine (presque fini thaos)

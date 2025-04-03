@@ -30,15 +30,15 @@
 			<div class="actualite-right">
 				<form action="actualite_update.php" method="POST">
 					<div class="form-group">
-						<input name="idActu" type="text" class="form-control" id="inputId" placeholder="ID de l'actualité" readonly>
+						<input name="idActu" type="text" class="form-control" id="inputId" placeholder="ID de l'actualité" value="{{ actualites|first.idActu }}" readonly>
 					</div>
 					<h2 class="section-title">Titre :</h2>
 					<div class="form-group">
-						<input name="titreActu" type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité">
+						<input name="titreActu" type="text" class="form-control" id="inputTitre" placeholder="Titre de l'actualité" value="{{ actualites|first.titreActu }}">
 					</div>
 					<h2 class="section-title">Description :</h2>
 					<div class="form-group">
-						<textarea name="descActu" class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité"></textarea>
+						<textarea name="descActu" class="form-control" id="inputDesc" rows="5" placeholder="Description de l'actualité">{{ actualites|first.descActu }}</textarea>
 					</div>
 					<button class="btn btn-success" type="submit">Enregistrer</button>
 				</form>
