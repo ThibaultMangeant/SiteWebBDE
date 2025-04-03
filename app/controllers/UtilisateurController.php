@@ -13,15 +13,6 @@ class UtilisateurController extends Controller {
     use AuthTrait;
 
 
-	public function index() {
-		$repository = new UtilisateurRepository();
-		$utilisateurs = $repository->findAll();
-
-		// Ensuite, affiche la vue
-		$this->view('/utilisateur/index.html.twig',  ['utilisateurs' => $utilisateurs]);
-		
-	}
-
 	public function gestion()
 	{
 		$repository = new UtilisateurRepository();
@@ -60,7 +51,7 @@ class UtilisateurController extends Controller {
 		$repository->update($utilisateur); // Mise à jour de l'utilisateur
 	
 
-		$this->redirectTo('utilisateurs_gestion.php'); // Redirection après traitement
+		$this->redirectTo('gestionUtilisateur.php'); // Redirection après traitement
 	}
 	public function traiterCompte(){
 		$utilisateur = (new AuthService())->getUtilisateur();
