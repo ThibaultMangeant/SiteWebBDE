@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+{% if (isAdmin) %}
 <div class="container py-5">
     <!-- Section Liste des Utilisateurs -->
     <div class="card mb-5 shadow-sm">
@@ -40,10 +41,10 @@
                                 <td>{{ utilisateur.typeNotification }}</td>
                                 <td>{{ utilisateur.role.nomRole }}</td>
                                 <td class="action-buttons">
-                                    <a href="produit_promouvoir.php?netud={{ utilisateur.netud }}" class="btn btn-warning btn-sm">
+                                    <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=promouvoir" class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit"></i> Promouvoir
                                     </a>
-                                    <a href="produit_retrograder.php?netud={{ utilisateur.netud }}" class="btn btn-danger btn-sm">
+                                    <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=retrograder" class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"></i> Rétrograder
                                     </a>
                                 </td>
@@ -77,10 +78,10 @@
                                     <td>{{ utilisateur.nom }}</td>
                                     <td>{{ utilisateur.prenom }}</td>
                                     <td class="action-buttons">
-                                        <a href="utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=accepter" class="btn btn-success btn-sm">
+                                        <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=accepter" class="btn btn-success btn-sm">
                                             <i class="fa fa-check"></i> Accepter
                                         </a>
-                                        <a href="utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=refuser" class="btn btn-danger btn-sm">
+                                        <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=refuser" class="btn btn-danger btn-sm">
                                             <i class="fa fa-times"></i> Refuser
                                         </a>
                                     </td>
@@ -93,4 +94,9 @@
         </div>
     </div>
 </div>
+{% else %}
+		<h1>Erreur 404</h1>
+		<h2>Not found</h2>
+		<p>La page que vous essayer d'accéder n'existe pas</p>
+	{% endif %}
 {% endblock %}
