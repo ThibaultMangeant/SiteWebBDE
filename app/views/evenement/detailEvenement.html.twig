@@ -43,10 +43,11 @@
     <div class="reviews" style="max-height: 400px; overflow-y: auto;">
         {% for inscrit in inscrits %}
             <div class="review event-card mb-4 shadow-sm position-relative" style="border: none;">
-                <!-- Bouton de suppression -->
-                <a href="inscription_delete.php?idEvent={{ evenement.idEvent }}" class="btn btn-delete text-decoration-none" title="Supprimer le commentaire">
-                    <i class="fas fa-times"></i>
-                </a>
+                {% if (isAdmin) %}
+              	  <a href="inscription_delete.php?idEvent={{ evenement.idEvent }}&?idUtilisateur={{ inscrit.utilisateur.netud }}" class="btn btn-delete text-decoration-none" title="Supprimer le commentaire">
+                	    <i class="fas fa-times"></i>
+               	 </a>
+				{% endif %}
                 <div class="event-content">
                     <p class="event-title"><strong>{{ inscrit.utilisateur.prenom }} {{ inscrit.utilisateur.nom }}</strong></p>
                     <div class="rating-display mb-2">
