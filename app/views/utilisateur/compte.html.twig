@@ -11,10 +11,10 @@
 			<i class="fa fa-user-circle avatar-icon"></i>
 		</div>
 		<div class="d-flex justify-content-between align-items-center mb-4">
-			<a href="utilisateur_taiter.php?action=supprimer" style="text-decoration: none; color: inherit;">
+			<a href="utilisateur_traiterCompte.php?action=supprimer" style="text-decoration: none; color: inherit;">
 				<button class="btn btn-danger">Supprimer le compte</button>
 			</a>
-			<a href="utilisateur_taiter.php?action=adhesion" style="text-decoration: none; color: inherit;">
+			<a href="utilisateur_traiterCompte.php?action=adhesion" style="text-decoration: none; color: inherit;">
 				<button class="btn btn-primary">Devenir adhérant</button>
 			</a>
 		</div>
@@ -31,21 +31,23 @@
 			<!-- Options -->
 			<div class="col-md-5">
 				<h5 class="fw-bold">Options</h5>
-				</br>
-				<label for="notificationSelect" class="form-label">Notifications</label>
-				<select id="notificationSelect" class="form-select">
-					<option value="aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
-					<option value="email" {% if utilisateur.typeNotification == 'E-mail' %}selected{% endif %}>E-mail</option>
-					<option value="discord" {% if utilisateur.typeNotification == 'Discord' %}selected{% endif %}>Discord</option>
-					<option value="les_deux" {% if utilisateur.typeNotification == 'Les deux' %}selected{% endif %}>Les deux</option>
-				</select>
+				<form method="get" action="utilisateur_traiterCompte.php?action=notif">
+					<input type="hidden" name="action" value="notif">
+					<label for="notificationSelect" class="form-label">Notifications</label>
+					<select id="notificationSelect" class="form-select" name="valeur" onchange="this.form.submit()">
+						<option value="Aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
+						<option value="E-mail" {% if utilisateur.typeNotification == 'E-mail' %}selected{% endif %}>E-mail</option>
+						<option value="Discord" {% if utilisateur.typeNotification == 'Discord' %}selected{% endif %}>Discord</option>
+						<option value="Les deux" {% if utilisateur.typeNotification == 'Les deux' %}selected{% endif %}>Les deux</option>
+					</select>
+				</form>
 			</div>
 		</div>
 		<div class="d-flex justify-content-between align-items-center mt-4">
-			<a href="utilisateur_update" style="text-decoration: none; color: inherit;">
+			<a href="utilisateur_update.php" style="text-decoration: none; color: inherit;">
 				<button class="btn btn-outline-primary">Modifier <i class="fa fa-edit"></i></button>
 			</a>
-			<a href="utilisateur_taiter.php?action=déconnexion" style="text-decoration: none; color: inherit;">
+			<a href="utilisateur_traiterCompte.php?action=déconnexion" style="text-decoration: none; color: inherit;">
 				<button class="btn btn-outline-danger">Déconnexion <i class="fa fa-power-off"></i></button>
 			</a>
 		</div>

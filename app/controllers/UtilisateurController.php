@@ -73,14 +73,25 @@ class UtilisateurController extends Controller {
 			
 		if ($action == 'supprimer') {
 			$repository->deleteById($utilisateur->getNetud());
+			$this->redirectTo('index.php'); 
+
 		} elseif ($action == 'adhesion') {
 			$utilisateur->setDemande(true);
 			$repository->update($utilisateur);
 
-			$this->redirectTo('compte.php'); // Redirection après traitement
+		} elseif ($action == 'notif') {
+			$utilisateur->setTypeNotification($this->getQueryParam('valeur'));
+			$repository->update($utilisateur);
+
+		} elseif ($action == 'modifier') {
+			$this->update();
+
+		} elseif ($action == 'déconnexion') {
+			(new AuthService())->logout();
+			$this->redirectTo('index.php'); // Redirection après déconnexion
 		}
 
-		$this->redirectTo('index.php'); // Redirection après traitement
+		$this->redirectTo('compte.php'); // Redirection après traitement
 	}
 
 	public function delete() {
@@ -153,17 +164,15 @@ class UtilisateurController extends Controller {
 
     public function update()
     {
-        $netud = $this->getQueryParam('netud');
+        $utilisateur = (new AuthService())->getUtilisateur();
+		
 
-        if ($netud === null) {
-                throw new Exception('Numero étudiant nécéssaire.');
-        }
-        $repository = new UtilisateurRepository();
-        $utilisateur = $repository->findById($netud);
-
-        if ($utilisateur === null) {
+		if ($utilisateur === null) {
             throw new Exception('Utilisateur non trouvé');
         }
+
+		$netud = $utilisateur->getNetud();
+        $repository = new UtilisateurRepository();
 
         $data = array_merge([
 			'numero_etudiant'=>$utilisateur->getNetud(),
@@ -231,7 +240,7 @@ class UtilisateurController extends Controller {
                     throw new Exception('Erreur lors de la mise à jour d\'utilisateur.');
                 }
 
-                $this->redirectTo('index.php'); // Redirect after update
+                $this->redirectTo('compte.php'); // Redirect after update
 
             } catch (Exception $e) {
                 $errors = explode(', ', $e->getMessage()); // Error retrieval
