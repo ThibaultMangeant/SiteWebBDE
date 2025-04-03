@@ -8,7 +8,7 @@ INSERT INTO Utilisateur(netud, nom, prenom, tel, email, mdp, typeNotification, r
     (1235, 'Doe'  , 'John'   , '0708234567', 'john.doe@example.com'     , 'abcd1234'   , 'Mail'    , 'adherant', TRUE ),
     (1236, 'Smith', 'Anna'   , '0708345678', 'anna.smith@example.com'   , 'password123', 'Discord' , 'membre'  , FALSE),
     (1237, 'Brown', 'Charlie', '0708456789', 'charlie.brown@example.com', '12345678'   , 'Les deux', 'adherant', TRUE ),
-    (1238, 'White', 'Olivia' , '0708567890', 'olivia.white@example.com' , 'mypassword' , 'Mail'    , 'membre'  , FALSE);
+    (1238, 'White', 'Olivia' , '0708567890', 'olivia.white@example.com' , 'mypassword' , 'Mail'    , 'membre'  , TRUE );
 
 
 -- Insertion des produits

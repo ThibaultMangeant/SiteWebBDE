@@ -48,6 +48,11 @@
     color: white;
 }
 
+.btn[disabled] {
+    opacity: 0.6; /* Rendre le bouton légèrement transparent */
+    cursor: not-allowed; /* Changer le curseur pour indiquer qu'il est désactivé */
+}
+
 /* Formulaire */
 .form-select {
     border-radius: 5px;

@@ -6,51 +6,68 @@
 
 {% block body %}
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
-	<div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
-		<div class="text-center mb-4">
-			<i class="fa fa-user-circle avatar-icon"></i>
-		</div>
-		<div class="d-flex justify-content-between align-items-center mb-4">
-			<a href="utilisateur_traiterCompte.php?action=supprimer" style="text-decoration: none; color: inherit;">
-				<button class="btn btn-danger">Supprimer le compte</button>
-			</a>
-			<a href="utilisateur_traiterCompte.php?action=adhesion" style="text-decoration: none; color: inherit;">
-				<button class="btn btn-primary">Devenir adhérant</button>
-			</a>
-		</div>
-		<div class="row">
-			<!-- Informations personnelles -->
-			<div class="col-md-7">
-				<h5 class="fw-bold">Informations personnelles</h5>
-				</br>
-				<p><strong>Prénom : </strong> {{ utilisateur.prenom }}</p>
-				<p><strong>Nom : </strong> {{ utilisateur.nom }}</p>
-				<p><strong>Mail : </strong> {{ utilisateur.email }}</p>
-				<p><strong>N° étudiant : </strong> {{ utilisateur.netud }}</p>
-			</div>
-			<!-- Options -->
-			<div class="col-md-5">
-				<h5 class="fw-bold">Options</h5>
-				<form method="get" action="utilisateur_traiterCompte.php?action=notif">
-					<input type="hidden" name="action" value="notif">
-					<label for="notificationSelect" class="form-label">Notifications</label>
-					<select id="notificationSelect" class="form-select" name="valeur" onchange="this.form.submit()">
-						<option value="Aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
-						<option value="Mail" {% if utilisateur.typeNotification == 'Mail' %}selected{% endif %}>E-mail</option>
-						<option value="Discord" {% if utilisateur.typeNotification == 'Discord' %}selected{% endif %}>Discord</option>
-						<option value="Les deux" {% if utilisateur.typeNotification == 'Les deux' %}selected{% endif %}>Les deux</option>
-					</select>
-				</form>
-			</div>
-		</div>
-		<div class="d-flex justify-content-between align-items-center mt-4">
-			<a href="utilisateur_update.php" style="text-decoration: none; color: inherit;">
-				<button class="btn btn-outline-primary">Modifier <i class="fa fa-edit"></i></button>
-			</a>
-			<a href="utilisateur_traiterCompte.php?action=déconnexion" style="text-decoration: none; color: inherit;">
-				<button class="btn btn-outline-danger">Déconnexion <i class="fa fa-power-off"></i></button>
-			</a>
-		</div>
-	</div>
+    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
+        <div class="text-center mb-4">
+            <i class="fa fa-user-circle avatar-icon"></i>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="utilisateur_traiterCompte.php?action=supprimer" style="text-decoration: none; color: inherit;">
+                <button class="btn btn-danger">Supprimer le compte</button>
+            </a>
+            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == FALSE %}
+                <a style="text-decoration: none; color: inherit;">
+                    <button class="btn btn-success">Devenir adhérent</button>
+                </a>
+            {% endif %}
+            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == TRUE %}
+                <a style="text-decoration: none; color: inherit;">
+                    <button class="btn btn-secondary" disabled>Demande en attente</button>
+                </a>
+            {% endif %}
+            {% if utilisateur.role.nomRole == 'adherant' %}
+                <p class="text-success fw-bold">
+                    <i class="fa-solid fa-user-check"></i> Adhérent
+                </p>
+            {% endif %}
+            {% if utilisateur.role.nomRole == 'admin' %}
+                <p class="text-primary fw-bold">
+                    <i class="fa-solid fa-user-shield"></i> Administrateur
+                </p>
+            {% endif %}
+        </div>
+        <div class="row">
+            <!-- Informations personnelles -->
+            <div class="col-md-7">
+                <h5 class="fw-bold">Informations personnelles</h5>
+                <br>
+                <p><strong>Prénom : </strong> {{ utilisateur.prenom }}</p>
+                <p><strong>Nom : </strong> {{ utilisateur.nom }}</p>
+                <p><strong>Mail : </strong> {{ utilisateur.email }}</p>
+                <p><strong>N° étudiant : </strong> {{ utilisateur.netud }}</p>
+            </div>
+            <!-- Options -->
+            <div class="col-md-5">
+                <h5 class="fw-bold">Options</h5>
+                <form method="get" action="utilisateur_traiterCompte.php?action=notif">
+                    <input type="hidden" name="action" value="notif">
+                    <label for="notificationSelect" class="form-label">Notifications</label>
+                    <select id="notificationSelect" class="form-select" name="valeur" onchange="this.form.submit()">
+                        <option value="Aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
+                        <option value="Mail" {% if utilisateur.typeNotification == 'Mail' %}selected{% endif %}>E-mail</option>
+                        <option value="Discord" {% if utilisateur.typeNotification == 'Discord' %}selected{% endif %}>Discord</option>
+                        <option value="Les deux" {% if utilisateur.typeNotification == 'Les deux' %}selected{% endif %}>Les deux</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <a href="utilisateur_update.php" style="text-decoration: none; color: inherit;">
+                <button class="btn btn-outline-primary">Modifier <i class="fa fa-edit"></i></button>
+            </a>
+            <a href="utilisateur_traiterCompte.php?action=déconnexion" style="text-decoration: none; color: inherit;">
+                <button class="btn btn-outline-danger">Déconnexion <i class="fa fa-power-off"></i></button>
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}
