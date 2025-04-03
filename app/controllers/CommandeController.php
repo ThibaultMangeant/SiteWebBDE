@@ -143,6 +143,8 @@ class CommandeController extends Controller {
 				$commande->setQa((int)$data['qa']+$change);
 				if ($commande->getQa() > $commande->getProduit()->getQs()) {
 					$commande->setQa($commande->getProduit()->getQs());
+				} elseif ($commande->getQa() <= 0) {
+					$commande->setQa(1);
 				}
 				$commande->setProduit((new ProduitRepository())->findById($data['idProduit']));
 				$commande->setUtilisateur((new UtilisateurRepository())->findById($data['idUtilisateur']));

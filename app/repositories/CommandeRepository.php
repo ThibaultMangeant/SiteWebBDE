@@ -96,12 +96,11 @@ class CommandeRepository
 	public function create(Commande $commande): bool
 	{
 		$stmt = $this->pdo->prepare('
-			INSERT INTO Commande (numCommande, qa, idProd, netud)
-			VALUES (:numCommande, :qa, :idProduit, :idUtilisateur)
+			INSERT INTO Commande ( qa, idProd, netud)
+			VALUES ( :qa, :idProduit, :idUtilisateur)
 		');
 
 		return $stmt->execute([
-			'numCommande' => $commande->getNumCommande(),
 			'qa' => $commande->getQa(),
 			'idProduit' => $commande->getProduit()->getIdProd(),
 			'idUtilisateur' => $commande->getUtilisateur()->getNetud()

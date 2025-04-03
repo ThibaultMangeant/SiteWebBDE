@@ -17,11 +17,11 @@
 							<span class="cart-item-name">{{ commande.produit.nomProd }}</span>
 						</div>
 						<div class="cart-item-quantity d-flex align-items-center">
-							<a href="panier_update.php?idCommande={{ commande.numCommande }}&change=1" style="text-decoration: none; color: inherit;">
+							<a href="panier_update.php?idCommande={{ commande.numCommande }}&change=-1" style="text-decoration: none; color: inherit;">
 								<button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="decrease" data-id="{{ commande.produit.idProd }}">-</button>
 							</a>
 							<span class="quantity">{{ commande.qa }}</span>
-							<a href="panier_update.php?idCommande={{ commande.numCommande }}&change=-1" style="text-decoration: none; color: inherit;">
+							<a href="panier_update.php?idCommande={{ commande.numCommande }}&change=1" style="text-decoration: none; color: inherit;">
 								<button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="increase" data-id="{{ commande.produit.idProd }}">+</button>
 							</a>
 						</div>
@@ -43,7 +43,9 @@
 							{{ Total | number_format(2, ',', ' ') }} €
 						</span>
 					</div>
-					<button class="btn btn-primary w-100 mt-3">Commander</button>
+					<a href="panier_commander.php" style="text-decoration: none; color: inherit;">
+						<button class="btn btn-primary w-100 mt-3" id="btnCommande">Commander</button>
+					</a>
 				</div>
 			</div>
 		</div>
