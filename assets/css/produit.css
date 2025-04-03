@@ -59,24 +59,35 @@
 	background-color: #0056b3;
 }
 
-/* Aperçu de l'image */
+/* Conteneur pour l'aperçu de l'image */
 .image-preview {
-	position: relative;
-	width: 150px;
-	height: 150px;
-	border: 1px dashed #ddd;
-	border-radius: 10px;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #e9ecef;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center; /* Centre verticalement le contenu */
+    justify-content: center; /* Centre horizontalement le contenu */
+    background-color: #e9ecef;
+    margin: 0 auto; /* Centre la div horizontalement dans son conteneur parent */
 }
 
+/* Style pour l'image d'aperçu */
 .image-preview img {
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: cover;
+    cursor: pointer; /* Curseur en mode main */
+    max-width: 100%; /* Ajuste la taille de l'image */
+    max-height: 100%; /* Empêche l'image de dépasser la div */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+/* Conteneur parent pour aligner la div */
+.form-group.image-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    gap: 10px; /* Ajoute un espace entre les éléments */
 }
 
 /* Messages d'erreur */
