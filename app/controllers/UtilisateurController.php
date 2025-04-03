@@ -72,9 +72,12 @@ class UtilisateurController extends Controller {
 		$repository = new UtilisateurRepository();
 			
 		if ($action == 'supprimer') {
-			$repository->upgradeRole($utilisateur);
+			$repository->deleteById($utilisateur->getNetud());
 		} elseif ($action == 'adhesion') {
-			$repository->degradeRole($utilisateur);
+			$utilisateur->setDemande(true);
+			$repository->update($utilisateur);
+
+			$this->redirectTo('compte.php'); // Redirection après traitement
 		}
 
 		$this->redirectTo('index.php'); // Redirection après traitement

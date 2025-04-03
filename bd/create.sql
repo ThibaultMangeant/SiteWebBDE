@@ -57,7 +57,7 @@ CREATE TABLE Utilisateur
 	tel              VARCHAR(10),
 	email            VARCHAR(255) NOT NULL,
 	mdp              VARCHAR(255) NOT NULL,
-	typeNotification VARCHAR(10)  NOT NULL CHECK (typeNotification IN ('Discord', 'Mail', 'Les deux')),
+	typeNotification VARCHAR(10)  NOT NULL CHECK (typeNotification IN ('Discord', 'Mail', 'Les deux', 'Aucune')),
 	role             VARCHAR(10)  NOT NULL,
 	demande          BOOLEAN      NOT NULL,
 
