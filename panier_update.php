@@ -1,5 +1,5 @@
 <?php
-require_once './app/controllers/ProduitController.php';
+require_once './app/controllers/CommandeController.php';
 
-$controller = new ProduitController();
+$controller = new CommandeController();
 $controller->update();

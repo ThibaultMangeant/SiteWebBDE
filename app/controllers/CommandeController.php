@@ -66,7 +66,7 @@ class CommandeController extends Controller {
 
 				// Création de l'objet commande
 				$qa = (int)($data['qa']);
-				if ($qa + (new ProduitRepository())->findById($data['idProd'])->getQs() > (new ProduitRepository())->findById($data['idProd'])->getQs()) {
+				if ($qa > (new ProduitRepository())->findById($data['idProd'])->getQs()) {
 					$qa = (new ProduitRepository())->findById($data['idProd'])->getQs();
 				}
 				$commande = new Commande(0, $qa,(new ProduitRepository())->findById($data['idProd']),(new UtilisateurRepository())->findById($data['idUtilisateur']));
@@ -75,13 +75,14 @@ class CommandeController extends Controller {
 				$commandeRepo = new CommandeRepository();
 
 				if ($commandeRepo->findByProduitAndUtilisateur($data['idProd'], $data['idUtilisateur']) !== null) {
+					$commande = $commandeRepo->findByProduitAndUtilisateur($data['idProd'], $data['idUtilisateur']);
+
 					$qa = $commande->getQa() +(int)($data['qa']);
 
 					if ($qa > $commande->getProduit()->getQs()) {
 						$qa = $commande->getProduit()->getQs();
 					}
 
-					$commande = $commandeRepo->findByProduitAndUtilisateur($data['idProd'], $data['idUtilisateur']);
 					$commande->setQa($qa);
 					$commandeRepo->update($commande);
 				}
@@ -100,6 +101,9 @@ class CommandeController extends Controller {
 		$idCommande = $this->getQueryParam('idCommande');
 		$change     = (int)($this->getQueryParam('change'));
 
+		if ($idCommande === null) {
+			throw new Exception('Commande non trouvée');
+		}
 		$repository = new CommandeRepository();
 		$commande = $repository->findById($idCommande);
 

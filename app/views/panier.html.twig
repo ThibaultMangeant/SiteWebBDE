@@ -17,16 +17,22 @@
 							<span class="cart-item-name">{{ commande.produit.nomProd }}</span>
 						</div>
 						<div class="cart-item-quantity d-flex align-items-center">
-							<button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=1" data-action="decrease" data-id="{{ commande.produit.idProd }}">-</button>
+							<a href="panier_update.php?idCommande={{ commande.numCommande }}&change=1" style="text-decoration: none; color: inherit;">
+								<button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="decrease" data-id="{{ commande.produit.idProd }}">-</button>
+							</a>
 							<span class="quantity">{{ commande.qa }}</span>
-							<button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=-1" data-action="increase" data-id="{{ commande.produit.idProd }}">+</button>
+							<a href="panier_update.php?idCommande={{ commande.numCommande }}&change=-1" style="text-decoration: none; color: inherit;">
+								<button class="btn btn-outline-secondary btn-sm quantity-btn" data-action="increase" data-id="{{ commande.produit.idProd }}">+</button>
+							</a>
 						</div>
 						<div class="cart-item-price">
 							{{ (commande.produit.prixProd) | number_format(2, ',', ' ') }} €
 						</div>
-						<button class="btn btn-danger btn-sm delete-btn" href="panier_delete.php?idProd={{ commande.produit.idProd }}" data-id="{{ commande.produit.idProd }}">
-							<i class="fa fa-trash"></i>
-						</button>
+						<a href="panier_delete.php?idCommande={{ commande.numCommande }}" style="text-decoration: none; color: inherit;">
+							<button class="btn btn-danger btn-sm delete-btn"  data-id="{{ commande.produit.idProd }}">
+								<i class="fa fa-trash"></i>
+							</button>
+						</a>
 					</div>
 					{% endfor %}
 				</div>
@@ -46,8 +52,4 @@
 		<h2>Unauthorized</h2>
 		<p>Vous devez être connecté pour accéder à cette page</p>
 	{% endif %}
-{% endblock %}
-
-{% block javascript %}
-<script src="assets/js/panier.js"></script>
 {% endblock %}
