@@ -3,15 +3,12 @@
 	+ permettre à l'admin de modifier la page d'accueil (actualités) (en cours, Julien)
 	+ permettre aux administrateurs la suppression d'avis
 	+ finaliser l'HTML de la partie admin des évènement
-	+ permettre la modification de la page vitrine
+	+ permettre la modification de la page vitrine (presque fini thaos)
 
 - Version autre
 	+ faire page compte
 		* afficher differement le compte en fonction du rôle
-		* permettre la modification du compte
-		* permettre la suppression du compte
 	+ Finaliser évènement
-		* S'inscrire à un évenement
 		* permettre l'ajout d'un avis (commentaire+note) (qui ne sera pas afficher dans la liste des commentaire pour l'auteur)
 		* Affichage du détails d'un évenement (en cours, Louis)
 		* permettre l'affichage d'un score en étoile généré via la moyenne des avis.
