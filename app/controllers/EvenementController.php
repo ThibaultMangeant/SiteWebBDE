@@ -41,11 +41,13 @@ class EvenementController extends Controller
 			throw new Exception('Évènement non trouvé');
 		}
 
+		$moyenneAvis = $inscritRepository->moyenneAvis($idEvent);
+
 		$service = new AuthService();
 		$isAdmin = $service->isAdmin();
 
 		$utilisateur = (new AuthService())->getUtilisateur();
-		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent, 'inscrits' => $inscriptions, 'utilisateur' => $utilisateur, 'isAdmin' => $isAdmin]);
+		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent, 'inscrits' => $inscriptions, 'utilisateur' => $utilisateur, 'isAdmin' => $isAdmin, 'moyenneAvis' => $moyenneAvis]);
 	}
 
 	public function create()

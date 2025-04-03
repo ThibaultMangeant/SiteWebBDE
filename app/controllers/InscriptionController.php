@@ -213,7 +213,12 @@ class InscriptionController extends Controller
 			throw new Exception('Utilisateur non connecté');
 		}
 
-		$idUtilisateur = $utilisateur->getNetud();
+		$data = array_merge([
+			'idEvent'       => $this->getQueryParam('idEvent'),
+			'idUtilisateur' => $this->getQueryParam('idUtilisateur')
+		], $this->getAllPostParams()); //Get submitted data
+
+		$idUtilisateur = $data['idUtilisateur'];
 
 		$eventRepository = new EvenementRepository();
 		$evenement       = $eventRepository->findById($idEvent);
@@ -225,7 +230,7 @@ class InscriptionController extends Controller
 		$inscription = $inscriptionRepo->findByUtilisateurAndEvenement($idUtilisateur, $idEvent);
 
 		if ($inscription == null)
-			throw new Exception('Inscription non trouvé');
+			throw new Exception('Inscription non trouvéé');
 
 		// Mise à jour en base de données
 		if (!$inscriptionRepo->deleteAvisByUtilisateurAndEvenement($idUtilisateur, $idEvent))
