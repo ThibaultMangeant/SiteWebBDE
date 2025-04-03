@@ -108,6 +108,50 @@ class VitrineController extends Controller
 		$this->redirectTo('gestionVitrine.php');
 	}
 
+	public function deleteImage($section, $image) 
+	{
+		// Nettoyer le nom de la section pour éviter les caractères invalides
+		$cleanSectionName = preg_replace('/[^a-zA-Z0-9\s]/', '', $section); // Supprimer les caractères spéciaux
+		$cleanSectionName = trim($cleanSectionName); // Supprimer les espaces inutiles
+
+		// Trouver le bon fichier en scannant le répertoire
+		$files = scandir($this->vitrineTextPath);
+		$fileName = '';
+		foreach ($files as $file) {
+			if (strpos($file, '_' . $cleanSectionName . '.txt') !== false) {
+				$fileName = $this->vitrineTextPath . $file;
+				break;
+			}
+		}
+
+		// Supprimer l'image du répertoire
+		$imagePath = './assets/images/vitrine/' . $image;
+		if (file_exists($imagePath)) {
+			unlink($imagePath);
+		}
+
+		// Supprimer la référence à l'image dans le fichier texte
+		if ($fileName && file_exists($fileName)) {
+			$content = file_get_contents($fileName);
+			$lines = explode("\n", $content);
+			$updatedLines = [];
+
+			foreach ($lines as $line) {
+				// Exclure la ligne contenant la référence exacte à l'image
+				if (trim($line) !== "image:$image") {
+					$updatedLines[] = $line;
+				}
+			}
+
+			// Réécrire le fichier texte sans la ligne de l'image supprimée
+			$updatedContent = implode("\n", $updatedLines);
+
+			file_put_contents($fileName, $updatedContent);
+		}
+
+		$this->redirectTo('gestionVitrine.php');
+	}
+
 	private function readVitrineTexts()
 	{
 		$sections = [];

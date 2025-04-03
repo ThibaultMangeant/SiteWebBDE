@@ -11,7 +11,7 @@
 			<h2 class="vitrine-title">{{ section | capitalize }}</h2>
 			<hr class="my-4">
 			<p class="vitrine-text">{{ data.content | nl2br }}</p> <!-- Appliquer nl2br ici -->
-			<div class="vitrine-images d-flex justify-content-center flex-wrap">
+			<div class="d-flex justify-content-center flex-wrap">
 				{% for image in data.images %}
 					<img class="mx-auto d-block" style="max-height:25vh; border: 1px solid; border-radius:10px;margin: 10px;"
 						src="assets/images/vitrine/{{ image }}" alt="{{ section }}" class="vitrine-image">

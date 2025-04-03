@@ -14,8 +14,19 @@
 				<textarea id="{{ section }}" name="{{ section }}" class="form-control" rows="5">{{ data.content | replace({'<br>': '\n'}) }}</textarea>
 				<div class="vitrine-images d-flex justify-content-center flex-wrap">
 					{% for image in data.images %}
-						<img class="mx-auto d-block" style="max-height:25vh; border: 1px solid; border-radius:10px;margin: 10px;"
-							src="assets/images/vitrine/{{ image }}" alt="{{ section }}" class="vitrine-image">
+						<div class="image-container position-relative" style="display: inline-block;">
+							<img class="vitrine-image mx-auto d-block" 
+								 src="assets/images/vitrine/{{ image }}" 
+								 alt="{{ section }}" 
+								 style="max-height:25vh; border: 1px solid; border-radius:10px; margin: 10px;">
+							<!-- Bouton de suppression -->
+							<button type="button" 
+									class="delete-image-btn btn btn-danger btn-sm position-absolute" 
+									style="top: 15px; right: 5px;" 
+									onclick="deleteImage('{{ section }}', '{{ image }}')">
+								&times;
+							</button>
+						</div>
 					{% endfor %}
 				</div>
 				<input type="file" name="image_{{ section }}[]" class="form-control mt-2" multiple>
@@ -26,4 +37,8 @@
 		</div>
 	</form>
 </div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="assets/js/gestionVitrine.js"></script>
 {% endblock %}
