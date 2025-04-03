@@ -38,7 +38,7 @@ class Utilisateur
 			'mdp' => $this->mdp,
 			'typeNotification' => $this->typeNotification,
 			'role' => $this->role->getNomRole(),
-			'demande' => $this->demande ? "true" : "false"
+			'demande' => $this->demande
 		];
 	}
 

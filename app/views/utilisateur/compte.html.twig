@@ -14,14 +14,14 @@
             <a href="utilisateur_traiterCompte.php?action=supprimer" style="text-decoration: none; color: inherit;">
                 <button class="btn btn-danger">Supprimer le compte</button>
             </a>
-            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == false %}
-                <a style="text-decoration: none; color: inherit;">
-                    <button class="btn btn-success">Devenir adhérent</button>
-                </a>
-            {% endif %}
-            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == true %}
+            
+            {% if (utilisateur.role.nomRole == 'membre' and utilisateur.demande) %}
                 <a style="text-decoration: none; color: inherit;">
                     <button class="btn btn-secondary" disabled>Demande en attente</button>
+                </a>
+            {% elseif utilisateur.role.nomRole == 'membre' %}
+                <a href="utilisateur_traiterCompte.php?action=adhesion" style="text-decoration: none; color: inherit;">
+                    <button class="btn btn-success">Devenir adhérent</button>
                 </a>
             {% endif %}
             {% if utilisateur.role.nomRole == 'adherant' %}
@@ -48,7 +48,8 @@
             <!-- Options -->
             <div class="col-md-5">
                 <h5 class="fw-bold">Options</h5>
-                <form method="get" action="utilisateur_traiterCompte.php?action=notif">
+                <form method="get" action="utilisateur_traiterCompte.php">
+                    <input type="hidden" name="action" value="notif">
                     <label for="notificationSelect" class="form-label">Notifications</label>
                     <select id="notificationSelect" class="form-select" name="valeur" onchange="this.form.submit()">
                         <option value="Aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
@@ -67,11 +68,6 @@
                 <button class="btn btn-outline-danger">Déconnexion <i class="fa fa-power-off"></i></button>
             </a>
         </div>
-	</div>
-	{% if (isAdmin) %}
-		<a href="gestionUtilisateur.php" id="floatingGestionUtilisateurButton" class="text-decoration-none">
-			<i class="fa-solid fa-user p-1"></i> Gérer les utilisateurs
-		</a>
-	{% endif %}
+    </div>
 </div>
 {% endblock %}

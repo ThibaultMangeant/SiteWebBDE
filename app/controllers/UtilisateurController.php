@@ -71,12 +71,12 @@ class UtilisateurController extends Controller {
 		} elseif ($action == 'adhesion') {
 			$utilisateur->setDemande(true);
 			$repository->update($utilisateur);
-			(new AuthService())->majUtilisateur($utilisateur); // Mettre à jour l'utilisateur dans la session
+			(new AuthService())->majUtilisateur($repository->findById($utilisateur->getNetud())); // Mettre à jour l'utilisateur dans la session
 
 		} elseif ($action == 'notif') {
 			$utilisateur->setTypeNotification($this->getQueryParam('valeur'));
 			$repository->update($utilisateur);
-			(new AuthService())->majUtilisateur($utilisateur); // Mettre à jour l'utilisateur dans la session
+			(new AuthService())->majUtilisateur($repository->findById($utilisateur->getNetud())); // Mettre à jour l'utilisateur dans la session
 
 		} elseif ($action == 'modifier') {
 			$this->redirectTo('utilisateur_update.php'); 
