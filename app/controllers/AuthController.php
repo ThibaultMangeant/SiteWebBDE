@@ -60,13 +60,7 @@ class AuthController extends Controller {
 
 		// Passer les données de l'utilisateur à la vue compte.html.twig
 		$this->view('utilisateur/compte.html.twig', [
-			'utilisateur' => [
-				'prenom' => $utilisateur->getPrenom(),
-				'nom' => $utilisateur->getNom(),
-				'email' => $utilisateur->getEmail(),
-				'netud' => $utilisateur->getNetud(),
-				'typeNotification' => $utilisateur->getTypeNotification() // Exemple de champ supplémentaire
-			]
+			'utilisateur' => $utilisateur
 		]);
 	}
 }

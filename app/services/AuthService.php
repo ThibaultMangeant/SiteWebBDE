@@ -26,6 +26,16 @@ class AuthService {
 		}
     }
 
+	public function majUtilisateur(Utilisateur $utilisateur): void
+	{
+		if(session_status() == PHP_SESSION_NONE)
+			session_start();
+		if ($this->isLoggedIn())
+		{
+			$_SESSION['utilisateur'] = serialize($utilisateur);
+		}
+	}
+
     public function logout(): void
     {
         session_destroy();

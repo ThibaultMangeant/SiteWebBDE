@@ -73,19 +73,22 @@ class UtilisateurController extends Controller {
 			
 		if ($action == 'supprimer') {
 			$repository->deleteById($utilisateur->getNetud());
+			(new AuthService())->logout();
 			$this->redirectTo('index.php'); 
 
 		} elseif ($action == 'adhesion') {
 			$utilisateur->setDemande(true);
 			$repository->update($utilisateur);
+			(new AuthService())->majUtilisateur($utilisateur); // Mettre à jour l'utilisateur dans la session
 
 		} elseif ($action == 'notif') {
 			$utilisateur->setTypeNotification($this->getQueryParam('valeur'));
-			var_dump($utilisateur->getTypeNotification());
-			Exception::assert($utilisateur->getTypeNotification() == $this->getQueryParam('valeur'), 'Erreur de type de notification');
 			$repository->update($utilisateur);
+			(new AuthService())->majUtilisateur($utilisateur); // Mettre à jour l'utilisateur dans la session
+
 		} elseif ($action == 'modifier') {
-			$this->update();
+			$this->redirectTo('utilisateur_update.php'); 
+
 		} elseif ($action == 'déconnexion') {
 			(new AuthService())->logout();
 			$this->redirectTo('index.php'); // Redirection après déconnexion
@@ -159,19 +162,19 @@ class UtilisateurController extends Controller {
         $this->view('/utilisateur/register.html.twig',  [
             'data' => $data,
             'errors' => $errors,
+			'utilisateur' => null,
+			'isLoggedIn' => false
         ]);
     }
 
     public function update()
     {
         $utilisateur = (new AuthService())->getUtilisateur();
-		
 
 		if ($utilisateur === null) {
             throw new Exception('Utilisateur non trouvé');
         }
 
-		$netud = $utilisateur->getNetud();
         $repository = new UtilisateurRepository();
 
         $data = array_merge([
@@ -185,10 +188,9 @@ class UtilisateurController extends Controller {
 			'demande'=>$utilisateur->getDemande(),
         ],$this->getAllPostParams()); //Get submitted data
         $errors = [];
-
+		
         if (!empty($this->getAllPostParams())) {
             try {
-                $errors = [];
 
                 // Data validation
                 if (empty($data['numero_etudiant'])) {
@@ -240,6 +242,8 @@ class UtilisateurController extends Controller {
                     throw new Exception('Erreur lors de la mise à jour d\'utilisateur.');
                 }
 
+				(new AuthService())->majUtilisateur($utilisateur); // Mettre à jour l'utilisateur dans la session
+
                 $this->redirectTo('compte.php'); // Redirect after update
 
             } catch (Exception $e) {
@@ -248,6 +252,6 @@ class UtilisateurController extends Controller {
         }
 
         // Display update form
-        $this->view('/utilisateur/compte.html.twig',  ['data' => $data, 'errors' => $errors, 'id' => $netud]);
+        $this->view('/utilisateur/register.html.twig',  ['data' => $data, 'errors' => $errors, 'utilisateur' => $utilisateur, 'isLoggedIn' => true]);
     }
 }
