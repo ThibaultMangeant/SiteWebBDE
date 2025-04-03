@@ -44,7 +44,7 @@ class InscriptionRepository
 
 	public function findByEvenementWithStars($idevenement): array
 	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE idEvent = :idevenement AND note >= 1');
+		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE idEvent = :idevenement AND note BETWEEN 1 AND 5');
 		$stmt->bindParam(':idevenement', $idevenement);
 		$stmt->execute();
 		$inscriptions = [];
@@ -62,6 +62,13 @@ class InscriptionRepository
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $row ? $this->createInscriptionFromRow($row) : null;
+	}
+
+	public function moyenneAvis($idEvenement)
+	{
+		$stmt = $this->pdo->prepare('SELECT ROUND(AVG(note), 0) FROM Inscrit WHERE idEvent = :idEvenement AND note BETWEEN 1 AND 5');
+		$stmt->bindParam(':idEvenement', $idEvenement);
+		return $stmt->execute();
 	}
 
 	public function deleteByUtilisateurAndEvenement($idUtilisateur, $idEvenement): bool

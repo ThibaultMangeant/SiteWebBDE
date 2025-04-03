@@ -59,59 +59,6 @@
 }
 
 .form-group {
-	margin-bottom: 15px;
-}
-
-.form-control {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	font-size: 1rem;
-}
-
-.btn-success {
-	background-color: #28a745;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-size: 1rem;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-}
-
-.btn-success:hover {
-	background-color: #218838;
-}
-
-/* Conteneur principal */
-.evenement-form-container {
-	max-width: 100vh;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: var(--form-background);
-	border-radius: 10px;
-	box-shadow: 0 4px 6px;
-	text-align: center;
-}
-
-/* Titre du formulaire */
-.form-title {
-	font-size: 1.5rem;
-	font-weight: bold;
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-/* Formulaire */
-.evenement-form {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-}
-
-/* Groupe de formulaire */
-.form-group {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
@@ -128,8 +75,8 @@
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	font-size: 1rem;
-	color: var(--form-text-color);
-	background-color: var(--form-input-bg);
+	color: #333333 !important; /* Forcer le texte à rester noir */
+	background-color: #ffffff; /* Fond blanc pour les champs */
 }
 
 /* Bouton de soumission */
@@ -161,12 +108,33 @@
     align-items: center; /* Centre verticalement le contenu */
     justify-content: center; /* Centre horizontalement le contenu */
     margin: 0 auto; /* Centre la div horizontalement dans son conteneur parent */
+    background-color: #f8f9fa; /* Fond gris clair */
 }
 
 .image-preview img {
+	cursor: pointer;
 	max-width: 100%;
 	max-height: 100%;
-	object-fit: cover;
+	border-radius: 5px;
+}
+
+/* Conteneur parent pour aligner la div */
+.form-group.image-preview {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+/* Style pour le label de l'image */
+.image-label {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }
 
 /* Messages d'erreur */
@@ -179,4 +147,30 @@
 .error-messages ul {
 	list-style: none;
 	padding: 0;
+}
+
+/* Conteneur principal */
+.evenement-form-container {
+	max-width: 100vh;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: var(--form-background) !important;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px;
+	text-align: center;
+}
+
+/* Titre du formulaire */
+.form-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+/* Formulaire */
+.evenement-form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }

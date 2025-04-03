@@ -66,7 +66,7 @@ html {
     --shadow-color: rgba(0, 0, 0, 0.1);
     --header-footer-bg: #f8f9fa;
     --form-text-color: #333333;
-    --form-background: #f8f9fa;
+    --form-background: #f8f9fa; /* Fond gris clair */
     --form-input-bg: #ffffff;
     --faq-background: #ffffff;
     --faq-text-color: #333333;
@@ -81,12 +81,12 @@ html {
     --shadow-color: rgba(0, 0, 0, 0.3);
     --header-footer-bg: #2d2d2d;
     --form-text-color: #333333;  /* Garde le texte en noir */
-    --form-background: #2d2d2d;  /* Fond sombre pour les conteneurs de formulaire */
+    --form-background: #2d2d2d;  /* Fond gris foncé */
     --form-input-bg: #ffffff;    /* Fond blanc pour les champs de saisie */
     --faq-background: #2d2d2d;
     --faq-text-color: #ffffff;
     --form-text-color: #ffffff;
-    --form-background: #1a1a1a;
+    --form-background: #2d2d2d; /* Fond gris foncé */
 }
 
 /* Application des variables */
@@ -113,7 +113,7 @@ header .navbar, footer {
 .dropdown-menu, .modal-content {
     background-color: var(--card-background) !important;
     border-color: var(--border-color) !important;
-    color: var(--text-color) !important;
+    color: var (--text-color) !important;
 }
 
 /* Textes dans les conteneurs */

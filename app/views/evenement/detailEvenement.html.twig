@@ -19,8 +19,17 @@
                 <p class="event-description mt-3">{{ evenement.descEvent }}</p>
             </div>
             <!-- Bouton Réserver centré -->
+			{% set idUtilisateurs = [] %}
+			{% for inscrit in inscrits %}
+				{% set idUtilisateurs = idUtilisateurs|merge([inscrit.utilisateur.netud]) %}
+			{% endfor %}
             <div class="text-center mt-4">
-                <a href="inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}" class="btn btn-primary rounded-pill">Réserver</a>
+				<div class="text-center mt-4">
+    				<button type="button" class="btn btn-primary rounded-pill"  onclick="window.location.href='inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}'"
+						{% if utilisateur.netud in idUtilisateurs %}disabled{% endif %}>
+        				Réserver
+    				</button>
+				</div>
             </div>
         </div>
 
@@ -44,7 +53,7 @@
         {% for inscrit in inscrits %}
             <div class="review event-card mb-4 shadow-sm position-relative" style="border: none;">
                 {% if (isAdmin) %}
-              	  <a href="inscription_delete.php?idEvent={{ evenement.idEvent }}&?idUtilisateur={{ inscrit.utilisateur.netud }}" class="btn btn-delete text-decoration-none" title="Supprimer le commentaire">
+              	  <a href="inscription_delete.php?idEvent={{ evenement.idEvent }}&idUtilisateur={{ inscrit.utilisateur.netud }}" class="btn btn-delete text-decoration-none" title="Supprimer le commentaire">
                 	    <i class="fas fa-times"></i>
                	 </a>
 				{% endif %}

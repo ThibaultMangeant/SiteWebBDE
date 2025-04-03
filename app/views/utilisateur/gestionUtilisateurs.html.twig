@@ -1,83 +1,102 @@
 {% extends '_template/base.html.twig' %}
 
+{% block css %}
+<link rel="stylesheet" href="assets/css/gestionUtilisateurs.css">
+{% endblock %}
+
 {% block body %}
+{% if (isAdmin) %}
+<div class="container py-5">
+    <!-- Section Liste des Utilisateurs -->
+    <div class="card mb-5 shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Liste des Utilisateurs</h2>
+            {% for error in errors %}
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col"># Netud</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Téléphone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Type de Notification</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for utilisateur in utilisateurs|sort((a, b) => a.netud <=> b.netud) %}
+                            <tr>
+                                <td>{{ utilisateur.netud }}</td>
+                                <td>{{ utilisateur.nom }}</td>
+                                <td>{{ utilisateur.prenom }}</td>
+                                <td>{{ utilisateur.telephone }}</td>
+                                <td>{{ utilisateur.email }}</td>
+                                <td>{{ utilisateur.typeNotification }}</td>
+                                <td>{{ utilisateur.role.nomRole }}</td>
+                                <td class="action-buttons">
+                                    <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=promouvoir" class="btn btn-warning btn-sm">
+                                        <i class="fa fa-edit"></i> Promouvoir
+                                    </a>
+                                    <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=retrograder" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i> Rétrograder
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-<div class="container mt-5 col-md-6 mx-auto">
-    <h2 class="text-center mb-4">Liste des Utilisateurs</h2>
-	{% for error in errors %}
-		<tr>
-			<td colspan="6" class="text-danger text-center">
-				{{ error }}
-			</td>
-		</tr>
-	{% endfor %}
-    <table class="table table-striped table-hover ">
-        <thead>
-            <tr>
-                <th scope="col"># Netud</th>
-                <th scope="col">Nom</th>
-				<th scope="col">Prénom</th>
-                <th scope="col">Téléphone</th>
-				<th scope="col">Email</th>
-                <th scope="col">Type de Notification</th>
-				<th scope="col">Role</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-			{% for utilisateur in utilisateurs|sort((a, b) => a.netud <=> b.netud) %}
-				<tr>
-					<td>{{ utilisateur.netud }}</td>
-					<td>{{ utilisateur.nom }}</td>
-					<td>{{ utilisateur.prenom }}</td>
-					<td>{{ utilisateur.telephone }}</td>
-					<td>{{ utilisateur.email }}</td>
-					<td>{{ utilisateur.typeNotification }}</td>
-					<td>{{ utilisateur.role.nomRole }}</td>
-					<td>
-						<a href="produit_promouvoir.php?netud={{ utilisateur.netud }}" class="btn btn-warning btn-sm">
-							<i class="fa fa-edit"></i> Promouvoir
-						</a>
-						<a href="produit_retrograder.php?netud={{ utilisateur.netud }}" class="btn btn-danger btn-sm">
-							<i class="fa fa-trash"></i> Rétrograder
-						</a>
-					</td>
-				</tr>
-			{% endfor %}
-        </tbody>
-    </table>
+    <!-- Section Demandes d'adhésions -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Liste des Demandes d'adhésions</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col"># Netud</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for utilisateur in utilisateurs %}
+                            {% if utilisateur.demande %}
+                                <tr>
+                                    <td>{{ utilisateur.netud }}</td>
+                                    <td>{{ utilisateur.nom }}</td>
+                                    <td>{{ utilisateur.prenom }}</td>
+                                    <td class="action-buttons">
+                                        <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=accepter" class="btn btn-success btn-sm">
+                                            <i class="fa fa-check"></i> Accepter
+                                        </a>
+                                        <a href="utilisateur_traiter.php?netud={{ utilisateur.netud }}&action=refuser" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-times"></i> Refuser
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="container mt-5 col-md-6 mx-auto">
-	<h2 class="text-center mb-4">Liste des Demandes d'adhésions</h2>
-	<table class="table table-striped table-hover ">
-        <thead>
-            <tr>
-                <th scope="col"># Netud</th>
-                <th scope="col">Nom</th>
-				<th scope="col">Prénom</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-		<tbody>
-			{% for utilisateur in utilisateurs %}
-				{% if utilisateur.demande %}
-					<tr>
-						<td>{{ utilisateur.netud }}</td>
-						<td>{{ utilisateur.nom }}</td>
-						<td>{{ utilisateur.prenom }}</td>
-						<td>
-							<a href="utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=accepter" class="btn btn-success btn-sm">
-								<i class="fa fa-check"></i> Accepter
-							</a>
-							<a href="utilisateur_taiter.php?netud={{ utilisateur.netud }}&action=refuser" class="btn btn-danger btn-sm">
-								<i class="fa fa-times"></i> Refuser
-							</a>
-						</td>
-					</tr>
-				{% endif %}
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
+{% else %}
+		<h1>Erreur 404</h1>
+		<h2>Not found</h2>
+		<p>La page que vous essayer d'accéder n'existe pas</p>
+	{% endif %}
 {% endblock %}

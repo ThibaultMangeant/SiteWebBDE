@@ -3,20 +3,39 @@
     display: flex;
     gap: 20px;
     padding: 20px;
+    min-height: calc(100vh - 100px);
 }
 
-/* Partie gauche : Fil d'actualités */
-.actualite-left {
+/* Conteneurs gauche et droite */
+.actualite-left, .actualite-right {
     flex: 1;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px;
 }
 
+/* Conteneur de contenu flexible */
+.actualite-content, .form-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Liste d'actualités avec scroll masqué */
 .actualite-list {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    scrollbar-width: none; /* Pour Firefox */
+    -ms-overflow-style: none; /* Pour IE et Edge */
+}
+
+/* Masquer la scrollbar pour Chrome, Safari et Opera */
+.actualite-list::-webkit-scrollbar {
+    display: none;
 }
 
 .actualite-card {
@@ -56,27 +75,46 @@
     box-shadow: 0 4px 6px;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.btn-container-center {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
-.form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.btn-success {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
+/* Styles des boutons */
+.btn {
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    min-width: 200px;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
 }
 
 .btn-success:hover {
