@@ -17,11 +17,11 @@
 	<body>
 	<header class="fixed-top">
 	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
 			<!-- Logo de connexion -->
 				<a class="navbar-brand mx-3" href="login.php">
-					<img src="assets/images/login.webp" alt="Connexion au compte" style="height: 75px;">
+					<img id="loginHeaderLogo" src="assets/images/login-light-mode.webp" alt="Connexion au compte" style="height: 75px;">
 				</a>
 
 			<!-- Bouton pour mobile -->
@@ -56,10 +56,9 @@
 					</li>
 				</ul>
 			</div>
-			<!-- Logo de luminosité -->
-			<a class="navbar-brand mx-3">
-				<img src="assets/images/luminosite.webp" alt="Mode sombre/clair" style="height: 75px;">
-			</a>
+			<button id="darkModeToggle" class="navbar-brand mx-3" style="background: none; border: none; cursor: pointer;">
+				<img id="darkModeIcon" src="assets/images/luminosite.webp" alt="Mode sombre" style="height: 75px;">
+			</button>
 		</div>
 	</nav>
 	</header>
@@ -91,26 +90,26 @@
 	{% block javascript %}{% endblock %}
 
 	<!-- Footer -->
-<!-- Footer -->
-<footer class="bg-light py-3">
-    <div class="container">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <!-- Texte centré -->
-            <div class="mb-2 mb-md-0 text-center text-md-start">
-                BDE INFORMATIQUE - LE HAVRE &copy; 2025
-            </div>
+	<footer class="py-3">
+		<div class="container">
+			<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+				<!-- Texte centré -->
+				<div class="mb-2 mb-md-0 text-center text-md-start">
+					BDE INFORMATIQUE - LE HAVRE &copy; 2025
+				</div>
 
-            <!-- Logo Instagram et lien Contact à droite -->
-            <div class="d-flex align-items-center">
-                <a href="https://www.instagram.com/bdeinfo_lh?igsh=ZjNvNGMzeGdodHJy" 
-                   target="_blank" 
-                   class="me-3">
-                    <img src="assets/images/instagram.webp" width="25" alt="Instagram">
-                </a>
-                <a href="contact.php" class="text-decoration-none">Contactez-nous</a>
-            </div>
-        </div>
-    </div>
-</footer>
-	</body>
+				<!-- Logo Instagram et lien Contact à droite -->
+				<div class="d-flex align-items-center">
+					<a href="https://www.instagram.com/bdeinfo_lh?igsh=ZjNvNGMzeGdodHJy" 
+					target="_blank" 
+					class="me-3">
+						<img src="assets/images/instagram.webp" width="25" alt="Instagram">
+					</a>
+					<a href="contact.php" class="text-decoration-none">Contactez-nous</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="assets/js/darkmode.js"></script>
+</body>
 </html>

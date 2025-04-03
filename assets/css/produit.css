@@ -3,9 +3,9 @@
 	max-width: 600px;
 	margin: 0 auto;
 	padding: 20px;
-	background-color: #f8f9fa;
+	background-color: var(--form-background);
 	border-radius: 10px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px;
 	text-align: center;
 }
 
@@ -14,7 +14,6 @@
 	font-size: 1.5rem;
 	font-weight: bold;
 	margin-bottom: 20px;
-	color: #333;
 }
 
 /* Formulaire */
@@ -41,12 +40,13 @@
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	font-size: 1rem;
+	color: #333333 !important; /* Forcer le texte à rester noir */
+	background-color: var(--form-input-bg);
 }
 
 /* Bouton de soumission */
 .btn-primary {
 	background-color: #007bff;
-	color: white;
 	border: none;
 	padding: 10px 20px;
 	border-radius: 5px;
@@ -70,7 +70,7 @@
     display: flex;
     align-items: center; /* Centre verticalement le contenu */
     justify-content: center; /* Centre horizontalement le contenu */
-    background-color: #e9ecef;
+    background-color: var(--form-input-bg);
     margin: 0 auto; /* Centre la div horizontalement dans son conteneur parent */
 }
 

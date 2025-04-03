@@ -15,7 +15,6 @@
     margin-bottom: 30px; /* Ajoute un espacement entre le titre et les cartes */
     font-size: 2rem; /* Taille du texte */
     font-weight: bold; /* Met le texte en gras */
-    color: #333; /* Couleur du texte */
     text-align: center; /* Centre le texte */
 }
 

@@ -15,7 +15,6 @@
 	margin-bottom: 30px; /* Ajoute un espacement entre le titre et les cartes */
 	font-size: 2rem; /* Taille du texte */
 	font-weight: bold; /* Met le texte en gras */
-	color: #333; /* Couleur du texte */
 	text-align: center; /* Centre le texte */
 }
 
@@ -49,7 +48,7 @@
 	border-radius: 10px;
 	margin: 10px 0;
 	background-color: #ffffff;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px;
 	transition: transform 0.5s, opacity 0.3s; /* Animation pour le grossissement */
 	width: 100%; /* S'adapte à la largeur du conteneur */
 }
@@ -72,7 +71,6 @@
 	font-size: 1.2rem;
 	font-weight: bold;
 	position: relative;
-	color: black;
 	transition: color 0.3s ease; /* Animation de la couleur */
 }
 
@@ -103,7 +101,6 @@ a {
 
 .event-description {
 	font-size: 1rem;
-	color: #555;
 }
 
 /* Animation pour les cartes */
@@ -132,7 +129,6 @@ a {
     left: 50%; /* Centré horizontalement */
     transform: translateX(-50%); /* Ajuste pour centrer parfaitement */
     background-color: rgba(255, 0, 0, 0.8); /* Rouge avec transparence */
-    color: white;
     border: none;
     border-radius: 30px; /* Bouton arrondi */
     padding: 10px 20px;

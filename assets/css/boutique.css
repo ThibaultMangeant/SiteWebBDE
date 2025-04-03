@@ -29,7 +29,6 @@
     left: 50%; /* Centré horizontalement */
     transform: translateX(-50%); /* Ajuste pour centrer parfaitement */
     background-color: rgba(255, 0, 0, 0.8); /* Rouge avec transparence */
-    color: white;
     border: none;
     border-radius: 30px; /* Bouton arrondi */
     padding: 10px 20px;

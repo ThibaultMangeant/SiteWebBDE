@@ -58,6 +58,16 @@
     border-radius: 5px;
     padding: 5px;
     font-size: 1rem;
+    color: #333333 !important; /* Texte noir */
+    background-color: var(--form-background) !important; /* Fond adapté au mode */
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+/* Forcer le texte des options à rester noir */
+.form-select option {
+    color: #333333 !important; /* Texte noir */
+    background-color: #ffffff; /* Fond blanc pour les options */
 }
 
 /* Conteneur de l'avatar */

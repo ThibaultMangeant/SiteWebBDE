@@ -38,7 +38,6 @@
 .cart-item-name {
     font-size: 1rem;
     font-weight: bold;
-    color: #333;
 }
 
 .cart-item-quantity {
@@ -60,13 +59,11 @@
 .cart-item-price {
     font-size: 1rem;
     font-weight: bold;
-    color: #555;
 }
 
 .cart-summary {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #333;
 }
 
 .cart-total {

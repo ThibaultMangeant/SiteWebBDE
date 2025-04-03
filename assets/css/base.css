@@ -57,23 +57,88 @@ html {
     height: 100%;
 }
 
+/* Mode clair (par défaut) */
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --card-background: #f8f9fa;
+    --border-color: #dddddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --header-footer-bg: #f8f9fa;
+    --form-text-color: #333333;
+    --form-background: #f8f9fa;
+    --form-input-bg: #ffffff;
+    --faq-background: #ffffff;
+    --faq-text-color: #333333;
+}
+
+/* Mode sombre */
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-background: #2d2d2d;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --header-footer-bg: #2d2d2d;
+    --form-text-color: #333333;  /* Garde le texte en noir */
+    --form-background: #2d2d2d;  /* Fond sombre pour les conteneurs de formulaire */
+    --form-input-bg: #ffffff;    /* Fond blanc pour les champs de saisie */
+    --faq-background: #2d2d2d;
+    --faq-text-color: #ffffff;
+    --form-text-color: #ffffff;
+    --form-background: #1a1a1a;
+}
+
+/* Application des variables */
 body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
 }
 
+/* Header et footer */
+header .navbar, footer {
+    background-color: var(--header-footer-bg) !important;
+    transition: all 0.3s ease;
+}
+
+/* Textes et liens */
+.card, .vitrine-container, .event-card, 
+.actualite-card, .product-form-container,
+.form-control, .input-group-text,
+.dropdown-menu, .modal-content {
+    background-color: var(--card-background) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Textes dans les conteneurs */
+.card *, .vitrine-container *, .event-card *, 
+.actualite-card *, .product-form-container *,
+.form-control, .input-group-text,
+.dropdown-menu *, .modal-content * {
+    color: var(--text-color) !important;
+}
+
+/* Liens */
+a:not(.btn) {
+    color: var(--link-color) !important;
+}
+
 /* Style pour le footer */
 footer {
     margin-top: auto; /* Pour pousser le footer vers le bas */
-    background-color: #f8f9fa;
+    background-color: var(--header-footer-bg) !important;
+    color: var(--text-color) !important;
 }
 
-/* Style pour le lien "Contactez-nous" dans le footer */
 footer a {
     position: relative;
-    color: inherit;
+    color: var(--text-color) !important;
     text-decoration: none;
     transition: color 0.3s ease; /* Animation de la couleur */
 }
@@ -92,4 +157,88 @@ footer a::after {
 
 footer a:hover::after {
     width: 100%; /* La barre s'étend sur toute la largeur du texte */
+}
+
+/* Table styles */
+.table {
+    color: var(--text-color) !important;
+    background-color: var(--card-background) !important;
+}
+
+.table thead th {
+    background-color: var(--header-footer-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.table td {
+    color: var(--text-color) !important;
+    border-color: var (--border-color) !important;
+    background-color: var(--card-background) !important;
+}
+
+.table tbody tr {
+    background-color: var(--card-background) !important;
+}
+
+.table tbody tr:hover {
+    background-color: var(--header-footer-bg) !important;
+    opacity: 0.9;
+}
+
+/* Ajoutez ces styles pour gérer les lignes alternées si nécessaire */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--header-footer-bg) !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--card-background) !important;
+}
+
+/* FAQ Styles */
+.accordion-item {
+    background-color: var(--faq-background) !important;
+    color: var(--faq-text-color) !important;
+    border: 1px solid var(--faq-text-color) !important;
+}
+
+.accordion-button {
+    background-color: var(--faq-background) !important;
+    color: var(--faq-text-color) !important;
+    border: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--faq-background) !important;
+    color: var(--faq-text-color) !important;
+    box-shadow: none;
+}
+
+.accordion-body {
+    background-color: var(--faq-background) !important;
+    color: var(--faq-text-color) !important;
+}
+
+/* Formulaire Styles */
+.form-control {
+    background-color: var(--form-background) !important;
+    color: var(--form-text-color) !important;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: var(--form-text-color) !important;
+    opacity: 0.7;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
 }
