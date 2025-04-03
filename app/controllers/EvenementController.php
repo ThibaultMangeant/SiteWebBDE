@@ -44,7 +44,8 @@ class EvenementController extends Controller
 		$service = new AuthService();
 		$isAdmin = $service->isAdmin();
 
-		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent, 'inscrits' => $inscriptions, 'isAdmin' => $isAdmin]);
+		$utilisateur = (new AuthService())->getUtilisateur();
+		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent, 'inscrits' => $inscriptions, 'utilisateur' => $utilisateur, 'isAdmin' => $isAdmin]);
 	}
 
 	public function create()

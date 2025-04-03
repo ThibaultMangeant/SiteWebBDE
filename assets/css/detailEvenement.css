@@ -189,3 +189,15 @@
     background-color: #dc3545;
     color: white;
 }
+
+/* Style pour le bouton secondaire */
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.btn-secondary:hover {
+    background-color: #6c757d;
+}
