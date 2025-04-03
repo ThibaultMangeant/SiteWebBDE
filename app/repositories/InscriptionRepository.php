@@ -42,7 +42,7 @@ class InscriptionRepository
 		return $inscriptions;
 	}
 
-	public function findByEvenementWithStars($idevenement)
+	public function findByEvenementWithStars($idevenement): array
 	{
 		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE idEvent = :idevenement AND note >= 1');
 		$stmt->bindParam(':idevenement', $idevenement);
