@@ -30,14 +30,65 @@
 
 .reviews {
     margin-top: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 10px;
+}
+
+.reviews::-webkit-scrollbar {
+    display: none;
 }
 
 .review {
     margin-bottom: 20px;
 }
 
+.review.event-card {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.review.event-card:hover {
+    transform: translateY(-5px);
+}
+
 .review p {
     margin: 0;
+}
+
+/* Style pour le titre (nom de l'utilisateur) */
+.review .event-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style pour la description (commentaire) */
+.review .event-description {
+    color: #666;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* Style pour les étoiles */
+.review .rating-display {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.review .rating-display .star {
+    font-size: 1.2rem;
+}
+
+.review .rating-display .star.filled {
+    color: #ffc107;
 }
 
 /* Centrer les boutons */
@@ -61,4 +112,80 @@
     margin-top: 15px;
     font-size: 1rem;
     color: #555;
+}
+
+/* Styles pour la notation avec des étoiles */
+.rating {
+    display: flex;
+    flex-direction: row-reverse; /* Inverse l'ordre d'affichage des étoiles */
+    justify-content: center;
+    gap: 5px;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+/* Modification du comportement au survol */
+.rating:hover label {
+    color: #ccc;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffc107;
+}
+
+/* Modification du comportement à la sélection */
+.rating input[type="radio"]:checked ~ label {
+    color: #ffc107;
+}
+
+/* Styles pour l'affichage des étoiles existantes */
+.rating-display {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.rating-display .star {
+    font-size: 1.5rem;
+    color: #ccc;
+}
+
+.rating-display .star.filled {
+    color: #ffc107;
+}
+
+/* Style pour le bouton de suppression */
+.btn-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #dc3545;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #dc3545;
+    color: white;
 }
