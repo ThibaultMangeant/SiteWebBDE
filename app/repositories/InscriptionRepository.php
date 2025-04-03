@@ -42,6 +42,18 @@ class InscriptionRepository
 		return $inscriptions;
 	}
 
+	public function findByEvenementWithStars($idevenement)
+	{
+		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE idEvent = :idevenement AND note >= 1');
+		$stmt->bindParam(':idevenement', $idevenement);
+		$stmt->execute();
+		$inscriptions = [];
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$inscriptions[] = $this->createInscriptionFromRow($row);
+		}
+		return $inscriptions;
+	}
+
 	public function findByUtilisateurAndEvenement($idUtilisateur, $idEvenement): ?Inscription
 	{
 		$stmt = $this->pdo->prepare('SELECT * FROM Inscrit WHERE netud = :idUtilisateur AND idEvent = :idEvenement');
