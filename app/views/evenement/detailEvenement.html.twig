@@ -44,9 +44,9 @@
         {% for inscrit in inscrits %}
             <div class="review event-card mb-4 shadow-sm position-relative" style="border: none;">
                 <!-- Bouton de suppression -->
-                <button class="btn-delete" title="Supprimer le commentaire">
+                <a href="inscription_delete.php?idEvent={{ evenement.idEvent }}" class="btn btn-delete text-decoration-none" title="Supprimer le commentaire">
                     <i class="fas fa-times"></i>
-                </button>
+                </a>
                 <div class="event-content">
                     <p class="event-title"><strong>{{ inscrit.utilisateur.prenom }} {{ inscrit.utilisateur.nom }}</strong></p>
                     <div class="rating-display mb-2">
@@ -58,7 +58,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <p class="event-description">{{ inscrit.commentaire }}</p>
+                    <p class="event-description">{{ inscrit.commentaire | raw }}</p>
                 </div>
             </div>
         {% endfor %}
