@@ -1,0 +1,61 @@
+{% extends '_template/base.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="assets/css/panier.css">
+{% endblock %}
+
+{% block body %}
+	{% if isLoggedIn %}
+		<div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
+			<div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
+				<h2 class="text-center mb-4">Récapitulatif de commande</h2>
+				<div class="user-info mb-3">
+					<div class="d-flex justify-content-between">
+						<span><strong>Nom {% for i in 1..21 %}&nbsp;{% endfor %}:</strong></span>
+						<span>{{ utilisateur.nom }}</span>
+					</div>
+					<div class="d-flex justify-content-between">
+						<span><strong>Prénom {% for i in 1..16 %}&nbsp;{% endfor %}:</strong></span>
+						<span>{{ utilisateur.prenom }}</span>
+					</div>
+					<div class="d-flex justify-content-between">
+						<span><strong>Email {% for i in 1..19 %}&nbsp;{% endfor %}:</strong></span>
+						<span>{{ utilisateur.email }}</span>
+					</div>
+					<div class="d-flex justify-content-between">
+						<span><strong>Numéro Étudiant :</strong></span>
+						<span>{{ utilisateur.netud }}</span>
+					</div>
+				</div>
+				<div class="cart-items">
+					{% for commande in commandes %}
+					<div class="cart-item d-flex align-items-center justify-content-between mb-3">
+						<div class="cart-item-info d-flex align-items-center">
+							<img src="assets/images/boutique/{{ commande.produit.imgProd }}" alt="Article" class="cart-item-image">
+							<span class="cart-item-name">{{ commande.produit.nomProd }}</span>
+						</div>
+						<div class="cart-item-price">
+							{{ (commande.produit.prixProd) | number_format(2, ',', ' ') }} €
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="cart-summary mt-4">
+					<div class="d-flex justify-content-between">
+						<span>Total :</span>
+						<span class="cart-total">
+							{{ Total | number_format(2, ',', ' ') }} €
+						</span>
+					</div>
+					<a href="boutique.php" style="text-decoration: none; color: inherit;">
+						<button class="btn btn-primary w-100 mt-3" id="btnCommande">Retour à la boutique</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<h1>Erreur 401</h1>
+		<h2>Unauthorized</h2>
+		<p>Vous devez être connecté pour accéder à cette page</p>
+	{% endif %}
+{% endblock %}

@@ -31,7 +31,7 @@ class CommandeController extends Controller {
 		}
 
 		// Ensuite, affiche la vue
-		$this->view('panier.html.twig',  ['commandes'    => $commandes,
+		$this->view('panier/panier.html.twig',  ['commandes'    => $commandes,
 															'Total'      => $total,
 															'isLoggedIn' => $isLoggedIn]);
 	}
@@ -175,5 +175,27 @@ class CommandeController extends Controller {
 		}
 
 		$this->redirectTo('panier.php'); // Redirection après suppression		
+	}
+
+	public function commander() {
+		$repository = new CommandeRepository();
+		$service = new AuthService();
+		$utilisateur = $service->getUtilisateur();
+		$isLoggedIn = $service->isLoggedIn();
+
+		$commandes = $repository->findByUtilisateur($utilisateur->getNetud());
+		$total = $repository->getTotal($utilisateur->getNetud());
+		if ($utilisateur != null)
+		{
+			if (count($commandes) > 0) {
+				foreach ($commandes as $commande) {
+					$repository->deleteById($commande->getNumCommande());
+				}
+			}
+		}else {
+			throw new Exception('Erreur lors de la commande');
+		}
+
+		$this->view('panier/panier_commande.html.twig',  ['utilisateur' => $utilisateur, 'commandes' => $commandes,'Total' => $total,'isLoggedIn' => $isLoggedIn]);
 	}
 }
