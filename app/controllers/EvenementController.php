@@ -41,7 +41,10 @@ class EvenementController extends Controller
 			throw new Exception('Évènement non trouvé');
 		}
 
-		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent, 'inscrits' => $inscriptions]);
+		$service = new AuthService();
+		$isAdmin = $service->isAdmin();
+
+		$this->view('/evenement/detailEvenement.html.twig', ['evenement' => $evenement, 'idEvent' => $idEvent, 'inscrits' => $inscriptions, 'isAdmin' => $isAdmin]);
 	}
 
 	public function create()

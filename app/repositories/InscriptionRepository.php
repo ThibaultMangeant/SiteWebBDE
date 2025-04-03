@@ -118,12 +118,17 @@ class InscriptionRepository
 
 	public function update(Inscription $inscription): bool
 	{
+		$note = $inscription->getNote();
+		$commentaire = $inscription->getCommentaire();
+		$idEvent = $inscription->getEvenement()->getIdEvent();
+		$idUtilisateur = $inscription->getUtilisateur()->getNetud();
+
 		$stmt = $this->pdo->prepare('UPDATE Inscrit SET note = :note, commentaire = :commentaire WHERE idEvent = :idEvent AND netud=:netud');
-		return $stmt->execute([
-			':idEvent'     => $inscription->getEvenement()->getIdEvent(),
-			':netud'       => $inscription->getUtilisateur()->getNetud(),
-			':note'        => $inscription->getNote(),
-			':commentaire' => $inscription->getCommentaire()
-		]);
+		$stmt->bindParam(':note', $note, PDO::PARAM_INT);
+		$stmt->bindParam(':commentaire', $commentaire, PDO::PARAM_STR);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(':netud', $idUtilisateur, PDO::PARAM_INT);
+
+		return $stmt->execute();
 	}
 }
