@@ -201,18 +201,25 @@ class InscriptionController extends Controller
 		}
 	}
 
-	public function delete()
+	public function deleteAvis()
 	{
 		$idEvent = $this->getQueryParam('idEvent');
 
 		$utilisateur = (new AuthService())->getUtilisateur();
+
+		if ($utilisateur == null)
+		{
+			$this->redirectTo('detailEvenement.php?idEvent='.$idEvent); // Redirection si non connecté
+			throw new Exception('Utilisateur non connecté');
+		}
+
 		$idUtilisateur = $utilisateur->getNetud();
 
 		$eventRepository = new EvenementRepository();
 		$evenement       = $eventRepository->findById($idEvent);
 
 		if ($evenement === null)
-			throw new Exception('Evennement non trouvé');
+			throw new Exception('Evenement non trouvé');
 		
 		$inscriptionRepo = new InscriptionRepository();
 		$inscription = $inscriptionRepo->findByUtilisateurAndEvenement($idUtilisateur, $idEvent);
@@ -221,11 +228,11 @@ class InscriptionController extends Controller
 			throw new Exception('Inscription non trouvé');
 
 		// Mise à jour en base de données
-		if (!$inscriptionRepo->deleteByUtilisateurAndEvenement($idUtilisateur, $idEvent))
+		if (!$inscriptionRepo->deleteAvisByUtilisateurAndEvenement($idUtilisateur, $idEvent))
 		{
 			throw new Exception('Erreur lors de la suppression de l\'inscription');
 		}
 
-		$this->redirectTo('detailEvenement.php?idEvent=' + $idEvent); // Redirection après suppression
+		$this->redirectTo('detailEvenement.php?idEvent='.$idEvent); // Redirection après suppression
 	}
 }

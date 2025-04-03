@@ -72,6 +72,14 @@ class InscriptionRepository
 		return $stmt->execute();
 	}
 
+	public function deleteAvisByUtilisateurAndEvenement($idUtilisateur, $idEvenement) : bool
+	{
+		$stmt = $this->pdo->prepare('UPDATE Inscrit SET note=0, commentaire=NULL WHERE netud = :idUtilisateur AND idEvent = :idEvenement');
+		$stmt->bindParam(':idUtilisateur', $idUtilisateur);
+		$stmt->bindParam(':idEvenement', $idEvenement);
+		return $stmt->execute();
+	}
+
 	public function deleteByUtilisateur($idUtilisateur): bool
 	{
 		$stmt = $this->pdo->prepare('DELETE FROM Inscrit WHERE netud = :idUtilisateur');
