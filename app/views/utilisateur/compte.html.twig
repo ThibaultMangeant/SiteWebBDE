@@ -49,7 +49,6 @@
             <div class="col-md-5">
                 <h5 class="fw-bold">Options</h5>
                 <form method="get" action="utilisateur_traiterCompte.php?action=notif">
-                    <input type="hidden" name="action" value="notif">
                     <label for="notificationSelect" class="form-label">Notifications</label>
                     <select id="notificationSelect" class="form-select" name="valeur" onchange="this.form.submit()">
                         <option value="Aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>

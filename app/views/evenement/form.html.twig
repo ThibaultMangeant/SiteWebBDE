@@ -48,6 +48,13 @@
 			<input type="number" step="0.01" id="prixEvent" name="prixEvent" value="{{ data.prixEvent|default('') }}" required>
 		</div>
 
+		<label for="notificationSelect" class="form-label">Autorisé à participer</label>
+        <select id="notificationSelect" class="form-select" name="roleAutorise">
+            <option value="membre"selected>Membre</option>
+            <option value="adherant">Adherant</option>
+            <option value="admin" >Admin</option>
+        </select>
+			
 		<!-- Bouton de soumission -->
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary">
