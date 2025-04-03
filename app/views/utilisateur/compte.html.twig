@@ -14,12 +14,12 @@
             <a href="utilisateur_traiterCompte.php?action=supprimer" style="text-decoration: none; color: inherit;">
                 <button class="btn btn-danger">Supprimer le compte</button>
             </a>
-            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == FALSE %}
+            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == false %}
                 <a style="text-decoration: none; color: inherit;">
                     <button class="btn btn-success">Devenir adhérent</button>
                 </a>
             {% endif %}
-            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == TRUE %}
+            {% if utilisateur.role.nomRole == 'membre' and utilisateur.demande == true %}
                 <a style="text-decoration: none; color: inherit;">
                     <button class="btn btn-secondary" disabled>Demande en attente</button>
                 </a>
@@ -30,7 +30,7 @@
                 </p>
             {% endif %}
             {% if utilisateur.role.nomRole == 'admin' %}
-                <p class="text-primary fw-bold">
+                <p class="text-danger fw-bold">
                     <i class="fa-solid fa-user-shield"></i> Administrateur
                 </p>
             {% endif %}
