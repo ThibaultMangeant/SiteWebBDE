@@ -190,6 +190,8 @@ class CommandeController extends Controller {
 		$total = $repository->getTotal($utilisateur->getNetud());
 		if ($isDiscounted){
 			$total = $total - ($total * 0.25);
+		} elseif ($total == 0 || $commandes == null) {
+			$this->redirectTo('boutique.php');
 		}
 		
 		if ($utilisateur != null)

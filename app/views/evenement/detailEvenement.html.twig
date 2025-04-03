@@ -19,8 +19,17 @@
                 <p class="event-description mt-3">{{ evenement.descEvent }}</p>
             </div>
             <!-- Bouton Réserver centré -->
+			{% set idUtilisateurs = [] %}
+			{% for inscrit in inscrits %}
+				{% set idUtilisateurs = idUtilisateurs|merge([inscrit.utilisateur.netud]) %}
+			{% endfor %}
             <div class="text-center mt-4">
-                <a href="inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}" class="btn btn-primary rounded-pill">Réserver</a>
+				<div class="text-center mt-4">
+    				<button type="button" class="btn btn-primary rounded-pill"  onclick="window.location.href='inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}'"
+						{% if utilisateur.netud in idUtilisateurs %}disabled{% endif %}>
+        				Réserver 
+    				</button>
+				</div>
             </div>
         </div>
 
