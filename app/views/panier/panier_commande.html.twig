@@ -11,19 +11,19 @@
 				<h2 class="text-center mb-4">Récapitulatif de commande</h2>
 				<div class="user-info mb-3">
 					<div class="d-flex justify-content-between">
-						<span><strong>Nom {% for i in 1..21 %}&nbsp;{% endfor %}:</strong></span>
+						<span><strong>Nom</strong></span>
 						<span>{{ utilisateur.nom }}</span>
 					</div>
 					<div class="d-flex justify-content-between">
-						<span><strong>Prénom {% for i in 1..16 %}&nbsp;{% endfor %}:</strong></span>
+						<span><strong>Prénom</strong></span>
 						<span>{{ utilisateur.prenom }}</span>
 					</div>
 					<div class="d-flex justify-content-between">
-						<span><strong>Email {% for i in 1..19 %}&nbsp;{% endfor %}:</strong></span>
+						<span><strong>Email</strong></span>
 						<span>{{ utilisateur.email }}</span>
 					</div>
 					<div class="d-flex justify-content-between">
-						<span><strong>Numéro Étudiant :</strong></span>
+						<span><strong>Numéro Étudiant</strong></span>
 						<span>{{ utilisateur.netud }}</span>
 					</div>
 				</div>
@@ -31,6 +31,7 @@
 					{% for commande in commandes %}
 					<div class="cart-item d-flex align-items-center justify-content-between mb-3">
 						<div class="cart-item-info d-flex align-items-center">
+						<span class="quantity">x{{ commande.qa }}&nbsp;&nbsp;&nbsp;</span>
 							<img src="assets/images/boutique/{{ commande.produit.imgProd }}" alt="Article" class="cart-item-image">
 							<span class="cart-item-name">{{ commande.produit.nomProd }}</span>
 						</div>
