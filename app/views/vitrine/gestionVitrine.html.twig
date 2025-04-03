@@ -1,0 +1,29 @@
+{% extends '_template/base.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="assets/css/vitrine.css">
+{% endblock %}
+
+{% block body %}
+<div class="vitrine-container mt-5">
+	<h1 class="text-center mb-5"><strong>Gestion de la Vitrine</strong></h1>
+	<form method="POST" action="vitrine_update.php" enctype="multipart/form-data">
+		{% for section, data in sections %}
+			<div class="mb-4">
+				<label for="{{ section }}" class="vitrine-title">{{ section | capitalize }}</label>
+				<textarea id="{{ section }}" name="{{ section }}" class="form-control" rows="5">{{ data.content | replace({'<br>': '\n'}) }}</textarea>
+				<div class="vitrine-images d-flex justify-content-center flex-wrap">
+					{% for image in data.images %}
+						<img class="mx-auto d-block" style="max-height:25vh; border: 1px solid; border-radius:10px;margin: 10px;"
+							src="assets/images/vitrine/{{ image }}" alt="{{ section }}" class="vitrine-image">
+					{% endfor %}
+				</div>
+				<input type="file" name="image_{{ section }}[]" class="form-control mt-2" multiple>
+			</div>
+		{% endfor %}
+		<div class="text-center">
+			<button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+		</div>
+	</form>
+</div>
+{% endblock %}

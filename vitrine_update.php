@@ -2,4 +2,4 @@
 require_once './app/controllers/VitrineController.php';
 
 $controller = new VitrineController();
-$controller->index();
+$controller->update();
