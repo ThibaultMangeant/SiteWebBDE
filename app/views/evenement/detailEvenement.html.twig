@@ -20,16 +20,17 @@
             </div>
             <!-- Bouton Réserver centré -->
             <div class="text-center mt-4">
-                <a href="inscription_create.php" class="btn btn-primary rounded-pill">Réserver</a>
+                <a href="inscription_create.php?idEvent={{ evenement.idEvent }}&prixEvent={{ evenement.prixEvent }}" class="btn btn-primary rounded-pill">Réserver</a>
             </div>
         </div>
 
         <!-- Section des avis -->
         <div class="col-md-4">
             <h3 class="section-title">Votre avis</h3>
-            <form method="post" action="inscription_update.php" class="text-center">
-                <textarea name="commentaire" class="form-control mb-3" rows="4" placeholder="Écrivez votre avis ici..."></textarea>
-                <button type="submit" class="btn btn-primary px-5 mx-auto d-block rounded-pill">Publier</button>
+            <form method="post" action="inscription_update.php?idEvent={{ evenement.idEvent }}" class="text-center">
+				<input type="number" placeholder="5" name="note" required></input>
+                <textarea name="commentaire" class="form-control mb-3" rows="4" placeholder="Écrivez votre avis ici..." required></textarea>
+				<button type="submit" class="btn btn-primary px-5 mx-auto d-block rounded-pill">Publier</button>
             </form>
             <hr>
             <h3 class="section-title">Avis des participants</h3>

@@ -5,32 +5,37 @@
     <div class="card p-4 shadow-sm" style="width: 100%; max-width: 500px; background-color: #f8f9fa; border-radius: 10px;">
         <h2 class="text-center mb-4">Inscription</h2>
         <!-- Message d'erreur à afficher si besoin -->
-        {% if error %}
+        {% for error in errors %}
             <div class="alert alert-danger text-center" role="alert">
                 {{ error }}
             </div>
-        {% endif %}
+        {% endfor %}
 
-        <form method="post" action="register.php">
+        <form method="post" action="{% if isLoggedIn %}utilisateur_update.php{% else %}register.php{% endif %}">
             <div class="row mb-3">
                 <div class="col">
                     <label for="prenom" class="form-label fw-bold">Prénom <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control rounded-pill" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                    <input type="text" class="form-control rounded-pill" id="prenom" name="prenom" value="{{utilisateur.prenom}}" placeholder="Votre prénom" required>
                 </div>
                 <div class="col">
                     <label for="nom" class="form-label fw-bold">Nom <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control rounded-pill" id="nom" name="nom" placeholder="Votre nom" required>
+                    <input type="text" class="form-control rounded-pill" id="nom" name="nom" value="{{utilisateur.nom}}" placeholder="Votre nom" required>
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col">
-                    <label for="email" class="form-label fw-bold">Courrier électronique <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control rounded-pill" id="email" name="email" placeholder="Votre email" required>
-                </div>
-                <div class="col">
-                    <label for="numero_etudiant" class="form-label fw-bold">Numéro étudiant <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control rounded-pill" id="numero_etudiant" name="numero_etudiant" placeholder="Votre numéro étudiant" required>
-                </div>
+				<div class="col">
+					<label for="email" class="form-label fw-bold">Courrier électronique <span class="text-danger">*</span></label>
+					<input type="email" class="form-control rounded-pill" id="email" value="{{utilisateur.email}}" name="email" placeholder="Votre email" required>
+				</div>
+				<div class="col">
+					<label for="numero_etudiant" class="form-label fw-bold">Numéro étudiant <span class="text-danger">*</span></label>
+					{% if isLoggedIn %}
+					<label for="numero_etudiant" class="form-control rounded-pill">{{utilisateur.netud}}</label>
+					<input type="hidden" class="form-control rounded-pill" id="numero_etudiant" value="{{utilisateur.netud}}"  name="numero_etudiant" placeholder="Votre numéro étudiant" required>
+					{% else %}
+					<input type="text" class="form-control rounded-pill" id="numero_etudiant" name="numero_etudiant" placeholder="Votre numéro étudiant" required>
+					{% endif %}
+				</div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label fw-bold">Mot de passe <span class="text-danger">*</span></label>
@@ -44,7 +49,7 @@
                 <small class="text-danger">* Champs obligatoires</small>
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary rounded-pill">S'inscrire</button>
+                <button type="submit" class="btn btn-primary rounded-pill">{% if isLoggedIn %}Modifier{% else %}S'inscrire{% endif %}</button>
             </div>
         </form>
     </div>

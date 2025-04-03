@@ -84,7 +84,7 @@ CREATE TABLE Inscrit
 (
 	netud       INT NOT NULL,
 	idEvent     INT NOT NULL,
-	note        INT,
+	note        INT CHECK (note BETWEEN 0 AND 5),
 	commentaire TEXT,
 
 	FOREIGN KEY (netud  ) REFERENCES Utilisateur(netud  ) ON DELETE CASCADE,
