@@ -82,9 +82,9 @@ html {
     --header-footer-bg: #2d2d2d;
     --form-text-color: #333333;  /* Garde le texte en noir */
     --form-background: #2d2d2d;  /* Fond gris foncé */
-    --form-input-bg: #ffffff;    /* Fond blanc pour les champs de saisie */
+    --form-input-bg: #2d2d2d;    /* Fond blanc pour les champs de saisie */
     --faq-background: #2d2d2d;
-    --faq-text-color: #ffffff;
+    --faq-text-color: #e2e2e2;
     --form-text-color: #ffffff;
     --form-background: #2d2d2d; /* Fond gris foncé */
 }

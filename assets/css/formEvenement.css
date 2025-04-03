@@ -76,7 +76,7 @@
 	border-radius: 5px;
 	font-size: 1rem;
 	color: #333333 !important; /* Forcer le texte à rester noir */
-	background-color: #ffffff; /* Fond blanc pour les champs */
+	background-color: #eeeeee;
 }
 
 /* Bouton de soumission */
@@ -108,7 +108,7 @@
     align-items: center; /* Centre verticalement le contenu */
     justify-content: center; /* Centre horizontalement le contenu */
     margin: 0 auto; /* Centre la div horizontalement dans son conteneur parent */
-    background-color: #f8f9fa; /* Fond gris clair */
+    background-color: var(--form-input-bg);
 }
 
 .image-preview img {

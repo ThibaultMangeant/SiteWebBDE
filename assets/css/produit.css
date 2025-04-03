@@ -37,11 +37,11 @@
 .product-form input[type="file"] {
 	width: 80%;
 	padding: 10px;
-	border: 1px solid #ddd;
+	border: 1px solid;
 	border-radius: 5px;
 	font-size: 1rem;
 	color: #333333 !important; /* Forcer le texte à rester noir */
-	background-color: var(--form-input-bg);
+	background-color: #eeeeee;
 }
 
 /* Bouton de soumission */
@@ -64,7 +64,7 @@
     position: relative;
     width: 150px;
     height: 150px;
-    border: 1px dashed #ddd;
+    border: 1px dashed;
     border-radius: 10px;
     overflow: hidden;
     display: flex;
