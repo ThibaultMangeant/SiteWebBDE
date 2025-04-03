@@ -75,7 +75,7 @@ class EvenementRepository
 			':dateEvent' => $evenement->getDateEvent()->format('Y-m-d H:i:s'),
 			':lieuEvent' => $evenement->getLieuEvent(),
 			':prixEvent' => $evenement->getPrixEvent(),
-			':roleAutoriseMin' => $evenement->getRoleAutorise(),
+			':roleAutoriseMin' => $evenement->getRoleAutorise()->getNomRole(),
 			':imgEvent' => $evenement->getImgEvent()
 		]);
 	}
