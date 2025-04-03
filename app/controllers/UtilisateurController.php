@@ -61,6 +61,24 @@ class UtilisateurController extends Controller {
 
 		$this->redirectTo('utilisateurs_gestion.php'); // Redirection après traitement
 	}
+	public function traiterCompte(){
+		$utilisateur = (new AuthService())->getUtilisateur();
+		$action = $this->getQueryParam('action');
+
+		if ($utilisateur === null) {
+			throw new Exception('l\'utilisateur est nul (impréssionant).');
+		}
+
+		$repository = new UtilisateurRepository();
+			
+		if ($action == 'supprimer') {
+			$repository->upgradeRole($utilisateur);
+		} elseif ($action == 'adhesion') {
+			$repository->degradeRole($utilisateur);
+		}
+
+		$this->redirectTo('index.php'); // Redirection après traitement
+	}
 
 	public function delete() {
 		$netud = $this->getQueryParam('netud');
