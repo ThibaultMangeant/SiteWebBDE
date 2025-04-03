@@ -81,11 +81,11 @@ class UtilisateurController extends Controller {
 
 		} elseif ($action == 'notif') {
 			$utilisateur->setTypeNotification($this->getQueryParam('valeur'));
+			var_dump($utilisateur->getTypeNotification());
+			Exception::assert($utilisateur->getTypeNotification() == $this->getQueryParam('valeur'), 'Erreur de type de notification');
 			$repository->update($utilisateur);
-
 		} elseif ($action == 'modifier') {
 			$this->update();
-
 		} elseif ($action == 'déconnexion') {
 			(new AuthService())->logout();
 			$this->redirectTo('index.php'); // Redirection après déconnexion

@@ -36,7 +36,7 @@
 					<label for="notificationSelect" class="form-label">Notifications</label>
 					<select id="notificationSelect" class="form-select" name="valeur" onchange="this.form.submit()">
 						<option value="Aucune" {% if utilisateur.typeNotification == 'Aucune' %}selected{% endif %}>Aucune</option>
-						<option value="E-mail" {% if utilisateur.typeNotification == 'E-mail' %}selected{% endif %}>E-mail</option>
+						<option value="Mail" {% if utilisateur.typeNotification == 'Mail' %}selected{% endif %}>E-mail</option>
 						<option value="Discord" {% if utilisateur.typeNotification == 'Discord' %}selected{% endif %}>Discord</option>
 						<option value="Les deux" {% if utilisateur.typeNotification == 'Les deux' %}selected{% endif %}>Les deux</option>
 					</select>
