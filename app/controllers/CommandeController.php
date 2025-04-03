@@ -15,15 +15,25 @@ class CommandeController extends Controller {
     use FormTrait;
     use AuthTrait;
 
-	public function index() {
+	public function index()
+	{
 		$repository = new CommandeRepository();
-		$utilisateur = (new AuthService())->getUtilisateur();
-		
-		if ($utilisateur != null) {
+		$service = new AuthService();
+		$utilisateur = $service->getUtilisateur();
+		$isLoggedIn = $service->isLoggedIn();
+
+		$commandes = [];
+		$total = 0;
+		if ($utilisateur != null)
+		{
 			$commandes = $repository->findByUtilisateur($utilisateur->getNetud());
+			$total = $repository->getTotal($utilisateur->getNetud());
 		}
+
 		// Ensuite, affiche la vue
-		$this->view('panier.html.twig',  ['commandes' => $commandes,"Total" => $repository->getTotal($utilisateur->getNetud())]);	
+		$this->view('panier.html.twig',  ['commandes'    => $commandes,
+															'Total'      => $total,
+															'isLoggedIn' => $isLoggedIn]);
 	}
 
 	public function create() {

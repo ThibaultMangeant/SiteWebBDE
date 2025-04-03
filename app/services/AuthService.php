@@ -8,9 +8,12 @@ class AuthService {
 
     public function getUtilisateur():?Utilisateur
     {
-        if(session_status() == PHP_SESSION_NONE)
-            session_start();
-        return unserialize($_SESSION['utilisateur']);
+		if(session_status() == PHP_SESSION_NONE)
+			session_start();
+
+		if (!$this->isLoggedIn())
+			return null;
+		return unserialize($_SESSION['utilisateur']);
     }
 
     public function setUtilisateur(Utilisateur $utilisateur): void

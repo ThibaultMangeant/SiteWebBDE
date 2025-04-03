@@ -5,41 +5,47 @@
 {% endblock %}
 
 {% block body %}
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
-    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
-        <h2 class="text-center mb-4">Panier</h2>
-        <div class="cart-items">
-            {% for commande in commandes %}
-            <div class="cart-item d-flex align-items-center justify-content-between mb-3">
-                <div class="cart-item-info d-flex align-items-center">
-                    <img src="assets/images/boutique/{{ commande.produit.imgProd }}" alt="Article" class="cart-item-image">
-                    <span class="cart-item-name">{{ commande.produit.nomProd }}</span>
-                </div>
-                <div class="cart-item-quantity d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=1" data-action="decrease" data-id="{{ commande.produit.idProd }}">-</button>
-                    <span class="quantity">{{ commande.qa }}</span>
-                    <button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=-1" data-action="increase" data-id="{{ commande.produit.idProd }}">+</button>
-                </div>
-                <div class="cart-item-price">
-					{{ (commande.produit.prixProd) | number_format(2, ',', ' ') }} €
-                </div>
-                <button class="btn btn-danger btn-sm delete-btn" href="panier_delete.php?idProd={{ commande.produit.idProd }}" data-id="{{ commande.produit.idProd }}">
-                    <i class="fa fa-trash"></i>
-                </button>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="cart-summary mt-4">
-            <div class="d-flex justify-content-between">
-                <span>Total :</span>
-				<span class="cart-total">
-                    {{ Total | number_format(2, ',', ' ') }} €
-				</span>
-            </div>
-            <button class="btn btn-primary w-100 mt-3">Commander</button>
-        </div>
-    </div>
-</div>
+	{% if isLoggedIn %}
+		<div class="container d-flex justify-content-center align-items-center" style="min-height: 65vh;">
+			<div class="card p-4 shadow-sm" style="width: 100%; max-width: 600px; background-color: #f8f9fa; border-radius: 10px;">
+				<h2 class="text-center mb-4">Panier</h2>
+				<div class="cart-items">
+					{% for commande in commandes %}
+					<div class="cart-item d-flex align-items-center justify-content-between mb-3">
+						<div class="cart-item-info d-flex align-items-center">
+							<img src="assets/images/boutique/{{ commande.produit.imgProd }}" alt="Article" class="cart-item-image">
+							<span class="cart-item-name">{{ commande.produit.nomProd }}</span>
+						</div>
+						<div class="cart-item-quantity d-flex align-items-center">
+							<button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=1" data-action="decrease" data-id="{{ commande.produit.idProd }}">-</button>
+							<span class="quantity">{{ commande.qa }}</span>
+							<button class="btn btn-outline-secondary btn-sm quantity-btn"  href="panier_update.php?idCommande={{ commande.numCommande }}&change=-1" data-action="increase" data-id="{{ commande.produit.idProd }}">+</button>
+						</div>
+						<div class="cart-item-price">
+							{{ (commande.produit.prixProd) | number_format(2, ',', ' ') }} €
+						</div>
+						<button class="btn btn-danger btn-sm delete-btn" href="panier_delete.php?idProd={{ commande.produit.idProd }}" data-id="{{ commande.produit.idProd }}">
+							<i class="fa fa-trash"></i>
+						</button>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="cart-summary mt-4">
+					<div class="d-flex justify-content-between">
+						<span>Total :</span>
+						<span class="cart-total">
+							{{ Total | number_format(2, ',', ' ') }} €
+						</span>
+					</div>
+					<button class="btn btn-primary w-100 mt-3">Commander</button>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<h1>Erreur 401</h1>
+		<h2>Unauthorized</h2>
+		<p>Vous devez être connecté pour accéder à cette page</p>
+	{% endif %}
 {% endblock %}
 
 {% block javascript %}
