@@ -15,6 +15,16 @@
                 <ul class="event-info">
                     <li><strong>Lieu :</strong> {{ evenement.lieuEvent }}</li>
                     <li><strong>Prix :</strong> {{ evenement.prixEvent > 0 ? evenement.prixEvent ~ ' €' : 'Gratuit' }}</li>
+					<li><div class="rating-display mb-2">
+                        {% for i in 1..5 %}
+                            {% if i <= moyenneAvis %}
+                                <span class="star filled">&#9733;</span>
+                            {% else %}
+                                <span class="star">&#9733;</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+					</li>
                 </ul>
                 <p class="event-description mt-3">{{ evenement.descEvent }}</p>
             </div>
