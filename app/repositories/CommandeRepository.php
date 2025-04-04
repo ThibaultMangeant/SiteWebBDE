@@ -53,18 +53,6 @@ class CommandeRepository
 		return $commandes;
 	}
 
-	public function findByProduit($idProduit): array
-	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Commande WHERE idProd = :idProduit');
-		$stmt->bindParam(':idProduit', $idProduit);
-		$stmt->execute();
-		$commandes = [];
-		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$commandes[] = $this->createCommandeFromRow($row);
-		}
-		return $commandes;
-	}
-
 	public function findByProduitAndUtilisateur($idProduit, $idUtilisateur): ?Commande
 	{
 		$stmt = $this->pdo->prepare('SELECT * FROM Commande WHERE idProd = :idProduit AND netud = :idUtilisateur');

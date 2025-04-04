@@ -26,13 +26,6 @@ class RoleRepository
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $row ? $this->createRoleFromRow($row) : null;
 	}
-
-	public function deleteByNom($nomRole): bool
-	{
-		$stmt = $this->pdo->prepare('DELETE FROM "Role" WHERE nomRole = :nomRole');
-		$stmt->bindParam(':nomRole', $nomRole);
-		return $stmt->execute();
-	}
 	
 	public function update(Role $role): bool
 	{

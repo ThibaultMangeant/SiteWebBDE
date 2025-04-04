@@ -79,13 +79,4 @@ class EvenementRepository
 			':imgEvent' => $evenement->getImgEvent()
 		]);
 	}
-	
-	public function findByNom($nomEvent): ?Evenement
-	{
-		$stmt = $this->pdo->prepare('SELECT * FROM Evenement WHERE nomEvent = :nomEvent');
-		$stmt->bindParam(':nomEvent', $nomEvent);
-		$stmt->execute();
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-		return $row ? $this->createEvenementFromRow($row) : null;
-	}
 }

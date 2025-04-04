@@ -31,7 +31,7 @@ class AuthController extends Controller {
 			$utilisateur = $utilisateurRepository->findById($this->getPostParam('numero_etudiant'));
 
 			// Vérifier si l'utilisateur existe et si le mot de passe est correct
-			if ($utilisateur !== null /* && $this->verify($this->getPostParam('password'), $utilisateur->getMdp()) */) {
+			if ($utilisateur !== null && $this->verify($this->getPostParam('password'), $utilisateur->getMdp())) {
 				$authService->setUtilisateur($utilisateur);
 				$this->compte(); // Rediriger vers la méthode compte()
 				return;

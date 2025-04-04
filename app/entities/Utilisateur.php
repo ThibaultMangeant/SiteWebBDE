@@ -1,5 +1,6 @@
 <?php
 require_once './app/repositories/RoleRepository.php';
+
 class Utilisateur 
 {
 	public function __construct(private int $netud, private string $nom, private string $prenom, private string $tel, private string $email, private string $mdp, private string $typeNotification, private Role $role, private bool $demande) {}

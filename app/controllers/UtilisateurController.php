@@ -204,7 +204,7 @@ class UtilisateurController extends Controller {
                     $errors[] = 'Le mot de passe doit contenir au moins 6 caractères.';
                 }
 				if (empty($data['demande'])) {
-					$errors[] = 'La demande est requise.';
+					$data['demande'] = false;
 				}
 				if (empty($data['type_notification'])) {
 					$errors[] = 'Le type de notification est requis.';

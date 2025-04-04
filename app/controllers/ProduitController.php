@@ -70,7 +70,7 @@ class ProduitController extends Controller {
 					throw new Exception(implode(', ', $errors));
 				}
 
-				// Création de l'objet utilisateur
+				// Création de l'objet produit
 				$produit = new Produit(0, $data['nomProd'], (int)$data['qs'], (float)$data['prixProd'], $data['imgProd']);
 
 				// Sauvegarde dans la base de données

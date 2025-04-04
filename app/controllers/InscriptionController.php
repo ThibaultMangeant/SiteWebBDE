@@ -61,7 +61,7 @@ class InscriptionController extends Controller
 
 				$idUtilisateur = $data['idUtilisateur'];
 
-				// Création de l'objet commande
+				// Création de l'objet inscription
 				$event       = (new EvenementRepository())->findById($idEvent);
 				$inscription = new Inscription($event, $utilisateur,  0, "");
 

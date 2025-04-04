@@ -140,7 +140,7 @@ class CommandeController extends Controller {
 					throw new Exception(implode(', ', $errors));
 				}
 				var_dump($data);
-				// Création de l'objet evenement
+				// Création de l'objet commande
 				$commande->setQa((int)$data['qa']+$change);
 				if ($commande->getQa() > $commande->getProduit()->getQs()) {
 					$commande->setQa($commande->getProduit()->getQs());

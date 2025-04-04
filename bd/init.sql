@@ -4,11 +4,11 @@ INSERT INTO "Role"(nomRole, niveau) VALUES ('admin', 2), ('adherant', 1), ('memb
 
 -- Insertion des utilisateurs
 INSERT INTO Utilisateur(netud, nom, prenom, tel, email, mdp, typeNotification, role, demande) VALUES
-	(1234, 'Test' , 'Johnny' , '0708163264', 'test@gmail.com'           , '1234'       , 'Les deux', 'admin'   , FALSE),
-    (1235, 'Doe'  , 'John'   , '0708234567', 'john.doe@example.com'     , 'abcd1234'   , 'Mail'    , 'adherant', TRUE ),
-    (1236, 'Smith', 'Anna'   , '0708345678', 'anna.smith@example.com'   , 'password123', 'Discord' , 'membre'  , FALSE),
-    (1237, 'Brown', 'Charlie', '0708456789', 'charlie.brown@example.com', '12345678'   , 'Les deux', 'adherant', TRUE ),
-    (1238, 'White', 'Olivia' , '0708567890', 'olivia.white@example.com' , 'mypassword' , 'Mail'    , 'membre'  , TRUE );
+	(1234, 'Test' , 'Johnny' , '0708163264', 'test@gmail.com'           , '$2y$12$NJsrRgjYPJ90/Zkw4DkcxOHOYW7mnk5UzAx7vMzhOVaZG/xZnBcQy', 'Les deux', 'admin'   , FALSE),
+    (1235, 'Doe'  , 'John'   , '0708234567', 'john.doe@example.com'     , '$2y$12$JIP/7qZKCVp9XnV02gvR2eBl6ywu2nDNrjzXkrTxL/CFyr/M4mcte'   , 'Mail'    , 'adherant', TRUE ),
+    (1236, 'Smith', 'Anna'   , '0708345678', 'anna.smith@example.com'   , '$2y$12$CjOM07jJ5fCpkHxr8UoHKebJXZL03gWIsaBlaRl4x/aDt0wKGytxG', 'Discord' , 'membre'  , FALSE),
+    (1237, 'Brown', 'Charlie', '0708456789', 'charlie.brown@example.com', '$2y$12$FzYRZSNhDAqF/LTZeFfH7OMlENOyl7HK7rwM4HMVBO4zH4quiOYZK'   , 'Les deux', 'adherant', TRUE ),
+    (1238, 'White', 'Olivia' , '0708567890', 'olivia.white@example.com' , '$2y$12$slUAaLyhZPB9V69EOUWFaeMvbM/SsYMp5glmkJYvzrOJ7yJ3/yx6q' , 'Mail'    , 'membre'  , TRUE );
 
 
 -- Insertion des produits
