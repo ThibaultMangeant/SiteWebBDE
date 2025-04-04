@@ -83,33 +83,35 @@
     <h3 class="section-title">Avis des participants</h3>
     <div class="reviews" style="max-height: 400px; overflow-y: auto;">
         {% for inscrit in inscrits %}
-            <div class="review event-card mb-4 shadow-sm position-relative" style="border: none;">
-                {% if (isAdmin) %}
-              	  <a href="inscription_delete.php?idEvent={{ evenement.idEvent }}&idUtilisateur={{ inscrit.utilisateur.netud }}" class="btn btn-delete text-decoration-none" title="Supprimer le commentaire">
-                	    <i class="fas fa-times"></i>
-               	 </a>
-				{% endif %}
-                    <div class="event-content">
-                    <p class="event-title"><strong>{{ inscrit.utilisateur.prenom }} {{ inscrit.utilisateur.nom }} &nbsp; - &nbsp; </strong> 
-                    {% if inscrit.utilisateur.role.nomRole == 'admin' %}
-                    <span class="text-danger small"><i class="fa-solid fa-user-shield"></i> Administrateur</span>
-                    {% elseif inscrit.utilisateur.role.nomRole == 'adherant' %}
-                    <span class="text-primary small"><i class="fa-solid fa-user-check"></i> Adhérant</span>
-                    {% elseif inscrit.utilisateur.role.nomRole == 'membre' %}
-                    <span class="text-success small"><i class="fa-solid fa-user"></i> Membre</span>
-                    {% endif %}</p>
-                    <div class="rating-display mb-2">
-                        {% for i in 1..5 %}
-                            {% if i <= inscrit.note %}
-                                <span class="star filled">&#9733;</span>
-                            {% else %}
-                                <span class="star">&#9733;</span>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+			{% if inscrit.note != 0 %}
+           		<div class="review event-card mb-4 shadow-sm position-relative" style="border: none;">
+                	{% if (isAdmin) %}
+              	  		<a href="inscription_delete.php?idEvent={{ evenement.idEvent }}&idUtilisateur={{ inscrit.utilisateur.netud }}" class="btn btn-delete text-decoration-none" title="Supprimer le commentaire">
+                	    	<i class="fas fa-times"></i>
+               	 		</a>
+					{% endif %}
+                    	<div class="event-content">
+                    	<p class="event-title"><strong>{{ inscrit.utilisateur.prenom }} {{ inscrit.utilisateur.nom }} &nbsp; - &nbsp; </strong> 
+                    	{% if inscrit.utilisateur.role.nomRole == 'admin' %}
+                    	<span class="text-danger small"><i class="fa-solid fa-user-shield"></i> Administrateur</span>
+                    	{% elseif inscrit.utilisateur.role.nomRole == 'adherant' %}
+                    	<span class="text-primary small"><i class="fa-solid fa-user-check"></i> Adhérant</span>
+                    	{% elseif inscrit.utilisateur.role.nomRole == 'membre' %}
+                    	<span class="text-success small"><i class="fa-solid fa-user"></i> Membre</span>
+                    	{% endif %}</p>
+                    	<div class="rating-display mb-2">
+                        	{% for i in 1..5 %}
+                            	{% if i <= inscrit.note %}
+                                	<span class="star filled">&#9733;</span>
+                            	{% else %}
+                            	    <span class="star">&#9733;</span>
+                            	{% endif %}
+                        	{% endfor %}
+						</div>
                     <p class="event-description">{{ inscrit.commentaire | raw }}</p>
                 </div>
             </div>
+			{% endif %}
         {% endfor %}
     </div>
 </div>
