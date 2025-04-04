@@ -45,7 +45,7 @@
 		<!-- Prix de l'événement -->
 		<div class="form-group">
 			<label for="prixEvent">Prix :</label>
-			<input type="number" step="0.50" id="prixEvent" name="prixEvent" value="{{ data.prixEvent|default('0') }}" min="0" required>
+			<input type="number" step="0.01" id="prixEvent" name="prixEvent" value="{{ data.prixEvent|default('0') }}" min="0" required>
 		</div>
 
 		<label for="notificationSelect" class="form-label">Autorisé à participer</label>
