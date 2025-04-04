@@ -34,7 +34,7 @@ class EvenementController extends Controller
 		$eventRepository = new EvenementRepository();
 
 		$inscritRepository = new InscriptionRepository();
-		$inscriptions = $inscritRepository->findByEvenementWithStars($idEvent);
+		$inscriptions = $inscritRepository->findByEvenement($idEvent);
 
 		$evenement = $eventRepository->findById($idEvent);
 		if ($evenement === null) {
