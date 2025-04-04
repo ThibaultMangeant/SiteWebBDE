@@ -64,11 +64,12 @@ class InscriptionRepository
 		return $row ? $this->createInscriptionFromRow($row) : null;
 	}
 
-	public function moyenneAvis($idEvenement)
+	public function moyenneAvis($idEvenement): int
 	{
 		$stmt = $this->pdo->prepare('SELECT ROUND(AVG(note), 0) FROM Inscrit WHERE idEvent = :idEvenement AND note BETWEEN 1 AND 5');
 		$stmt->bindParam(':idEvenement', $idEvenement);
-		return $stmt->execute();
+		$stmt->execute();
+		return (int) $stmt->fetchColumn();
 	}
 
 	public function deleteByUtilisateurAndEvenement($idUtilisateur, $idEvenement): bool

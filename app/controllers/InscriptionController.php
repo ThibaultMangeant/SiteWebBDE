@@ -38,7 +38,7 @@ class InscriptionController extends Controller
 		{
 			try
 			{
-				$errors = [];
+				
 
 				// Validation des données
 				if (empty($data['idEvent']))
@@ -86,7 +86,6 @@ class InscriptionController extends Controller
 			catch (Exception $e)
 			{
 				$this->redirectTo('detailEvenement.php?idEvent='.$idEvent); // Redirection si formulaire incorrect
-				$errors = explode(', ', $e->getMessage()); // Récupération des erreurs
 			}
 		}
 		else
