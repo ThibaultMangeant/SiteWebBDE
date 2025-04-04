@@ -42,7 +42,7 @@
     				</button>
 				</div>
             </div>
-			{% elseif evenement.roleAutorise.niveau > utilisateur.role.niveau %}
+			{% elseif evenement.roleAutorise.niveau > utilisateur.role.niveau or utilisateur is not defined %}
 			<div class="text-center mt-4">
 				<div class="text-center mt-4">
     				<button type="button" class="btn btn-secondary rounded-pill" disabled>
