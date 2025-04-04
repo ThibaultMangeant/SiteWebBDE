@@ -13,6 +13,7 @@
             <div class="event-details">
                 <img src="assets/images/evenements/{{ evenement.imgEvent }}" alt="{{ evenement.nomEvent }}" class="event-image mb-3">
                 <ul class="event-info">
+					<li><strong>Date :</strong> {{ evenement.dateEvent|date('d/m/Y') }}</li>
                     <li><strong>Lieu :</strong> {{ evenement.lieuEvent }}</li>
                     <li><strong>Prix :</strong> {{ evenement.prixEvent > 0 ? evenement.prixEvent ~ ' €' : 'Gratuit' }}</li>
 					<li><div class="rating-display mb-2">
@@ -88,8 +89,15 @@
                 	    <i class="fas fa-times"></i>
                	 </a>
 				{% endif %}
-                <div class="event-content">
-                    <p class="event-title"><strong>{{ inscrit.utilisateur.prenom }} {{ inscrit.utilisateur.nom }}</strong></p>
+                    <div class="event-content">
+                    <p class="event-title"><strong>{{ inscrit.utilisateur.prenom }} {{ inscrit.utilisateur.nom }} &nbsp; - &nbsp; </strong> 
+                    {% if inscrit.utilisateur.role.nomRole == 'admin' %}
+                    <span class="text-danger small"><i class="fa-solid fa-user-shield"></i> Administrateur</span>
+                    {% elseif inscrit.utilisateur.role.nomRole == 'adherant' %}
+                    <span class="text-primary small"><i class="fa-solid fa-user-check"></i> Adhérant</span>
+                    {% elseif inscrit.utilisateur.role.nomRole == 'membre' %}
+                    <span class="text-success small"><i class="fa-solid fa-user"></i> Membre</span>
+                    {% endif %}</p>
                     <div class="rating-display mb-2">
                         {% for i in 1..5 %}
                             {% if i <= inscrit.note %}
