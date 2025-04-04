@@ -184,7 +184,7 @@ class CommandeController extends Controller {
 		$utilisateur = $service->getUtilisateur();
 		$isLoggedIn = $service->isLoggedIn();
 
-		$isDiscounted = $utilisateur->getRole()->getNiveau() >= (new RoleRepository())->findByNom("adherant")->getNiveau();
+		$isDiscounted = $utilisateur->getRole()->getNiveau() == (new RoleRepository())->findByNom("adherant")->getNiveau();
 
 		$commandes = $repository->findByUtilisateur($utilisateur->getNetud());
 		$total = $repository->getTotal($utilisateur->getNetud());

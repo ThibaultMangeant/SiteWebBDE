@@ -13,6 +13,7 @@
 						<th scope="col">Date</th>
 						<th scope="col">Lieu</th>
 						<th scope="col">Prix</th>
+						<th scope="col">Role Autorise</th>
 						<th scope="col">Image</th>
 						<th scope="col">Actions</th>
 					</tr>
@@ -33,6 +34,7 @@
 							<td>{{ evenement.dateEvent|date('d/m/Y') }}</td>
 							<td>{{ evenement.lieuEvent }}</td>
 							<td>{{ evenement.prixEvent | number_format(2, ',', ' ') }} €</td>
+							<td>{{ evenement.roleAutorise.nomRole }}</td>
 							<td>
 								<img src="assets/images/evenements/{{ evenement.imgEvent }}" alt="{{ evenement.nomEvent }}" style="width: 50px; height: 50px; object-fit: cover;">
 							</td>
