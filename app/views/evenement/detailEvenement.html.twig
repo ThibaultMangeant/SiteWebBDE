@@ -55,7 +55,7 @@
             {% endfor %}
         </div>
         <textarea name="commentaire" class="form-control mb-3" rows="4" placeholder="Écrivez votre avis ici..." required></textarea>
-		{% if utilisateur.netud in idUtilisateurs %}
+		{% if utilisateur.netud in idUtilisateurs and utilisateur.role.niveau >= evenement.roleAutorise.niveau %}
 		<button type="submit" class="btn btn-primary px-5 mx-auto d-block rounded-pill">Publier</button>
 		{% else %}
         <button type="submit" class="btn btn-secondary px-5 mx-auto d-block rounded-pill" disabled>Publier</button>
