@@ -37,9 +37,13 @@
 					{% endif %}
 				</div>
             </div>
+			<div class="mb-3">
+                <label for="tel" class="form-label fw-bold">Numéro de téléphone <span class="text-danger">*</span></label>
+                <input type="numeric" class="form-control rounded-pill" id="tel" name="tel" placeholder="Votre numéro de téléphone" required>
+            </div>
             <div class="mb-3">
                 <label for="password" class="form-label fw-bold">Mot de passe <span class="text-danger">*</span></label>
-                <input type="password" class="form-control rounded-pill" id="password" name="password" placeholder="Votre mot de passe" required>
+                <input type="password" class="form-control rounded-pill" id="password" value="{{utilisateur.tel}}" name="password" placeholder="Votre mot de passe" required>
             </div>
             <div class="mb-3">
                 <label for="confirm_password" class="form-label fw-bold">Confirmer le mot de passe <span class="text-danger">*</span></label>
